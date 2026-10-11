@@ -262,8 +262,8 @@
     .talk-back .tb-label { width:100%; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
     .talk-back a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding:4px 0; font-size:16px; }
     .talk-back a:hover { border-bottom-width:2px; }
-    .tried-btn { --accent:#c23a1d; width:auto; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1.5px solid var(--accent); background:transparent; color:var(--accent); font-size:16px; font-weight:500; cursor:pointer; }
-    .tried-btn .tb-ico { display:inline-block; width:22px; height:14px; flex:none; }
+    .tried-btn { --accent:#2445c9; width:auto; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1.5px solid var(--accent); background:transparent; color:var(--accent); font-size:16px; font-weight:500; cursor:pointer; }
+    .tried-btn .tb-ico { display:inline-block; width:17px; height:17px; flex:none; }
     .tried-btn .tb-ico svg { width:100%; height:100%; display:block; }
     .tried-btn .tb-ico svg path { fill:currentColor; }
     .tried-btn .tb-ico.tick { width:14px; }
@@ -274,7 +274,7 @@
     .tb-thanks { width:100%; margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
     .operation-dialog-bar .tried-bar { margin-left:auto; padding:5px 12px; font-size:14px; border:1.5px solid var(--accent); }
     #operation-dialog-position, .operation-dialog-bar button { white-space:nowrap; }
-    .operation-dialog-bar .tried-bar .tb-ico { width:18px; height:12px; }
+    .operation-dialog-bar .tried-bar .tb-ico { width:14px; height:14px; }
     .operation-dialog-bar .tried-bar .tb-ico.tick { width:12px; }
     .operation-dialog-bar .copy-link { margin-left:0; }
     @media (max-width:640px) { .operation-dialog-bar { gap:12px; } .operation-dialog-bar .tried-bar { padding:5px 10px; } }
@@ -1856,7 +1856,7 @@
 
 <script>
 (function(){
-  var TRIED = "https://tally.so/r/QKgDo1", EXAMPLE = "https://tally.so/r/RGXJpK", SUGGEST = "https://tally.so/r/EkjJ9l", HAND = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"172 -1165 1493 934\"><path transform=\"scale(1,-1)\" d=\"M172 1059Q172 1103 203.0 1134.0Q234 1165 276 1165H650Q693 1165 723 1134Q740 1117 748 1095H1560Q1586 1095 1610.5 1082.0Q1635 1069 1650.0 1043.5Q1665 1018 1665 991Q1665 947 1634.0 916.5Q1603 886 1560 886H795L797 876H1135Q1157 874 1177 863Q1202 849 1216.0 824.0Q1230 799 1230 773Q1230 729 1199.5 698.5Q1169 668 1101 668H844L845 658H1024Q1051 658 1076.0 644.0Q1101 630 1115.0 605.0Q1129 580 1129 553Q1129 509 1099 479Q1074 453 1026 451H891L895 439H949Q968 436 986 426Q1010 413 1024.5 388.0Q1039 363 1039 336Q1039 293 1008.5 262.0Q978 231 935 231H247Z\" fill=\"currentColor\"/></svg>", TICK = "<svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8.5 L6.5 12 L13 4.5\"/></svg>";
+  var TRIED = "https://tally.so/r/QKgDo1", EXAMPLE = "https://tally.so/r/RGXJpK", SUGGEST = "https://tally.so/r/EkjJ9l", HAND = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"170 -1646 1795 1796\"><path transform=\"scale(1,-1)\" d=\"M642 1021Q642 963 682.5 921.5Q723 880 782 880Q840 880 881.0 921.0Q922 962 922.0 1021.0Q922 1080 881.0 1120.5Q840 1161 782 1161Q723 1161 682.5 1120.5Q642 1080 642 1021ZM1220 1021Q1220 963 1260.5 921.5Q1301 880 1360 880Q1418 880 1459.5 921.5Q1501 963 1501 1021Q1501 1080 1459.5 1120.5Q1418 1161 1360.0 1161.0Q1302 1161 1261.0 1120.5Q1220 1080 1220 1021ZM170 746Q170 1119 433.0 1382.5Q696 1646 1068 1646Q1441 1646 1703.0 1382.5Q1965 1119 1965 746Q1965 374 1703.0 112.0Q1441 -150 1068 -150Q696 -150 433.0 112.0Q170 374 170 746ZM541 465Q577 409 628 358Q810 177 1068.0 177.0Q1326 177 1508 358Q1558 409 1595 465L1480 537Q1451 493 1412 454Q1270 312 1068.0 312.0Q866 312 724 454Q684 493 656 536Z\"/></svg>", TICK = "<svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8.5 L6.5 12 L13 4.5\"/></svg>";
   // one-tap 'I tried this': remembered in this browser; the first tap per browser is counted, privately
   var TKEY = 'do-tried', triedSet = new Set(), counted = new Set();
   try { triedSet = new Set(JSON.parse(localStorage.getItem(TKEY) || '[]')); counted = new Set(JSON.parse(localStorage.getItem(TKEY + '-counted') || '[]')); } catch (e) {}

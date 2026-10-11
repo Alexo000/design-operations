@@ -12,12 +12,10 @@ import html, json
 import os
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-try:
-    HAND = json.load(open(os.path.join(_ROOT, 'sources', 'glyphs.json'), encoding='utf-8'))['0x261b']   # ☛, as on "Try this"
-except Exception:
-    HAND = ''
+# ☻ black smiling face, from DejaVu Sans like the task-card icons (choice of 2026-10-11, with cobalt)
+HAND = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="170 -1646 1795 1796"><path transform="scale(1,-1)" d="M642 1021Q642 963 682.5 921.5Q723 880 782 880Q840 880 881.0 921.0Q922 962 922.0 1021.0Q922 1080 881.0 1120.5Q840 1161 782 1161Q723 1161 682.5 1120.5Q642 1080 642 1021ZM1220 1021Q1220 963 1260.5 921.5Q1301 880 1360 880Q1418 880 1459.5 921.5Q1501 963 1501 1021Q1501 1080 1459.5 1120.5Q1418 1161 1360.0 1161.0Q1302 1161 1261.0 1120.5Q1220 1080 1220 1021ZM170 746Q170 1119 433.0 1382.5Q696 1646 1068 1646Q1441 1646 1703.0 1382.5Q1965 1119 1965 746Q1965 374 1703.0 112.0Q1441 -150 1068 -150Q696 -150 433.0 112.0Q170 374 170 746ZM541 465Q577 409 628 358Q810 177 1068.0 177.0Q1326 177 1508 358Q1558 409 1595 465L1480 537Q1451 493 1412 454Q1270 312 1068.0 312.0Q866 312 724 454Q684 493 656 536Z"/></svg>'
 TICK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 L6.5 12 L13 4.5"/></svg>'
-ACCENT = '#c23a1d'   # the one colour on the page, kept for this button only
+ACCENT = '#2445c9'   # cobalt: the one colour on the page, kept for this button only
 
 TRIED = 'https://tally.so/r/QKgDo1'      # Design Operations feedback (hidden field: operation)
 EXAMPLE = 'https://tally.so/r/RGXJpK'    # Design Operations: a better example (hidden field: operation)
@@ -50,8 +48,8 @@ CSS = """
     .talk-back .tb-label { width:100%; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
     .talk-back a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding:4px 0; font-size:16px; }
     .talk-back a:hover { border-bottom-width:2px; }
-    .tried-btn { --accent:#c23a1d; width:auto; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1.5px solid var(--accent); background:transparent; color:var(--accent); font-size:16px; font-weight:500; cursor:pointer; }
-    .tried-btn .tb-ico { display:inline-block; width:22px; height:14px; flex:none; }
+    .tried-btn { --accent:#2445c9; width:auto; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1.5px solid var(--accent); background:transparent; color:var(--accent); font-size:16px; font-weight:500; cursor:pointer; }
+    .tried-btn .tb-ico { display:inline-block; width:17px; height:17px; flex:none; }
     .tried-btn .tb-ico svg { width:100%; height:100%; display:block; }
     .tried-btn .tb-ico svg path { fill:currentColor; }
     .tried-btn .tb-ico.tick { width:14px; }
@@ -62,7 +60,7 @@ CSS = """
     .tb-thanks { width:100%; margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
     .operation-dialog-bar .tried-bar { margin-left:auto; padding:5px 12px; font-size:14px; border:1.5px solid var(--accent); }
     #operation-dialog-position, .operation-dialog-bar button { white-space:nowrap; }
-    .operation-dialog-bar .tried-bar .tb-ico { width:18px; height:12px; }
+    .operation-dialog-bar .tried-bar .tb-ico { width:14px; height:14px; }
     .operation-dialog-bar .tried-bar .tb-ico.tick { width:12px; }
     .operation-dialog-bar .copy-link { margin-left:0; }
     @media (max-width:640px) { .operation-dialog-bar { gap:12px; } .operation-dialog-bar .tried-bar { padding:5px 10px; } }
