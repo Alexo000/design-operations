@@ -16,6 +16,7 @@ import re, json, html, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from parse_full import parse
+import knowledge
 
 SRC = os.environ.get('SRC', os.path.join(ROOT, 'sources', 'compendium_2026-10-11.md'))
 BETA = os.environ.get('BETA', os.path.join(ROOT, 'sources', 'design_operations_public_beta.html'))
@@ -154,16 +155,17 @@ for idx, k in enumerate(main, 1):
                     credit = ''
                 assets.append({'url': a['url'], 'credit': credit, 'alt': ''})
                 break
+    _seen = knowledge.seen_in(f.get('Canonic example', ''))   # 'Seen in' line (ruling 1a, 2026-10-11)
     rec = {'id': did, 'number': k, 'index': idx,
            'locked': {'name': names[k], 'symbol': SYM_A.get(k, ''), 'canonicalDefinition': act or f['Definition'],
                       'profile': {'primaryMovement': r[3], 'time': r[6], 'startingState': r[8]}},
-           'editorial': {'compact': {'act': act, 'ex': ex}, 'formerly': f.get('Formerly', ''),
+           'editorial': {'compact': {'act': act, 'ex': ex}, 'formerly': f.get('Formerly', ''), 'seenIn': _seen,
                          'applications': apps,
                          'context': {'anecdotes': [f['In the studio']] if f.get('In the studio') else [], 'sources': []},
                          'image': {'assets': assets}, 'related': rel}}
     records.append(rec)
     # 2026-10-11: the Compact action line is the public line under each name (THE SINGLE CORPUS lists Compact, not Definition)
-    search = ' '.join([f.get('Formerly', ''), act, ex]).lower()
+    search = ' '.join([f.get('Formerly', ''), act, ex, _seen['plain'] if _seen else '']).lower()
     content[did] = {'instruction': act or f['Definition'], 'symbol': SYM_E.get(k, ''), 'search': search}
     _first = next((apps[k2]['task'] for k2 in ('hands', 'words', 'process', 'general') if apps.get(k2, {}).get('task')), '')
     tasks[did] = _first or f.get('Task translation', '')
@@ -281,14 +283,14 @@ import discover
 npage = rep(npage, OPENING_MAP + '      </div>\n    </section>\n', OPENING_MAP + '      </div>\n' + discover.FIELD_HTML + '    </section>\n', 'field')
 import pictograms
 import dialogue
-npage = npage.replace('</body>', ONB_JS + SEEN_JS + discover.JS + pictograms.js() + dialogue.JS + polish.JS + nav.JS + '</body>')
+npage = npage.replace('</body>', ONB_JS + SEEN_JS + discover.JS + pictograms.js() + knowledge.JS + dialogue.JS + polish.JS + nav.JS + '</body>')
 npage = nav.patch_html(npage, rep)
 import standalone
 npage = standalone.patch_html(npage, rep)
 standalone.copy_share(ROOT, OUT)
 npage = polish.patch_html(npage)
 npage = dialogue.patch_html(npage, rep)
-npage = npage.replace('</style>', SEEN_CSS + discover.CSS + pictograms.CSS + '  </style>', 1)
+npage = npage.replace('</style>', SEEN_CSS + discover.CSS + pictograms.CSS + knowledge.CSS + '  </style>', 1)
 npage = rep(npage, '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>', '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>\n        <button type="button" class="onb-next" id="onb-map">Browse all 144</button>', 'onb map')
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(npage)
 with open(os.path.join(HERE, 'build_report.tsv'), 'w', encoding='utf-8') as fh:
