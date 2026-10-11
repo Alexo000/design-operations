@@ -277,7 +277,8 @@
     .tried-btn.pop { animation:tried-pop .32s ease-out; }
     .tried-btn.pop .tb-ico.tick svg path { stroke-dasharray:22; animation:tried-tick .3s .08s ease-out both; }
     @media (prefers-reduced-motion:reduce) { .tried-btn.pop, .tried-btn.pop .tb-ico.tick svg path { animation:none; } }
-    .tb-thanks { width:100%; margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
+    .tried-after { display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; margin:22px 0 0; }
+    .tb-thanks { margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
     .operation-dialog-bar .tried-bar { margin-left:auto; padding:5px 12px; font-size:14px; border:1.5px solid var(--accent); }
     #operation-dialog-position, .operation-dialog-bar button { white-space:nowrap; }
     .operation-dialog-bar .tried-bar .tb-ico { width:14px; height:14px; }
@@ -1908,7 +1909,7 @@
     var a = document.createElement('a'); a.href = base + '?operation=' + encodeURIComponent(name); a.target = '_blank'; a.rel = 'noopener'; a.textContent = text; return a;
   }
   // every card ends with the two replies
-  // one state, two buttons: a compact one in the card's top bar (always in view) and the fuller one at the end
+  // one state, two buttons: a compact one in the card's top bar (always in view) and the fuller one under the task
   var cur = {id: '', name: ''}, thanks = null;
   function paintTried(){
     var on = !!cur.id && triedSet.has(cur.id);
@@ -1934,14 +1935,20 @@
     var old = box.querySelector('.talk-back'); if (old) old.remove();
     var name = nameOf(id); cur = {id: id, name: name};
     if (!name) return out;
+    // the button sits right under the task, where people read what to do (ruling 1b, 2026-10-11)
+    var oldT = box.querySelector('.tried-after'); if (oldT) oldT.remove();
+    var ta = document.createElement('div'); ta.className = 'tried-after';
+    ta.appendChild(triedButton());
+    thanks = document.createElement('p'); thanks.className = 'tb-thanks'; thanks.setAttribute('aria-live', 'polite');
+    ta.appendChild(thanks);
+    var apps = box.querySelector('.operation-applications');
+    if (apps) apps.parentNode.insertBefore(ta, apps.nextSibling); else box.appendChild(ta);
+    // the two written replies close the card
     var tb = document.createElement('div'); tb.className = 'talk-back';
     var label = document.createElement('span'); label.className = 'tb-label'; label.textContent = 'Your turn';
     tb.appendChild(label);
-    tb.appendChild(triedButton());
-    tb.appendChild(link(TRIED, name, 'Tell me more →'));
+    tb.appendChild(link(TRIED, name, 'Tell me how it went →'));
     tb.appendChild(link(EXAMPLE, name, 'Know a better example? →'));
-    thanks = document.createElement('p'); thanks.className = 'tb-thanks'; thanks.setAttribute('aria-live', 'polite');
-    tb.appendChild(thanks);
     box.appendChild(tb);
     paintTried();
     return out;
