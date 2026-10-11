@@ -1,6 +1,7 @@
 """dialogue.py — the explorer talks back (2026-10-11, work lane, ruling 1b).
-  - Every card ends with two links, "I tried this" and "Know a better example?", each opening a Tally form with the
-    operation's name filled in (hidden field "operation").
+  - Every card ends with a one-tap "I tried this" button (counted privately with GoatCounter, never shown; rulings 1a
+    and 2a), then "Tell me more" and "Know a better example?", each opening a Tally form with the operation's name
+    filled in (hidden field "operation").
   - "Suggest an operation": a form that asks the Compendium's standing test in plain words (the instruction with its
     stop, the rule it adds, a real work where it is used, the nearest existing operation). Linked from the footer and
     from the end of the collection map.
@@ -12,6 +13,10 @@ import html, json
 TRIED = 'https://tally.so/r/QKgDo1'      # Design Operations feedback (hidden field: operation)
 EXAMPLE = 'https://tally.so/r/RGXJpK'    # Design Operations: a better example (hidden field: operation)
 SUGGEST = 'https://tally.so/r/EkjJ9l'    # Design Operations: suggest an operation
+
+# One-tap "I tried this" (rulings 1a and 2a, 2026-10-11): counted privately with GoatCounter (no cookies), never shown
+# on the page. Empty code: the button still works for the visitor, nothing is counted. Dashboard: https://<code>.goatcounter.com
+GOATCOUNTER = ''
 
 WHATS_NEW = [
     ('11 October 2026', 'You can now answer back. Every operation ends with two links: tell me you tried it, or send a better example. Know a move that isn’t here? Suggest one.'),
@@ -36,6 +41,11 @@ CSS = """
     .talk-back .tb-label { width:100%; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
     .talk-back a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding:4px 0; font-size:16px; }
     .talk-back a:hover { border-bottom-width:2px; }
+    .tried-btn { width:auto; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1px solid var(--ink); background:transparent; color:var(--ink); font-size:16px; cursor:pointer; }
+    .tried-btn:hover { background:var(--hover); border-color:var(--ink); }
+    .tried-btn[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
+    .tried-btn[aria-pressed="true"]:hover { background:var(--ink); }
+    .tb-thanks { width:100%; margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
     .map-suggest { display:block; margin:6px 0 0; padding:16px; border:1px dashed var(--line-strong); color:var(--ink); text-decoration:none; font-size:15px; break-inside:avoid; }
     .map-suggest:hover { border-color:var(--ink); background:var(--hover); }
     .news-open { width:auto; padding:0; border:0; border-bottom:1px solid var(--ink); background:transparent; font:inherit; color:var(--ink); cursor:pointer; }
@@ -58,6 +68,15 @@ JS = """
 <script>
 (function(){
   var TRIED = %s, EXAMPLE = %s, SUGGEST = %s;
+  // one-tap 'I tried this': remembered in this browser; the first tap per browser is counted, privately
+  var TKEY = 'do-tried', triedSet = new Set(), counted = new Set();
+  try { triedSet = new Set(JSON.parse(localStorage.getItem(TKEY) || '[]')); counted = new Set(JSON.parse(localStorage.getItem(TKEY + '-counted') || '[]')); } catch (e) {}
+  function saveTried(){ try { localStorage.setItem(TKEY, JSON.stringify(Array.from(triedSet))); localStorage.setItem(TKEY + '-counted', JSON.stringify(Array.from(counted))); } catch (e) {} }
+  function slug(n){ return String(n).toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function countTried(id, name){
+    if (counted.has(id)) return; counted.add(id); saveTried();
+    try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: 'tried/' + slug(name), title: 'Tried: ' + name, event: true}); } catch (e) {}
+  }
   function nameOf(id){ var r = contentById.get(id); return r ? displayOperationName(r.locked.name) : ''; }
   function link(base, name, text){
     var a = document.createElement('a'); a.href = base + '?operation=' + encodeURIComponent(name); a.target = '_blank'; a.rel = 'noopener'; a.textContent = text; return a;
@@ -72,8 +91,19 @@ JS = """
     var tb = document.createElement('div'); tb.className = 'talk-back';
     var label = document.createElement('span'); label.className = 'tb-label'; label.textContent = 'Your turn';
     tb.appendChild(label);
-    tb.appendChild(link(TRIED, name, 'I tried this →'));
+    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'tried-btn';
+    function paintBtn(){ var on = triedSet.has(id); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); btn.textContent = on ? '✓ Tried' : 'I tried this'; }
+    btn.addEventListener('click', function(){
+      if (triedSet.has(id)) { triedSet.delete(id); saveTried(); paintBtn(); thanks.textContent = ''; return; }   // undo is local only
+      triedSet.add(id); saveTried(); paintBtn(); countTried(id, name);
+      thanks.textContent = (window.goatcounter && window.goatcounter.count) ? 'Thanks. Noted, anonymously.' : 'Thanks.';
+    });
+    var thanks = document.createElement('p'); thanks.className = 'tb-thanks'; thanks.setAttribute('aria-live', 'polite');
+    paintBtn();
+    tb.appendChild(btn);
+    tb.appendChild(link(TRIED, name, 'Tell me more →'));
     tb.appendChild(link(EXAMPLE, name, 'Know a better example? →'));
+    tb.appendChild(thanks);
     box.appendChild(tb);
     return out;
   };
@@ -101,6 +131,9 @@ JS = """
 
 
 def patch_html(npage, rep):
+    if GOATCOUNTER:
+        gc = f'<script data-goatcounter="https://{GOATCOUNTER}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>'
+        npage = npage.replace('</head>', gc + '\n</head>', 1)
     anchor = '<p>Built from the Compendium of'
     assert npage.count(anchor) == 1, 'footer anchor'
     npage = npage.replace(anchor, FOOT_HTML + anchor, 1)
