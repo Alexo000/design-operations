@@ -9,6 +9,15 @@
 Nothing a visitor sends reaches the page directly: it is read, and what fits enters the Compendium by its own rules.
 Visitor wording here is new and unratified."""
 import html, json
+import os
+
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+try:
+    HAND = json.load(open(os.path.join(_ROOT, 'sources', 'glyphs.json'), encoding='utf-8'))['0x261b']   # ☛, as on "Try this"
+except Exception:
+    HAND = ''
+TICK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 L6.5 12 L13 4.5"/></svg>'
+ACCENT = '#c23a1d'   # the one colour on the page, kept for this button only
 
 TRIED = 'https://tally.so/r/QKgDo1'      # Design Operations feedback (hidden field: operation)
 EXAMPLE = 'https://tally.so/r/RGXJpK'    # Design Operations: a better example (hidden field: operation)
@@ -41,14 +50,23 @@ CSS = """
     .talk-back .tb-label { width:100%; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
     .talk-back a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding:4px 0; font-size:16px; }
     .talk-back a:hover { border-bottom-width:2px; }
-    .tried-btn { width:auto; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1px solid var(--ink); background:transparent; color:var(--ink); font-size:16px; cursor:pointer; }
-    .tried-btn:hover { background:var(--hover); border-color:var(--ink); }
-    .tried-btn[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
-    .tried-btn[aria-pressed="true"]:hover { background:var(--ink); }
+    .tried-btn { --accent:#c23a1d; width:auto; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1.5px solid var(--accent); background:transparent; color:var(--accent); font-size:16px; font-weight:500; cursor:pointer; }
+    .tried-btn .tb-ico { display:inline-block; width:22px; height:14px; flex:none; }
+    .tried-btn .tb-ico svg { width:100%; height:100%; display:block; }
+    .tried-btn .tb-ico svg path { fill:currentColor; }
+    .tried-btn .tb-ico.tick { width:14px; }
+    .tried-btn .tb-ico.tick svg path { fill:none; }
+    .tried-btn:hover { background:#fff; border-color:var(--accent); }
+    .tried-btn[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .tried-btn[aria-pressed="true"]:hover { background:var(--accent); }
     .tb-thanks { width:100%; margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
-    .operation-dialog-bar .tried-bar { margin-left:auto; padding:5px 12px; font-size:14px; border:1px solid var(--ink); }
+    .operation-dialog-bar .tried-bar { margin-left:auto; padding:5px 12px; font-size:14px; border:1.5px solid var(--accent); }
+    #operation-dialog-position, .operation-dialog-bar button { white-space:nowrap; }
+    .operation-dialog-bar .tried-bar .tb-ico { width:18px; height:12px; }
+    .operation-dialog-bar .tried-bar .tb-ico.tick { width:12px; }
     .operation-dialog-bar .copy-link { margin-left:0; }
     @media (max-width:640px) { .operation-dialog-bar { gap:12px; } .operation-dialog-bar .tried-bar { padding:5px 10px; } }
+    @media (max-width:420px) { .operation-dialog-bar { gap:10px; padding-left:16px; padding-right:16px; } .operation-dialog-bar .tried-bar { padding:4px 9px; font-size:13px; } .operation-dialog-bar .tried-bar .tb-ico:not(.tick) { display:none; } .operation-dialog-bar button { font-size:13px; } }
     .map-suggest { display:block; margin:6px 0 0; padding:16px; border:1px dashed var(--line-strong); color:var(--ink); text-decoration:none; font-size:15px; break-inside:avoid; }
     .map-suggest:hover { border-color:var(--ink); background:var(--hover); }
     .news-open { width:auto; padding:0; border:0; border-bottom:1px solid var(--ink); background:transparent; font:inherit; color:var(--ink); cursor:pointer; }
@@ -70,7 +88,7 @@ CSS = """
 JS = """
 <script>
 (function(){
-  var TRIED = %s, EXAMPLE = %s, SUGGEST = %s;
+  var TRIED = %s, EXAMPLE = %s, SUGGEST = %s, HAND = %s, TICK = %s;
   // one-tap 'I tried this': remembered in this browser; the first tap per browser is counted, privately
   var TKEY = 'do-tried', triedSet = new Set(), counted = new Set();
   try { triedSet = new Set(JSON.parse(localStorage.getItem(TKEY) || '[]')); counted = new Set(JSON.parse(localStorage.getItem(TKEY + '-counted') || '[]')); } catch (e) {}
@@ -89,7 +107,7 @@ JS = """
   var cur = {id: '', name: ''}, thanks = null;
   function paintTried(){
     var on = !!cur.id && triedSet.has(cur.id);
-    document.querySelectorAll('.tried-btn').forEach(function(b){ b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = on ? '✓ Tried' : 'I tried this'; });
+    document.querySelectorAll('.tried-btn').forEach(function(b){ b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.innerHTML = on ? '<span class="tb-ico tick" aria-hidden="true">' + TICK + '</span>Tried' : '<span class="tb-ico" aria-hidden="true">' + HAND + '</span>I tried this'; });
   }
   function toggleTried(){
     if (!cur.id) return;
@@ -142,7 +160,7 @@ JS = """
   }
 })();
 </script>
-""" % (json.dumps(TRIED), json.dumps(EXAMPLE), json.dumps(SUGGEST))
+""" % (json.dumps(TRIED), json.dumps(EXAMPLE), json.dumps(SUGGEST), json.dumps(HAND), json.dumps(TICK))
 
 
 def patch_html(npage, rep):
