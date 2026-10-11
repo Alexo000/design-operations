@@ -9,9 +9,14 @@ Fixes found in a review of every screen at desktop and phone sizes:
   - opening a card no longer lights up the Close button;
   - names keep small words lower case ('Clear and Refill');
   - collection map: groups stack in two columns by their own height, so short groups no longer sit in tall empty boxes.
-The typeface is set in FONT_CSS so it can be swapped in one place."""
+The typeface is set in FONT_CSS (and loaded in nav.py) so it can be swapped in one place.
+Also 2026-10-11: the card shows the Compact action line under the name in place of the Definition (set in build_explorer.py)."""
 
-FONT_CSS = ""  # empty: keep the beta's Atkinson Hyperlegible (loaded in nav.py)
+# Typeface: IBM Plex Sans (ruling 1b, 2026-10-11), loaded in nav.py. Was Atkinson Hyperlegible.
+FONT_CSS = """
+    body, button, input, select, textarea { font-family:'IBM Plex Sans', Arial, sans-serif; }
+    .operation-compact p.ex { margin-top:0; }
+"""
 
 CSS = """
     /* polish 2026-10-11 */
@@ -56,5 +61,11 @@ JS = r"""
 """
 
 
+import re
+
+
 def patch_html(npage):
+    # drop the beta's embedded Atkinson Hyperlegible: the page now loads IBM Plex Sans
+    npage, n = re.subn(r"@font-face \{\s*font-family:'Atkinson Hyperlegible';.*?\}\s*", '', npage, flags=re.S)
+    npage = npage.replace("font:400 17px/1.5 'Atkinson Hyperlegible', Arial, sans-serif;", "font:400 17px/1.5 'IBM Plex Sans', Arial, sans-serif;")
     return npage.replace('</style>', CSS + FONT_CSS + '  </style>', 1)

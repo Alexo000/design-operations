@@ -4,10 +4,10 @@
 4  results show three to five picks, each with a one-line 'why this one', and the count of other possibilities;
 5  the 'Try this' on a result is the same task the card shows first (set in build_explorer.py);
 6  visitor-facing codes and jargon removed (DO numbers, 'Public beta', 'movement', 'drawer'); map groups headed in plain words;
-12 the page's typeface (Atkinson Hyperlegible) is loaded from Google Fonts."""
+12 the page's typeface is loaded from Google Fonts (IBM Plex Sans since 2026-10-11, ruling 1b; was Atkinson Hyperlegible)."""
 
 FONT = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">')
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">')
 
 CSS = """
     .result-why { margin:12px 0 0; color:var(--muted); font-size:14px; }

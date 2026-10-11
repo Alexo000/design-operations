@@ -155,15 +155,16 @@ for idx, k in enumerate(main, 1):
                 assets.append({'url': a['url'], 'credit': credit, 'alt': ''})
                 break
     rec = {'id': did, 'number': k, 'index': idx,
-           'locked': {'name': names[k], 'symbol': SYM_A.get(k, ''), 'canonicalDefinition': f['Definition'],
+           'locked': {'name': names[k], 'symbol': SYM_A.get(k, ''), 'canonicalDefinition': act or f['Definition'],
                       'profile': {'primaryMovement': r[3], 'time': r[6], 'startingState': r[8]}},
            'editorial': {'compact': {'act': act, 'ex': ex}, 'formerly': f.get('Formerly', ''),
                          'applications': apps,
                          'context': {'anecdotes': [f['In the studio']] if f.get('In the studio') else [], 'sources': []},
                          'image': {'assets': assets}, 'related': rel}}
     records.append(rec)
-    search = ' '.join([f.get('Formerly', ''), f['Definition'], act, ex]).lower()
-    content[did] = {'instruction': f['Definition'], 'symbol': SYM_E.get(k, ''), 'search': search}
+    # 2026-10-11: the Compact action line is the public line under each name (THE SINGLE CORPUS lists Compact, not Definition)
+    search = ' '.join([f.get('Formerly', ''), act, ex]).lower()
+    content[did] = {'instruction': act or f['Definition'], 'symbol': SYM_E.get(k, ''), 'search': search}
     _first = next((apps[k2]['task'] for k2 in ('hands', 'words', 'process', 'general') if apps.get(k2, {}).get('task')), '')
     tasks[did] = _first or f.get('Task translation', '')
     report.append((k, names[k], 'draft profile' if k not in old_rows else 'beta profile', src, 'image' if assets else ''))
@@ -198,7 +199,7 @@ njs = rep(njs, """        ['Continue', related.continueTo || []],
 # detail card
 njs = rep(njs, """      const image = asset ? '<figure class="operation-media"><img loading="lazy" src="'+escapeContent(asset.url)+'" alt="'+escapeContent(asset.alt || asset.credit || record.locked.name)+'"><figcaption>'+escapeContent(asset.credit || asset.file || '')+(asset.status ? ' · '+escapeContent(asset.status) : '')+'</figcaption></figure>' : '';""",
           """      const image = asset ? '<figure class="operation-media"><img loading="lazy" src="'+escapeContent(asset.url)+'" alt=""><figcaption>'+escapeContent(asset.credit || '')+'</figcaption></figure>' : '';
-      const compact = editorial.compact && editorial.compact.act ? '<div class="operation-compact"><p><span aria-hidden="true">⟶</span> '+escapeContent(editorial.compact.act)+'</p>'+(editorial.compact.ex ? '<p class="ex"><span aria-hidden="true">✓</span> '+escapeContent(editorial.compact.ex)+'</p>' : '')+'</div>' : '';
+      const compact = editorial.compact && editorial.compact.ex ? '<div class="operation-compact"><p class="ex"><span aria-hidden="true">✓</span> '+escapeContent(editorial.compact.ex)+'</p></div>' : '';
       const formerly = editorial.formerly ? '<p class="operation-formerly">Formerly '+escapeContent(displayOperationName(editorial.formerly))+'</p>' : '';""", 'image')
 njs = rep(njs, """<p class="operation-definition">'+escapeContent(record.locked.canonicalDefinition)+'</p></div><div class="operation-symbol" aria-hidden="true">'+escapeContent(record.locked.symbol)+'</div></header>'+""",
           """<p class="operation-definition">'+escapeContent(record.locked.canonicalDefinition)+'</p>'+formerly+'</div><div class="operation-symbol" aria-hidden="true">'+(record.locked.symbol || '')+'</div></header>'+compact+""", 'hero')
