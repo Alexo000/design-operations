@@ -267,6 +267,9 @@
     .tried-btn[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
     .tried-btn[aria-pressed="true"]:hover { background:var(--ink); }
     .tb-thanks { width:100%; margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
+    .operation-dialog-bar .tried-bar { margin-left:auto; padding:5px 12px; font-size:14px; border:1px solid var(--ink); }
+    .operation-dialog-bar .copy-link { margin-left:0; }
+    @media (max-width:640px) { .operation-dialog-bar { gap:12px; } .operation-dialog-bar .tried-bar { padding:5px 10px; } }
     .map-suggest { display:block; margin:6px 0 0; padding:16px; border:1px dashed var(--line-strong); color:var(--ink); text-decoration:none; font-size:15px; break-inside:avoid; }
     .map-suggest:hover { border-color:var(--ink); background:var(--hover); }
     .news-open { width:auto; padding:0; border:0; border-bottom:1px solid var(--ink); background:transparent; font:inherit; color:var(--ink); cursor:pointer; }
@@ -1859,29 +1862,41 @@
     var a = document.createElement('a'); a.href = base + '?operation=' + encodeURIComponent(name); a.target = '_blank'; a.rel = 'noopener'; a.textContent = text; return a;
   }
   // every card ends with the two replies
+  // one state, two buttons: a compact one in the card's top bar (always in view) and the fuller one at the end
+  var cur = {id: '', name: ''}, thanks = null;
+  function paintTried(){
+    var on = !!cur.id && triedSet.has(cur.id);
+    document.querySelectorAll('.tried-btn').forEach(function(b){ b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = on ? '✓ Tried' : 'I tried this'; });
+  }
+  function toggleTried(){
+    if (!cur.id) return;
+    if (triedSet.has(cur.id)) { triedSet.delete(cur.id); saveTried(); paintTried(); if (thanks) thanks.textContent = ''; return; }   // undo is local only
+    triedSet.add(cur.id); saveTried(); paintTried(); countTried(cur.id, cur.name);
+    if (thanks) thanks.textContent = (window.goatcounter && window.goatcounter.count) ? 'Thanks. Noted, anonymously.' : 'Thanks.';
+  }
+  function triedButton(extra){ var b = document.createElement('button'); b.type = 'button'; b.className = 'tried-btn' + (extra ? ' ' + extra : ''); b.addEventListener('click', toggleTried); return b; }
+  var bar = document.querySelector('.operation-dialog-bar');
+  if (bar) {
+    var barBtn = triedButton('tried-bar'), before = bar.querySelector('.copy-link') || bar.querySelector('#operation-close');
+    bar.insertBefore(barBtn, before);
+  }
   var orig = renderOperationDetail;
   renderOperationDetail = function(id){
     var out = orig.apply(this, arguments);
     var box = document.querySelector('#operation-detail-content'); if (!box) return out;
     var old = box.querySelector('.talk-back'); if (old) old.remove();
-    var name = nameOf(id); if (!name) return out;
+    var name = nameOf(id); cur = {id: id, name: name};
+    if (!name) return out;
     var tb = document.createElement('div'); tb.className = 'talk-back';
     var label = document.createElement('span'); label.className = 'tb-label'; label.textContent = 'Your turn';
     tb.appendChild(label);
-    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'tried-btn';
-    function paintBtn(){ var on = triedSet.has(id); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); btn.textContent = on ? '✓ Tried' : 'I tried this'; }
-    btn.addEventListener('click', function(){
-      if (triedSet.has(id)) { triedSet.delete(id); saveTried(); paintBtn(); thanks.textContent = ''; return; }   // undo is local only
-      triedSet.add(id); saveTried(); paintBtn(); countTried(id, name);
-      thanks.textContent = (window.goatcounter && window.goatcounter.count) ? 'Thanks. Noted, anonymously.' : 'Thanks.';
-    });
-    var thanks = document.createElement('p'); thanks.className = 'tb-thanks'; thanks.setAttribute('aria-live', 'polite');
-    paintBtn();
-    tb.appendChild(btn);
+    tb.appendChild(triedButton());
     tb.appendChild(link(TRIED, name, 'Tell me more →'));
     tb.appendChild(link(EXAMPLE, name, 'Know a better example? →'));
+    thanks = document.createElement('p'); thanks.className = 'tb-thanks'; thanks.setAttribute('aria-live', 'polite');
     tb.appendChild(thanks);
     box.appendChild(tb);
+    paintTried();
     return out;
   };
   // the end of the collection map invites a new one
