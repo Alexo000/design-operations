@@ -38,6 +38,7 @@ NEW_FOOT_LINE = (f'<p class="foot-ask">Tried one? <a href="{FEEDBACK}" target="_
 CSS = """
     .explorer-foot a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
     .explorer-foot .foot-ask { color:var(--ink); font-size:16px; margin-bottom:14px; }
+    .explorer-foot p { max-width:none; }
 """
 
 
