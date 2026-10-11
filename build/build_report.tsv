@@ -1,0 +1,145 @@
+number	name	profile	tasks from	image
+1	STRIP	beta profile	beta (published 70)	
+2	EXHAUST	beta profile	beta (published 70)	
+3	INVERT	beta profile	beta (published 70)	
+4	TRANSLATE	beta profile	beta (published 70)	
+5	ACCUMULATE	beta profile	beta (published 70)	
+6	DEGRADE	beta profile	beta (published 70)	
+7	GRAFT	beta profile	beta (published 70)	
+8	SCORE	beta profile	beta (published 70)	
+9	CONSTRAIN	beta profile	beta (published 70)	
+10	WRITE THE RULES	beta profile	beta (published 70)	
+11	FOREGROUND	beta profile	beta (published 70)	
+12	CUT THROUGH	beta profile	beta (published 70)	
+13	JUXTAPOSE	beta profile	beta (published 70)	
+14	SPLIT THE ORDER	beta profile	beta (published 70)	
+15	DEFER	beta profile	beta (published 70)	
+16	TRACE	beta profile	beta (published 70)	
+17	WORK THE GAP	beta profile	beta (published 70)	
+18	LET DRIFT	beta profile	beta (published 70)	
+19	ITERATE	beta profile	beta (published 70)	
+20	INTERRUPT	beta profile	beta (published 70)	
+21	LOAD AND REST	beta profile	beta (published 70)	
+22	REHEARSE	beta profile	beta (published 70)	
+23	FORGET FOR NOW	beta profile	beta (published 70)	
+24	MAKE STRANGE	beta profile	beta (published 70)	
+25	ATTEND	beta profile	beta (published 70)	
+26	LOCATE	beta profile	beta (published 70)	
+27	REFRAME	beta profile	beta (published 70)	
+28	REVEAL	beta profile	beta (published 70)	
+29	EXCHANGE	beta profile	beta (published 70)	
+30	DELEGATE	beta profile	beta (published 70)	
+31	STEER	beta profile	beta (published 70)	
+32	JOIN THROUGH A THIRD	beta profile	beta (published 70)	
+33	SUSPEND THE RULES	beta profile	beta (published 70)	
+34	SEQUENCE	beta profile	beta (published 70)	
+35	MARK TIME	beta profile	beta (published 70)	
+36	PLANT	beta profile	beta (published 70)	
+37	RUN IT LONG	beta profile	beta (published 70)	
+38	ELICIT	beta profile	beta (published 70)	
+39	DIAGNOSE	beta profile	beta (published 70)	
+40	TRIANGULATE	beta profile	beta (published 70)	
+41	ISOLATE	beta profile	beta (published 70)	
+42	SAY WHAT IT ISN'T	beta profile	beta (published 70)	
+43	FEED BACK	beta profile	beta (published 70)	
+44	FIND THE THRESHOLD	beta profile	beta (published 70)	
+45	FIND THE KEYSTONE	beta profile	beta (published 70)	
+46	SET UP THE NEXT STAGE	beta profile	beta (published 70)	
+47	DEFECT	beta profile	beta (published 70)	
+48	SACRIFICE	beta profile	beta (published 70)	
+49	DISSOLVE AND REBUILD	beta profile	beta (published 70)	
+50	PREPARE EVERYTHING	beta profile	beta (published 70)	
+51	GENERALISE	beta profile	beta (published 70)	
+52	NAME	beta profile	beta (published 70)	
+53	COMPRESS	beta profile	beta (published 70)	
+54	ALIGN	beta profile	beta (published 70)	
+55	READ THE INTERFERENCE	beta profile	beta (published 70)	
+56	HAND OVER	beta profile	beta (published 70)	
+57	CALIBRATE	beta profile	beta (published 70)	
+58	END WHILE IT WORKS	beta profile	beta (published 70)	
+59	RITUALISE	beta profile	beta (published 70)	
+60	ARCHIVE	beta profile	beta (published 70)	
+61	OCCUPY	beta profile	beta (published 70)	
+62	PARTITION	beta profile	beta (published 70)	
+63	DEPRIVE	beta profile	beta (published 70)	
+64	SATURATE	beta profile	beta (published 70)	
+65	RELOCATE	beta profile	beta (published 70)	
+66	CLASSIFY	beta profile	beta (published 70)	
+67	CONCEAL	beta profile	beta (published 70)	
+68	EXECUTE	beta profile	beta (published 70)	
+69	REPLICATE	beta profile	beta (published 70)	
+70	SCRAMBLE	beta profile	beta (published 70)	
+71	DON'T REPEAT YET	beta profile	compendium	
+72	WORK WHAT STAYED	beta profile	compendium	
+73	LET FADE	beta profile	compendium	
+74	BUILD ON THE MARKS	beta profile	compendium	
+76	RAISE THE COST	beta profile	compendium	
+77	AMEND	beta profile	compendium	
+79	FAVOUR THE RARE	beta profile	compendium	
+80	LEAVE NO WINNER	beta profile	compendium	
+81	ENTANGLE	beta profile	compendium	
+82	RUN ON LEFTOVERS	beta profile	compendium	
+83	BACK EACH OTHER UP	beta profile	compendium	
+85	CLEAR AND REFILL	beta profile	compendium	
+86	HEDGE	beta profile	compendium	
+87	SCOUT	beta profile	compendium	
+88	ROAM	beta profile	compendium	
+90	FEED IN ODDITIES	beta profile	compendium	
+91	FREEZE THE JOINT	beta profile	compendium	
+94	TEST IN GROUPS	beta profile	compendium	
+95	SHARE AND KEEP APART	beta profile	compendium	
+96	DISPERSE	beta profile	compendium	
+97	BUILD IN LAYERS	beta profile	compendium	
+98	CROSS-CHECK	beta profile	compendium	
+99	INTERLOCK	beta profile	compendium	
+102	WATCH FOR CLASHES	beta profile	compendium	
+105	DROP NEEDLESS ORDER	beta profile	compendium	
+106	STITCH	beta profile	compendium	
+107	CLOSE BACK TO THE START	beta profile	compendium	
+108	CHECK BEFORE ADDING	beta profile	compendium	
+109	KEEP A WAY HOME	beta profile	compendium	
+110	RATCHET	beta profile	compendium	
+112	EXAGGERATE	draft profile	compendium	
+113	SAMPLE	draft profile	compendium	
+114	MIMIC	draft profile	compendium	
+115	WEATHER	draft profile	compendium	
+116	HOLD	draft profile	compendium	
+117	REOPEN	draft profile	compendium	
+118	LEASE	draft profile	compendium	
+119	EXPLOIT	draft profile	compendium	
+120	SHED	draft profile	compendium	
+121	PIN	draft profile	compendium	
+122	SEED AND LEAVE	draft profile	compendium	
+123	BREED	draft profile	compendium	
+124	COVER	draft profile	compendium	
+125	HIDE UNTIL DONE	draft profile	compendium	
+126	FUNNEL	draft profile	compendium	
+127	KEEP BACK	draft profile	compendium	
+128	SCAFFOLD	draft profile	compendium	
+129	RELAX	draft profile	compendium	
+130	PULL	draft profile	compendium	
+131	HALVE	draft profile	compendium	
+132	LAY OVER	draft profile	compendium	
+133	DELAY	draft profile	compendium	
+134	MIRROR	draft profile	compendium	
+135	FOLD	draft profile	compendium	
+136	LEAVE OPEN	draft profile	compendium	
+137	FOLLOW THROUGH	draft profile	compendium	
+138	ALLOW A MARGIN	draft profile	compendium	
+139	ANCHOR	draft profile	compendium	
+140	RANK	draft profile	compendium	
+141	SET A RATIO	draft profile	compendium	
+142	SUBSTITUTE	draft profile	compendium	
+143	ALTERNATE	draft profile	compendium	
+144	RESIZE	draft profile	compendium	
+145	COUPLE	draft profile	compendium	
+146	MERGE	draft profile	compendium	
+147	CONTAIN	draft profile	compendium	
+148	MORPH	draft profile	compendium	
+149	MARK WHAT WENT	draft profile	compendium	
+150	SHADE ACROSS	draft profile	compendium	
+151	RESERVE	draft profile	compendium	
+152	CUT THE BEATEN	draft profile	compendium	
+153	LEAVE ONE OUT	draft profile	compendium	
+154	PRETEND	draft profile	task translation	
+155	RECALL	draft profile	task translation	
