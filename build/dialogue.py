@@ -57,6 +57,12 @@ CSS = """
     .tried-btn:hover { background:#fff; border-color:var(--accent); }
     .tried-btn[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
     .tried-btn[aria-pressed="true"]:hover { background:var(--accent); }
+    /* one short bounce on the tap, and the tick draws itself in */
+    @keyframes tried-pop { 0% { transform:scale(1); } 35% { transform:scale(1.1); } 70% { transform:scale(.97); } 100% { transform:scale(1); } }
+    @keyframes tried-tick { from { stroke-dashoffset:22; } to { stroke-dashoffset:0; } }
+    .tried-btn.pop { animation:tried-pop .32s ease-out; }
+    .tried-btn.pop .tb-ico.tick svg path { stroke-dasharray:22; animation:tried-tick .3s .08s ease-out both; }
+    @media (prefers-reduced-motion:reduce) { .tried-btn.pop, .tried-btn.pop .tb-ico.tick svg path { animation:none; } }
     .tb-thanks { width:100%; margin:0; font-size:14px; color:var(--muted); min-height:1.4em; }
     .operation-dialog-bar .tried-bar { margin-left:auto; padding:5px 12px; font-size:14px; border:1.5px solid var(--accent); }
     #operation-dialog-position, .operation-dialog-bar button { white-space:nowrap; }
@@ -111,6 +117,7 @@ JS = """
     if (!cur.id) return;
     if (triedSet.has(cur.id)) { triedSet.delete(cur.id); saveTried(); paintTried(); if (thanks) thanks.textContent = ''; return; }   // undo is local only
     triedSet.add(cur.id); saveTried(); paintTried(); countTried(cur.id, cur.name);
+    document.querySelectorAll('.tried-btn').forEach(function(b){ b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); });
     if (thanks) thanks.textContent = (window.goatcounter && window.goatcounter.count) ? 'Thanks. Noted, anonymously.' : 'Thanks.';
   }
   function triedButton(extra){ var b = document.createElement('button'); b.type = 'button'; b.className = 'tried-btn' + (extra ? ' ' + extra : ''); b.addEventListener('click', toggleTried); return b; }
