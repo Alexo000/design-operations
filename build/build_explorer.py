@@ -280,12 +280,14 @@ import polish
 import discover
 npage = rep(npage, OPENING_MAP + '      </div>\n    </section>\n', OPENING_MAP + '      </div>\n' + discover.FIELD_HTML + '    </section>\n', 'field')
 import pictograms
-npage = npage.replace('</body>', ONB_JS + SEEN_JS + discover.JS + pictograms.js() + polish.JS + nav.JS + '</body>')
+import dialogue
+npage = npage.replace('</body>', ONB_JS + SEEN_JS + discover.JS + pictograms.js() + dialogue.JS + polish.JS + nav.JS + '</body>')
 npage = nav.patch_html(npage, rep)
 import standalone
 npage = standalone.patch_html(npage, rep)
 standalone.copy_share(ROOT, OUT)
 npage = polish.patch_html(npage)
+npage = dialogue.patch_html(npage, rep)
 npage = npage.replace('</style>', SEEN_CSS + discover.CSS + pictograms.CSS + '  </style>', 1)
 npage = rep(npage, '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>', '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>\n        <button type="button" class="onb-next" id="onb-map">Browse all 144</button>', 'onb map')
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(npage)
