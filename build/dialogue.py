@@ -16,7 +16,7 @@ SUGGEST = 'https://tally.so/r/EkjJ9l'    # Design Operations: suggest an operati
 
 # One-tap "I tried this" (rulings 1a and 2a, 2026-10-11): counted privately with GoatCounter (no cookies), never shown
 # on the page. Empty code: the button still works for the visitor, nothing is counted. Dashboard: https://<code>.goatcounter.com
-GOATCOUNTER = ''
+GOATCOUNTER = 'alexo000'
 
 WHATS_NEW = [
     ('11 October 2026', 'You can now answer back. Every operation ends with two links: tell me you tried it, or send a better example. Know a move that isn’t here? Suggest one.'),
