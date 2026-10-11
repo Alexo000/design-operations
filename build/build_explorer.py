@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from parse_full import parse
 
-SRC = os.environ.get('SRC', os.path.join(ROOT, 'sources', 'compendium_2026-10-02i.md'))
+SRC = os.environ.get('SRC', os.path.join(ROOT, 'sources', 'compendium_2026-10-11.md'))
 BETA = os.environ.get('BETA', os.path.join(ROOT, 'sources', 'design_operations_public_beta.html'))
 REG = os.environ.get('REG', os.path.join(ROOT, 'sources', 'design_operations_content_register.json'))
 OUT = os.environ.get('OUT', os.path.join(ROOT, 'site'))
@@ -270,7 +270,7 @@ CSS_ADD = """
     .explorer-foot p { margin:0 0 8px; }
   </style>"""
 npage = npage.replace('</style>', CSS_ADD.replace('SYMFONT', SYM_FONT), 1)
-FOOT = """<footer class="explorer-foot"><p>The symbols are a first set and will change.</p><p>Built from the Compendium of 2 October 2026 · © 2026 Alejandro Ramos Saavedra</p></footer>"""
+FOOT = """<footer class="explorer-foot"><p>The symbols are a first set and will change.</p><p>Built from the Compendium of 11 October 2026 · © 2026 Alejandro Ramos Saavedra</p></footer>"""
 npage = npage.replace('<script>', FOOT + '\n<script>', 1)
 from onboarding import HTML as ONB_HTML, CSS as ONB_CSS, JS as ONB_JS
 npage = rep(npage, '    <section id="opening" aria-labelledby="opening-title">', ONB_HTML + '    <section id="opening" aria-labelledby="opening-title">', 'onboard html')

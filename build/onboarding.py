@@ -77,9 +77,21 @@ JS = """
     document.querySelector('#onb-def').textContent = rec ? rec.locked.canonicalDefinition : '';
     document.querySelector('#onb-do').textContent = e.do;
   }
+  // 2026-10-11: hold the card's parts at the height of the longest example, so the box and the buttons stay still
+  var PARTS = ['#onb-situation', '.onb-op', '.onb-do'];
+  function fit(){
+    if (on.hidden) return;
+    var els = PARTS.map(function(sel){ return document.querySelector(sel); }).filter(Boolean), max = els.map(function(){ return 0; });
+    els.forEach(function(el){ el.style.minHeight = ''; });
+    for (var k = 0; k < EX.length; k++) { show(k); els.forEach(function(el, n){ max[n] = Math.max(max[n], el.getBoundingClientRect().height); }); }
+    show(i);
+    els.forEach(function(el, n){ el.style.minHeight = Math.ceil(max[n]) + 'px'; el.style.boxSizing = 'border-box'; });
+  }
+  var fitTimer; window.addEventListener('resize', function(){ clearTimeout(fitTimer); fitTimer = setTimeout(fit, 150); });
+  try { document.fonts.ready.then(fit); } catch (err) {}
   function openOnboard(){
     document.querySelectorAll('#opening,#branch,#results,#boundary').forEach(function(el){ if (el) el.hidden = true; });
-    on.hidden = false; show(i);
+    on.hidden = false; show(i); fit();
   }
   function leave(){
     try { localStorage.setItem('do-onboarded', '1'); } catch (err) {}

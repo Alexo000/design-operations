@@ -5,7 +5,7 @@ Fixes found in a review of every screen at desktop and phone sizes:
   - the only colour on the page was a stray blue (focus ring, 'None of these' box): now ink and a dashed outline,
     the same language as 'Browse the whole collection';
   - the 'seen' strip is one hairline row of 144 marks instead of a two-row dashed band (set in seen.py);
-  - phone: header no longer wraps 'How it works'; onboarding buttons stack at full width;
+  - phone: header no longer wraps 'How it works'; onboarding buttons stack at full width and do not stay grey after a tap;
   - opening a card no longer lights up the Close button;
   - names keep small words lower case ('Clear and Refill');
   - collection map: groups stack in two columns by their own height, so short groups no longer sit in tall empty boxes.
@@ -41,6 +41,10 @@ CSS = """
       .header-tools { gap:12px; }
       .operation-dialog-bar { padding:11px 22px; }
       .onb-actions button { flex:1 1 100%; text-align:left; }
+    }
+    @media (hover:none) {
+      .onb-actions button:hover { background:transparent; color:var(--ink); }
+      .onb-actions .onb-go:hover { background:var(--ink); color:var(--paper); }
     }
 """
 

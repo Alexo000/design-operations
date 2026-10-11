@@ -8,7 +8,7 @@ The public explorer for the Design Operations Compendium: 144 operations, a few 
 |---|---|
 | `site/` | The finished page, `index.html`. This is the only folder that goes online. |
 | `build/` | The scripts that make the page. |
-| `sources/` | What the scripts read: the Compendium (2 October 2026), the August beta page and its content register, the symbols, and the task-card icons. **Private: not on GitHub.** It lives in the Dropbox copy of this folder; the Compendium's home is the Shubidubi project knowledge. |
+| `sources/` | What the scripts read: the Compendium (11 October 2026), the August beta page and its content register, the symbols, and the task-card icons. **Private: not on GitHub.** It lives in the Dropbox copy of this folder; the Compendium's home is the Shubidubi project knowledge. |
 | `assets/social/` | Share image and Instagram images. |
 
 ## Rebuild the page
