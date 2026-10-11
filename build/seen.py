@@ -12,8 +12,8 @@ CSS = """
     .map-open:hover { background:var(--paper); color:var(--ink); }
     .tally { color:var(--muted); font-size:14px; white-space:nowrap; }
     .tally b { color:var(--ink); font-weight:500; }
-    .tally-strip { display:grid; grid-template-columns:repeat(72,1fr); gap:2px; margin:-1px 0 0; padding:10px 0 0; }
-    .tally-strip i { display:block; height:5px; background:var(--line); }
+    .tally-strip { display:grid; grid-template-columns:repeat(144,1fr); gap:1px; margin:-1px 0 0; padding:8px 0 0; }
+    .tally-strip i { display:block; height:3px; background:var(--line); }
     .tally-strip i.on { background:var(--ink); }
     .route-map { border-style:dashed; }
     .map-operation.seen > span:first-child::before { content:'●'; font-size:9px; margin-right:7px; vertical-align:2px; }

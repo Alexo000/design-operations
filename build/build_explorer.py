@@ -275,11 +275,13 @@ from onboarding import HTML as ONB_HTML, CSS as ONB_CSS, JS as ONB_JS
 npage = rep(npage, '    <section id="opening" aria-labelledby="opening-title">', ONB_HTML + '    <section id="opening" aria-labelledby="opening-title">', 'onboard html')
 npage = npage.replace('</style>', ONB_CSS + '  </style>', 1)
 assert npage.count('</body>') == 1
-npage = npage.replace('</body>', ONB_JS + SEEN_JS + nav.JS + '</body>')
+import polish
+npage = npage.replace('</body>', ONB_JS + SEEN_JS + polish.JS + nav.JS + '</body>')
 npage = nav.patch_html(npage, rep)
 import standalone
 npage = standalone.patch_html(npage, rep)
 standalone.copy_share(ROOT, OUT)
+npage = polish.patch_html(npage)
 npage = npage.replace('</style>', SEEN_CSS + '  </style>', 1)
 npage = rep(npage, '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>', '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>\n        <button type="button" class="onb-next" id="onb-map">Browse all 144</button>', 'onb map')
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(npage)
