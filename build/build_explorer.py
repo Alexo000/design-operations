@@ -292,6 +292,8 @@ npage = polish.patch_html(npage)
 npage = dialogue.patch_html(npage, rep)
 npage = npage.replace('</style>', SEEN_CSS + discover.CSS + pictograms.CSS + knowledge.CSS + '  </style>', 1)
 npage = rep(npage, '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>', '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>\n        <button type="button" class="onb-next" id="onb-map">Browse all 144</button>', 'onb map')
+import stuck   # 'I'm stuck on a project' way in (2026-10-13)
+npage = stuck.patch_page(npage)
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(npage)
 with open(os.path.join(HERE, 'build_report.tsv'), 'w', encoding='utf-8') as fh:
     fh.write('number\tname\tprofile\ttasks from\timage\n')
