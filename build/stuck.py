@@ -27,6 +27,9 @@ FLAGS = [
     ("It's too complicated", 45),                   # FIND THE KEYSTONE
     ("I'm trying to do too many things", 60),       # ARCHIVE
     ("I haven't made anything yet", 87),            # SCOUT
+    ("My restriction is just decoration", 112),     # EXAGGERATE
+    ("I'm waiting for the perfect idea", 15),       # DEFER
+    ("Making is taking longer than I planned", 50), # PREPARE EVERYTHING
 ]
 
 BUTTON = ('<button class="route route-stuck" type="button" id="opening-stuck">\n'
