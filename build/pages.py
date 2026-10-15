@@ -12,7 +12,7 @@ from urllib.parse import quote
 import standalone
 import wordmark
 
-WM_SLUGS = []   # set in write()
+WM_SLUGS = {}   # the wordmark's symbols, set in write()
 
 SITE = standalone.SITE_URL
 NAME, TAGLINE, DOC_TITLE = standalone.TITLE, standalone.TAGLINE, standalone.DOC_TITLE
@@ -208,7 +208,7 @@ def all_page(order, meanings):
 def write(out_dir, register, icons, npage):
     records = register['records']
     global WM_SLUGS
-    WM_SLUGS = wordmark.sheet(records)[1]
+    WM_SLUGS = wordmark.symbols(records)
     order = sorted(records, key=lambda r: r['index'])
     meanings = dict(re.findall(r"(\w+): '([^']*)'", re.search(r'movementMeanings = \{(.*?)\};', npage, re.S).group(1)))
     by_name = {r['locked']['name'].upper(): r for r in records}

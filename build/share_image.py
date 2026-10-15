@@ -24,10 +24,9 @@ def b64(path):
 def page():
     import re
     sheet = open(SHEET, encoding='utf-8').read()
-    slugs = re.findall(r'<view id="([^"]+)"', sheet)
-    picks = random.Random(15).sample(slugs, len(wordmark.LETTERS))
-    sheet_uri = 'data:image/svg+xml;base64,' + base64.b64encode(sheet.encode()).decode()
-    cells = ''.join(f'<div class="c"><img src="{sheet_uri}#{p}"><span>{ch}</span></div>' for ch, p in zip(wordmark.LETTERS, picks))
+    items = {m.group(1): (m.group(2), m.group(3)) for m in re.finditer(r'<symbol id="wm-([^"]+)" viewBox="([^"]+)">(.*?)</symbol>', sheet, re.S)}
+    picks = random.Random(15).sample(list(items), len(wordmark.LETTERS))
+    cells = ''.join(f'<div class="c"><svg viewBox="{items[p][0]}">{items[p][1]}</svg><span>{ch}</span></div>' for ch, p in zip(wordmark.LETTERS, picks))
     return f"""<!doctype html><html><head><style>
 @font-face {{ font-family:P; src:url(data:font/ttf;base64,{b64(os.path.join(FONTS, 'IBMPlexSans-Regular.ttf'))}); font-weight:400; }}
 @font-face {{ font-family:P; src:url(data:font/ttf;base64,{b64(os.path.join(FONTS, 'IBMPlexSans-Light.ttf'))}); font-weight:300; }}
@@ -35,7 +34,7 @@ body {{ margin:0; width:1500px; height:787px; background:url(data:image/png;base
 .left {{ position:absolute; left:0; top:0; width:760px; height:787px; background:#f7f7f3; }}
 .row {{ position:absolute; left:72px; top:250px; display:grid; grid-template-columns:repeat(9, 68px); }}
 .c {{ display:grid; grid-template-rows:52px auto; row-gap:16px; justify-items:center; align-items:end; }}
-.c img {{ width:52px; height:52px; object-fit:contain; display:block; }}
+.c svg {{ width:52px; height:52px; display:block; overflow:visible; }}
 .c span {{ font-size:22px; font-weight:400; line-height:1; }}
 .rule {{ position:absolute; left:90px; top:400px; width:430px; height:3px; background:#161616; }}
 .tag {{ position:absolute; left:90px; top:440px; font-size:58px; font-weight:300; line-height:70px; }}
