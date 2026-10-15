@@ -1,6 +1,6 @@
-# Design Operations explorer
+# Actionary (formerly Design Operations)
 
-The public explorer for the Design Operations Compendium: 144 operations, a few questions to find one for your situation, and a map of the whole collection.
+The public explorer for the operations: 144 operations, a few questions to find one for your situation, and a map of the whole collection. Renamed Actionary on 15 October 2026, strapline "Things to do to your work". The name and strapline live in `build/standalone.py` (TITLE, TAGLINE).
 
 ## What is where
 
@@ -19,7 +19,7 @@ You need Python 3. Nothing else for a normal rebuild.
 python3 build/build_explorer.py
 ```
 
-This writes `site/index.html` and a check list, `build/build_report.tsv`.
+This writes `site/index.html`, one page per operation (`site/<slug>/index.html`), `site/all/index.html`, `site/sitemap.xml`, `site/robots.txt` and a check list, `build/build_report.tsv`.
 
 To use a newer Compendium, put it in `sources/` and run:
 
@@ -38,6 +38,9 @@ SRC=sources/<new compendium file>.md python3 build/build_explorer.py
 - `nav.py`: Back button, links to single cards, results with reasons, plain wording.
 - `symbols_draw_153_155.py`, `symbols_dsl.py`: symbols for the three newest operations.
 - `glyphs.py`: the four small icons on the task cards.
+- `stuck.py`: the "I'm stuck on a project" way in.
+- `pages.py`: the page for each operation, the all-operations page, the sitemap and robots.txt, so search engines can find every operation.
+- `share_image.py`: redraws the share image with the current name (run by hand when the name changes).
 
 ## Publishing
 

@@ -171,7 +171,7 @@ for idx, k in enumerate(main, 1):
     tasks[did] = _first or f.get('Task translation', '')
     report.append((k, names[k], 'draft profile' if k not in old_rows else 'beta profile', src, 'image' if assets else ''))
 
-register = {'schemaVersion': 'explorer-2026-10-10', 'title': 'Design Operations', 'records': records}
+register = {'schemaVersion': 'explorer-2026-10-10', 'title': 'Design Operations', 'records': records}   # title renamed on the page by standalone.py
 
 # ---------------------------------------------------------------- splice the data into the beta script
 def splice(src, start_pat, end_pat, new):
@@ -295,6 +295,9 @@ npage = rep(npage, '<button type="button" class="onb-go" id="onb-go">Find one fo
 import stuck   # 'I'm stuck on a project' way in (2026-10-13)
 npage = stuck.patch_page(npage)
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(npage)
+assert 'Design Operations' not in npage, 'the old name is still on the page'
+import pages   # one page per operation, /all/, sitemap.xml, robots.txt (2026-10-15)
+print('operation pages', pages.write(OUT, register, ICONS, npage))
 with open(os.path.join(HERE, 'build_report.tsv'), 'w', encoding='utf-8') as fh:
     fh.write('number\tname\tprofile\ttasks from\timage\n')
     for r in report:

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generalise: state the pattern as a rule an instance could break</title>
+  <meta name="description" content="State the pattern as a rule an instance could break; stop when you can name the case that would break it. Example: Turn an example into a rule.">
+  <link rel="canonical" href="https://operations.ramos-saavedra.com/generalise/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Actionary">
+  <meta property="og:title" content="Generalise: state the pattern as a rule an instance could break">
+  <meta property="og:description" content="State the pattern as a rule an instance could break; stop when you can name the case that would break it. Example: Turn an example into a rule.">
+  <meta property="og:url" content="https://operations.ramos-saavedra.com/generalise/">
+  <meta property="og:image" content="https://operations.ramos-saavedra.com/share.png">
+  <meta property="og:image:width" content="1500">
+  <meta property="og:image:height" content="787">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161616'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='14' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#f7f7f3">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+  <style>
+    :root { color-scheme:light; --ink:#161616; --muted:#62625e; --line:#c8c8c1; --line-strong:#70706a; --paper:#f7f7f3; --focus:#2457d6; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:400 17px/1.5 'IBM Plex Sans', Arial, sans-serif; }
+    main { width:min(820px, calc(100% - 32px)); margin:0 auto; padding:30px 0 88px; }
+    a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
+    a:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+    .top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
+    .top .brand { text-decoration:none; }
+    .top .brand span { display:block; margin-top:2px; color:var(--muted); }
+    .hero { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; margin:56px 0 0; }
+    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(38px,7vw,58px); line-height:1.05; letter-spacing:-.025em; }
+    h2 { margin:0 0 14px; font-weight:400; font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+    p { max-width:62ch; }
+    .line { margin:0; font-size:21px; line-height:1.4; }
+    .formerly { margin:10px 0 0; color:var(--muted); font-size:14px; }
+    .symbol { width:88px; color:var(--ink); }
+    .symbol svg { width:100%; height:auto; max-height:150px; display:block; }
+    .ex { margin:22px 0 0; color:var(--muted); }
+    .seen { margin:8px 0 0; color:var(--muted); font-size:15px; }
+    section { margin:48px 0 0; }
+    .tasks { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; }
+    .task { border:1px solid var(--line-strong); padding:18px; background:rgba(255,255,255,.4); }
+    .task .label { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--muted); }
+    .task .label svg { width:18px; height:18px; flex:none; }
+    .task .label svg path { fill:currentColor; }
+    .task h3 { margin:10px 0 0; font-size:17px; font-weight:500; }
+    .task p { margin:10px 0 0; }
+    .related { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+    .related li { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; padding:12px 0; border-bottom:1px solid var(--line); }
+    .related .rl { width:100%; font-size:14px; color:var(--muted); }
+    .note { margin:40px 0 0; color:var(--muted); font-size:14px; }
+    .go { display:flex; flex-wrap:wrap; gap:12px 28px; margin:44px 0 0; padding-top:22px; border-top:1px solid var(--ink); }
+    .go .primary { display:inline-block; padding:12px 18px; border:1px solid var(--ink); text-decoration:none; }
+    .go .primary:hover { background:#fff; }
+    .pager { display:flex; justify-content:space-between; gap:16px; margin:36px 0 0; font-size:15px; }
+    footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+    footer p { max-width:none; margin:6px 0; }
+    .group { margin:44px 0 0; }
+    .group ul { list-style:none; margin:0; padding:0; }
+    .group li { padding:12px 0; border-bottom:1px solid var(--line); }
+    .group li a { font-size:19px; }
+    .group li span { display:block; color:var(--muted); font-size:15px; }
+    .lede { margin:18px 0 0; color:var(--muted); font-size:18px; }
+    @media (max-width:560px) { .hero { grid-template-columns:1fr; } .symbol { width:64px; order:-1; } .pager { flex-direction:column; } }
+  </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "DefinedTerm", "name": "Generalise", "description": "State the pattern as a rule an instance could break; stop when you can name the case that would break it.", "url": "https://operations.ramos-saavedra.com/generalise/", "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "Actionary", "url": "https://operations.ramos-saavedra.com/"}}</script>
+  <script data-goatcounter="https://alexo000.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+  <header class="top"><a class="brand" href="https://operations.ramos-saavedra.com/">Actionary<span>Things to do to your work</span></a><a href="https://operations.ramos-saavedra.com/all/">All operations</a></header>
+  <div class="hero"><div><h1>Generalise</h1><p class="line">State the pattern as a rule an instance could break; stop when you can name the case that would break it.</p></div><div class="symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 20.0 52.0"><circle cx="3.0" cy="5.0" r="2.3" fill="currentColor"/><rect x="7.70" y="3.70" width="2.6" height="2.6" fill="currentColor" stroke="currentColor" stroke-width="0"/><circle cx="15.0" cy="5.0" r="2.3" fill="currentColor"/><polygon points="3.00,13.00 0.70,17.00 5.30,17.00" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="7.70" y="13.70" width="2.6" height="2.6" fill="currentColor" stroke="currentColor" stroke-width="0"/><polygon points="15.00,13.00 12.70,17.00 17.30,17.00" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="0.90" y="22.90" width="4.2" height="4.2" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="7.70" y="23.70" width="2.6" height="2.6" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="12.90" y="22.90" width="4.2" height="4.2" fill="currentColor" stroke="currentColor" stroke-width="0"/><line x1="9.00" y1="32.00" x2="9.00" y2="37.40" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><polygon points="9.00,38.60 7.80,36.52 10.20,36.52" fill="currentColor"/><circle cx="3.0" cy="45.0" r="2.0" fill="none" stroke="currentColor" stroke-width="0.6"/><line x1="7.00" y1="45.00" x2="11.00" y2="45.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><circle cx="15.0" cy="45.0" r="2.0" fill="none" stroke="currentColor" stroke-width="0.6"/></svg></div></div>
+  <p class="ex"><span aria-hidden="true">✓</span> Turn an example into a rule.</p>
+  <p class="seen">Seen in <a href="https://en.wikipedia.org/wiki/A_Pattern_Language" rel="noopener">Christopher Alexander and others, A Pattern Language, 1977</a></p>
+  <section><h2>Try it on your work</h2><div class="tasks"><div class="task"><div class="label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="177 -1165 1482 954"><path transform="scale(1,-1)" d="M961 241Q1044 241 1044 314Q1044 389 961 389H898L880 465H1054Q1137 465 1137 537Q1137 612 1054 612H831L822 691H1138Q1220 691 1220 764Q1220 839 1138 839H783L770 915H1536Q1619 915 1619.0 988.0Q1619 1061 1540 1061Q1540 1061 1536 1061H729Q707 1118 653 1118H299Q267 1118 242.5 1092.5Q218 1067 218 1030L292 241ZM252 211 177 1057Q177 1102 208.0 1133.5Q239 1165 281 1165H655Q720 1163 753 1094H1565Q1658 1094 1659 991Q1658 887 1565 886H800L804 871H1166Q1258 870 1259 767Q1258 663 1166 663H851L854 644H1082Q1174 643 1175 540Q1174 436 1082 435H910L914 421H989Q1081 420 1082 317Q1081 212 989 211Z" fill="currentColor"/></svg>With your hands</div><p>Watch one small thing happen five separate times (how a door gets opened, how a package gets unwrapped) and write the rule that all five obeyed. If a sixth breaks the rule, that&#x27;s a better finding than the rule.</p></div><div class="task"><div class="label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="43 -1388 1599 1219"><path transform="scale(1,-1)" d="M216 496Q243 493 263 532Q278 563 278 594Q278 626 262 642Q262 642 216 496ZM1142 329Q1095 329 987 343Q939 348 910 348Q872 348 722 332Q648 324 615 324H516Q433 324 396 383L307 284L43 169L172 437Q166 455 166 487Q166 513 180 560L249 792Q277 886 302 920Q395 1044 518 1133Q582 1180 649 1206Q683 1219 719 1219Q771 1219 833 1167L986 1338Q1031 1388 1090 1388Q1127 1388 1157 1332Q1170 1307 1170 1278L980 1059L1184 924Q1228 895 1268 895Q1322 895 1328 925H1553Q1642 794 1642 614Q1642 407 1580 258H1332V366Q1223 329 1142 329ZM387 562Q420 599 450 710Q458 739 463 754L797 1126L761 1156Q744 1170 713 1170Q625 1170 389 937Q335 884 301 773L281 708Q328 647 328 608Q328 519 284 483Q324 492 387 562ZM1263 845Q1211 845 1186 861L944 1018L829 885Q829 722 746 638Q809 640 897 682Q912 669 912 647Q912 629 876 613Q791 574 662 574Q600 574 576 573Q610 534 610 463Q610 420 590 375Q705 375 779 388Q842 399 917 399Q957 399 1053 387Q1099 381 1146 381Q1198 381 1335 418Q1378 513 1378 620Q1378 726 1328 852Q1303 845 1263 845ZM1378 874Q1428 760 1428 619Q1428 494 1382 388V312H1540Q1588 408 1588 616Q1588 750 1526 874ZM678 635Q761 727 774 830L612 635ZM522 560Q410 534 410 470Q410 423 458 393Q489 373 532 370Q555 416 555 472Q555 525 522 560ZM203 375 154 276 248 316Q241 352 203 375Z" fill="currentColor"/></svg>In words</div><p>Take five scattered remarks people have made about your project and write the single sentence all five were saying. If one remark refuses, it was about something else; set it apart.</p></div><div class="task"><div class="label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="194 -1488 1448 1523"><path transform="scale(1,-1)" d="M1005 1483 1031 1296Q1098 1283 1162 1253L1288 1385Q1364 1340 1428 1276L1344 1120Q1391 1070 1424 1010L1589 1041Q1626 957 1642 865L1494 796Q1498 761 1498.0 727.0Q1498 693 1494 658L1642 588Q1626 497 1589 413L1424 444Q1391 384 1344 333L1428 178Q1364 114 1288 68L1162 200Q1098 171 1031 157L1005 -29Q962 -35 918.0 -35.0Q874 -35 831 -29L805 157Q738 171 674 200L548 68Q472 114 408 178L492 333Q445 383 412 444L247 413Q210 497 194 588L342 658Q338 693 338.0 727.0Q338 761 342 796L194 865Q210 957 247 1041L412 1010Q445 1070 492 1121L408 1276Q472 1340 548 1385L674 1254Q738 1283 805 1296L831 1483Q874 1488 918.0 1488.0Q962 1488 1005 1483ZM1229.0 1037.5Q1100 1167 918.0 1167.0Q736 1167 607.0 1037.5Q478 908 478.0 726.5Q478 545 607.0 416.0Q736 287 918.0 287.0Q1100 287 1229.0 416.0Q1358 545 1358.0 726.5Q1358 908 1229.0 1037.5ZM1027.5 836.5Q1073 791 1073.0 727.0Q1073 663 1027.5 617.5Q982 572 918.0 572.0Q854 572 808.5 617.5Q763 663 763.0 727.0Q763 791 808.5 836.5Q854 882 918.0 882.0Q982 882 1027.5 836.5Z" fill="currentColor"/></svg>In the process</div><p>Take three problems you&#x27;ve solved separately and write the one procedure that would have solved all three. The next problem gets the procedure first, as a test.</p></div></div></section>
+  <section><h2>How it has been used</h2><p>Move from the instance to the principle: the naturalist&#x27;s specimens becoming a taxonomy, the three complaints becoming a pattern, the case becoming a rule. The move forces you to state the principle so it can fail: a generalisation that no new instance could break is a mood, not a rule.</p></section>
+  <section><h2>Where it leads</h2><ul class="related"><li><span class="rl">If this lands, continue to</span><a href="https://operations.ramos-saavedra.com/name/">Name</a></li><li><span class="rl">If it doesn’t fit, try instead</span><a href="https://operations.ramos-saavedra.com/triangulate/">Triangulate</a></li><li><span class="rl">To go further</span><a href="https://operations.ramos-saavedra.com/write-the-rules/">Write The Rules</a></li></ul></section>
+  <p class="note">Grouped under <a href="https://operations.ramos-saavedra.com/all/#clarify">Help me name what matters</a></p>
+  <div class="go"><a class="primary" href="https://operations.ramos-saavedra.com/#generalise">Open in the explorer</a><a href="https://operations.ramos-saavedra.com/">Find one for your situation</a><a href="https://tally.so/r/QKgDo1?operation=Generalise" rel="noopener">Tried it? Tell me how it went</a><a href="https://tally.so/r/RGXJpK?operation=Generalise" rel="noopener">Know a better example?</a></div>
+  <nav class="pager" aria-label="More operations"><a href="https://operations.ramos-saavedra.com/prepare-everything/">← Prepare Everything</a><a href="https://operations.ramos-saavedra.com/name/">Name →</a></nav>
+  <footer><p>Actionary: things to do to your work. © 2026 <a href="https://www.ramos-saavedra.com/">Alejandro Ramos Saavedra</a></p></footer>
+</main>
+</body>
+</html>

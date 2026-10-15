@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recall · Actionary: things to do to your work</title>
+  <meta name="description" content="Make an absent thing again from memory alone, never checking the original Three ways to try it on your work.">
+  <link rel="canonical" href="https://operations.ramos-saavedra.com/recall/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Actionary">
+  <meta property="og:title" content="Recall · Actionary: things to do to your work">
+  <meta property="og:description" content="Make an absent thing again from memory alone, never checking the original Three ways to try it on your work.">
+  <meta property="og:url" content="https://operations.ramos-saavedra.com/recall/">
+  <meta property="og:image" content="https://operations.ramos-saavedra.com/share.png">
+  <meta property="og:image:width" content="1500">
+  <meta property="og:image:height" content="787">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161616'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='14' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#f7f7f3">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+  <style>
+    :root { color-scheme:light; --ink:#161616; --muted:#62625e; --line:#c8c8c1; --line-strong:#70706a; --paper:#f7f7f3; --focus:#2457d6; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:400 17px/1.5 'IBM Plex Sans', Arial, sans-serif; }
+    main { width:min(820px, calc(100% - 32px)); margin:0 auto; padding:30px 0 88px; }
+    a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
+    a:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+    .top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
+    .top .brand { text-decoration:none; }
+    .top .brand span { display:block; margin-top:2px; color:var(--muted); }
+    .hero { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; margin:56px 0 0; }
+    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(38px,7vw,58px); line-height:1.05; letter-spacing:-.025em; }
+    h2 { margin:0 0 14px; font-weight:400; font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+    p { max-width:62ch; }
+    .line { margin:0; font-size:21px; line-height:1.4; }
+    .formerly { margin:10px 0 0; color:var(--muted); font-size:14px; }
+    .symbol { width:88px; color:var(--ink); }
+    .symbol svg { width:100%; height:auto; max-height:150px; display:block; }
+    .ex { margin:22px 0 0; color:var(--muted); }
+    .seen { margin:8px 0 0; color:var(--muted); font-size:15px; }
+    section { margin:48px 0 0; }
+    .tasks { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; }
+    .task { border:1px solid var(--line-strong); padding:18px; background:rgba(255,255,255,.4); }
+    .task .label { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--muted); }
+    .task .label svg { width:18px; height:18px; flex:none; }
+    .task .label svg path { fill:currentColor; }
+    .task h3 { margin:10px 0 0; font-size:17px; font-weight:500; }
+    .task p { margin:10px 0 0; }
+    .related { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+    .related li { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; padding:12px 0; border-bottom:1px solid var(--line); }
+    .related .rl { width:100%; font-size:14px; color:var(--muted); }
+    .note { margin:40px 0 0; color:var(--muted); font-size:14px; }
+    .go { display:flex; flex-wrap:wrap; gap:12px 28px; margin:44px 0 0; padding-top:22px; border-top:1px solid var(--ink); }
+    .go .primary { display:inline-block; padding:12px 18px; border:1px solid var(--ink); text-decoration:none; }
+    .go .primary:hover { background:#fff; }
+    .pager { display:flex; justify-content:space-between; gap:16px; margin:36px 0 0; font-size:15px; }
+    footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+    footer p { max-width:none; margin:6px 0; }
+    .group { margin:44px 0 0; }
+    .group ul { list-style:none; margin:0; padding:0; }
+    .group li { padding:12px 0; border-bottom:1px solid var(--line); }
+    .group li a { font-size:19px; }
+    .group li span { display:block; color:var(--muted); font-size:15px; }
+    .lede { margin:18px 0 0; color:var(--muted); font-size:18px; }
+    @media (max-width:560px) { .hero { grid-template-columns:1fr; } .symbol { width:64px; order:-1; } .pager { flex-direction:column; } }
+  </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "DefinedTerm", "name": "Recall", "description": "Make an absent thing again from memory alone, never checking the original", "url": "https://operations.ramos-saavedra.com/recall/", "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "Actionary", "url": "https://operations.ramos-saavedra.com/"}}</script>
+  <script data-goatcounter="https://alexo000.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+  <header class="top"><a class="brand" href="https://operations.ramos-saavedra.com/">Actionary<span>Things to do to your work</span></a><a href="https://operations.ramos-saavedra.com/all/">All operations</a></header>
+  <div class="hero"><div><h1>Recall</h1><p class="line">Make an absent thing again from memory alone, never checking the original</p></div><div class="symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 44.0 92.0"><rect x="9.90" y="2.90" width="4.20" height="4.20" fill="currentColor" fill-opacity="0.25"/><polygon points="21.00,2.40 23.86,7.34 18.14,7.34" fill="currentColor" fill-opacity="0.25"/><circle cx="30.00" cy="5.00" r="1.84" fill="currentColor" fill-opacity="0.25"/><line x1="0.00" y1="13.10" x2="42.00" y2="13.10" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><line x1="0.00" y1="14.90" x2="42.00" y2="14.90" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><circle cx="3.00" cy="27.00" r="2.3" fill="currentColor"/><line x1="21.00" y1="33.00" x2="21.00" y2="38.40" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><polygon points="21.00,39.60 19.80,37.52 22.20,37.52" fill="currentColor"/><rect x="9.90" y="46.90" width="4.20" height="4.20" fill="currentColor"/><polygon points="22.80,48.79 25.23,52.99 20.37,52.99" fill="currentColor"/><rect x="28.53" y="47.53" width="2.94" height="2.94" fill="none" stroke="currentColor" stroke-width="0.6" stroke-dasharray="0.9 0.7"/><line x1="21.00" y1="65.00" x2="21.00" y2="59.60" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><polygon points="21.00,58.40 19.80,60.48 22.20,60.48" fill="currentColor"/><line x1="27.20" y1="60.40" x2="30.40" y2="63.60" stroke="currentColor" stroke-width="0.8" stroke-linecap="butt"/><line x1="27.20" y1="63.60" x2="30.40" y2="60.40" stroke="currentColor" stroke-width="0.8" stroke-linecap="butt"/><line x1="0.00" y1="72.10" x2="42.00" y2="72.10" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><line x1="0.00" y1="73.90" x2="42.00" y2="73.90" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/></svg></div></div>
+  <p class="seen">Seen in <a href="https://www.gardnermuseum.org/node/4233" rel="noopener">Sophie Calle, Last Seen…, Isabella Stewart Gardner Museum, Boston, 1991</a></p>
+  <section><h2>Try it on your work</h2><div class="tasks"><div class="task"><div class="label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="172 -1165 1493 934"><path transform="scale(1,-1)" d="M172 1059Q172 1103 203.0 1134.0Q234 1165 276 1165H650Q693 1165 723 1134Q740 1117 748 1095H1560Q1586 1095 1610.5 1082.0Q1635 1069 1650.0 1043.5Q1665 1018 1665 991Q1665 947 1634.0 916.5Q1603 886 1560 886H795L797 876H1135Q1157 874 1177 863Q1202 849 1216.0 824.0Q1230 799 1230 773Q1230 729 1199.5 698.5Q1169 668 1101 668H844L845 658H1024Q1051 658 1076.0 644.0Q1101 630 1115.0 605.0Q1129 580 1129 553Q1129 509 1099 479Q1074 453 1026 451H891L895 439H949Q968 436 986 426Q1010 413 1024.5 388.0Q1039 363 1039 336Q1039 293 1008.5 262.0Q978 231 935 231H247Z" fill="currentColor"/></svg>Try this</div><p>Draw a map of a place you know well and cannot see from where you are, from memory alone. Look nothing up, then or afterwards; keep every gap and mistake. Stop when nothing more comes.</p></div></div></section>
+  <p class="note">Grouped under <a href="https://operations.ramos-saavedra.com/all/#recover">Get it back to a workable state</a></p>
+  <div class="go"><a class="primary" href="https://operations.ramos-saavedra.com/#recall">Open in the explorer</a><a href="https://operations.ramos-saavedra.com/">Find one for your situation</a><a href="https://tally.so/r/QKgDo1?operation=Recall" rel="noopener">Tried it? Tell me how it went</a><a href="https://tally.so/r/RGXJpK?operation=Recall" rel="noopener">Know a better example?</a></div>
+  <nav class="pager" aria-label="More operations"><a href="https://operations.ramos-saavedra.com/pretend/">← Pretend</a><a href="https://operations.ramos-saavedra.com/strip/">Strip →</a></nav>
+  <footer><p>Actionary: things to do to your work. © 2026 <a href="https://www.ramos-saavedra.com/">Alejandro Ramos Saavedra</a></p></footer>
+</main>
+</body>
+</html>

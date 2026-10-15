@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://operations.ramos-saavedra.com/sitemap.xml
