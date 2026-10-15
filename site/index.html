@@ -14,7 +14,8 @@
   <meta property="og:image:height" content="787">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://operations.ramos-saavedra.com/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161616'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='14' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <meta name="theme-color" content="#f7f7f3">
 
   <style>
@@ -225,7 +226,21 @@
     .explorer-foot a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
     .explorer-foot .foot-ask { color:var(--ink); font-size:16px; margin-bottom:14px; }
     .explorer-foot p { max-width:none; }
-    .brand .brand-tag { display:block; margin-top:2px; color:var(--muted); font-weight:400; }
+    h1 { font-size:clamp(30px,5vw,40px); }
+
+    /* wordmark 2026-10-15 */
+    .wordmark { display:inline-flex; flex-direction:column; gap:10px; color:var(--ink); text-decoration:none; }
+    .wm-row { display:grid; grid-template-columns:repeat(9, 42px); margin-left:-8px; }
+    .wm-cell { display:grid; grid-template-rows:26px auto; row-gap:8px; justify-items:center; align-items:end; }
+    .wm-cell img { width:26px; height:26px; object-fit:contain; display:block; }
+    .wm-cell span { font-size:13px; font-weight:500; line-height:1; letter-spacing:0; }
+    .wm-tag { font-size:15px; font-weight:400; color:var(--muted); letter-spacing:0; }
+    .wm-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    @media (max-width:420px) {
+      .wm-row { grid-template-columns:repeat(9, 35px); margin-left:-6px; }
+      .wm-cell { grid-template-rows:22px auto; }
+      .wm-cell img { width:22px; height:22px; }
+    }
   
     /* polish 2026-10-11 */
     :root { --focus:#161616; }
@@ -406,7 +421,7 @@
 <body>
   <main>
     <header>
-      <div class="brand">Actionary<span class="brand-tag">Things to do to your work</span></div>
+      <div class="wordmark"><span class="wm-sr">Actionary</span><span class="wm-row" aria-hidden="true"><span class="wm-cell"><img src="/wordmark-symbols.svg#defect" alt="" width="26" height="26"><span>A</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#accumulate" alt="" width="26" height="26"><span>C</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#shade-across" alt="" width="26" height="26"><span>T</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#constrain" alt="" width="26" height="26"><span>I</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#elicit" alt="" width="26" height="26"><span>O</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#hand-over" alt="" width="26" height="26"><span>N</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#reserve" alt="" width="26" height="26"><span>A</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#score" alt="" width="26" height="26"><span>R</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#reopen" alt="" width="26" height="26"><span>Y</span></span></span><span class="wm-tag">Things to do to your work</span></div>
       <div class="header-tools">
         <button class="map-open" id="open-map" type="button">Collection map</button>
         <div class="tally" id="tally"><span><b id="tally-n">0</b> of 144 seen</span></div>
@@ -2082,6 +2097,14 @@
     history.replaceState({layer:'step'}, '', location.pathname + location.search);
     document.querySelector('#open-map').click();
   }
+})();
+</script>
+<script>
+(function(){
+  var S = ["translate","accumulate","graft","score","constrain","write-the-rules","cut-through","split-the-order","defer","let-drift","rehearse","forget-for-now","locate","reframe","reveal","delegate","steer","join-through-a-third","suspend-the-rules","plant","elicit","triangulate","isolate","say-what-it-isnt","find-the-keystone","set-up-the-next-stage","defect","sacrifice","name","read-the-interference","hand-over","archive","saturate","classify","conceal","execute","replicate","scramble","dont-repeat-yet","work-what-stayed","let-fade","raise-the-cost","amend","leave-no-winner","run-on-leftovers","back-each-other-up","clear-and-refill","hedge","feed-in-oddities","test-in-groups","share-and-keep-apart","interlock","close-back-to-the-start","check-before-adding","ratchet","hold","reopen","pull","mirror","leave-open","anchor","rank","set-a-ratio","substitute","couple","mark-what-went","shade-across","reserve","cut-the-beaten"];
+  var imgs = document.querySelectorAll('.wm-cell img'); if (!imgs.length) return;
+  var pool = S.slice();
+  imgs.forEach(function(img){ var i = Math.floor(Math.random() * pool.length); img.src = img.src.split('#')[0] + '#' + pool.splice(i, 1)[0]; });
 })();
 </script>
 

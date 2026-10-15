@@ -15,7 +15,8 @@
   <meta property="og:image:width" content="1500">
   <meta property="og:image:height" content="787">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161616'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='14' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <meta name="theme-color" content="#f7f7f3">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
   <style>
@@ -25,11 +26,9 @@
     main { width:min(820px, calc(100% - 32px)); margin:0 auto; padding:30px 0 88px; }
     a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
     a:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
-    .top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
-    .top .brand { text-decoration:none; }
-    .top .brand span { display:block; margin-top:2px; color:var(--muted); }
+    .top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px 24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
     .hero { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; margin:56px 0 0; }
-    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(38px,7vw,58px); line-height:1.05; letter-spacing:-.025em; }
+    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(32px,5.5vw,46px); line-height:1.05; letter-spacing:-.025em; }
     h2 { margin:0 0 14px; font-weight:400; font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
     p { max-width:62ch; }
     .line { margin:0; font-size:21px; line-height:1.4; }
@@ -63,13 +62,27 @@
     .group li span { display:block; color:var(--muted); font-size:15px; }
     .lede { margin:18px 0 0; color:var(--muted); font-size:18px; }
     @media (max-width:560px) { .hero { grid-template-columns:1fr; } .symbol { width:64px; order:-1; } .pager { flex-direction:column; } }
+
+    /* wordmark 2026-10-15 */
+    .wordmark { display:inline-flex; flex-direction:column; gap:10px; color:var(--ink); text-decoration:none; }
+    .wm-row { display:grid; grid-template-columns:repeat(9, 42px); margin-left:-8px; }
+    .wm-cell { display:grid; grid-template-rows:26px auto; row-gap:8px; justify-items:center; align-items:end; }
+    .wm-cell img { width:26px; height:26px; object-fit:contain; display:block; }
+    .wm-cell span { font-size:13px; font-weight:500; line-height:1; letter-spacing:0; }
+    .wm-tag { font-size:15px; font-weight:400; color:var(--muted); letter-spacing:0; }
+    .wm-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    @media (max-width:420px) {
+      .wm-row { grid-template-columns:repeat(9, 35px); margin-left:-6px; }
+      .wm-cell { grid-template-rows:22px auto; }
+      .wm-cell img { width:22px; height:22px; }
+    }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "DefinedTerm", "name": "Share And Keep Apart", "description": "Many on one surface, each recoverable.", "url": "https://operations.ramos-saavedra.com/share-and-keep-apart/", "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "Actionary", "url": "https://operations.ramos-saavedra.com/"}}</script>
   <script data-goatcounter="https://alexo000.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <main>
-  <header class="top"><a class="brand" href="https://operations.ramos-saavedra.com/">Actionary<span>Things to do to your work</span></a><a href="https://operations.ramos-saavedra.com/all/">All operations</a></header>
+  <header class="top"><a class="wordmark" href="https://operations.ramos-saavedra.com/"><span class="wm-sr">Actionary</span><span class="wm-row" aria-hidden="true"><span class="wm-cell"><img src="/wordmark-symbols.svg#defect" alt="" width="26" height="26"><span>A</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#accumulate" alt="" width="26" height="26"><span>C</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#shade-across" alt="" width="26" height="26"><span>T</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#constrain" alt="" width="26" height="26"><span>I</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#elicit" alt="" width="26" height="26"><span>O</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#hand-over" alt="" width="26" height="26"><span>N</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#reserve" alt="" width="26" height="26"><span>A</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#score" alt="" width="26" height="26"><span>R</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#reopen" alt="" width="26" height="26"><span>Y</span></span></span><span class="wm-tag">Things to do to your work</span></a><a href="https://operations.ramos-saavedra.com/all/">All operations</a></header>
   <div class="hero"><div><h1>Share And Keep Apart</h1><p class="line">Many on one surface, each recoverable.</p><p class="formerly">Formerly Multiplex</p></div><div class="symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 44.0 52.0"><circle cx="3.0" cy="5.0" r="2.3" fill="currentColor"/><polygon points="21.00,3.00 18.70,7.00 23.30,7.00" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="36.90" y="2.90" width="4.2" height="4.2" fill="currentColor" stroke="currentColor" stroke-width="0"/><line x1="6.00" y1="10.00" x2="12.00" y2="20.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><line x1="21.00" y1="15.00" x2="21.00" y2="10.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><line x1="21.00" y1="15.00" x2="21.00" y2="20.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><rect x="20.70" y="14.70" width="0.6" height="0.6" fill="currentColor"/><line x1="30.00" y1="20.00" x2="36.00" y2="10.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><circle cx="9.0" cy="25.0" r="2.3" fill="currentColor"/><polygon points="15.00,23.00 12.70,27.00 17.30,27.00" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="18.90" y="22.90" width="4.2" height="4.2" fill="currentColor" stroke="currentColor" stroke-width="0"/><circle cx="27.0" cy="25.0" r="2.3" fill="currentColor"/><polygon points="33.00,23.00 30.70,27.00 35.30,27.00" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="36.90" y="22.90" width="4.2" height="4.2" fill="currentColor" stroke="currentColor" stroke-width="0"/><line x1="6.00" y1="40.00" x2="12.00" y2="30.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><line x1="21.00" y1="35.00" x2="21.00" y2="30.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><line x1="21.00" y1="35.00" x2="21.00" y2="40.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><rect x="20.70" y="34.70" width="0.6" height="0.6" fill="currentColor"/><line x1="30.00" y1="30.00" x2="36.00" y2="40.00" stroke="currentColor" stroke-width="0.6" stroke-linecap="butt"/><circle cx="3.0" cy="45.0" r="2.3" fill="currentColor"/><polygon points="21.00,43.00 18.70,47.00 23.30,47.00" fill="currentColor" stroke="currentColor" stroke-width="0"/><rect x="36.90" y="42.90" width="4.2" height="4.2" fill="currentColor" stroke="currentColor" stroke-width="0"/></svg></div></div>
   <p class="ex"><span aria-hidden="true">✓</span> One sheet, three keyed hands.</p>
   <p class="seen">Seen in <a href="https://www.tate.org.uk/art/artists/janet-cardiff-4499/janet-cardiffs-forty-part-motet" rel="noopener">Janet Cardiff, The Forty Part Motet, 2001</a></p>
@@ -81,5 +94,13 @@
   <nav class="pager" aria-label="More operations"><a href="https://operations.ramos-saavedra.com/test-in-groups/">← Test In Groups</a><a href="https://operations.ramos-saavedra.com/disperse/">Disperse →</a></nav>
   <footer><p>Actionary: things to do to your work. © 2026 <a href="https://www.ramos-saavedra.com/">Alejandro Ramos Saavedra</a></p></footer>
 </main>
+<script>
+(function(){
+  var S = ["translate","accumulate","graft","score","constrain","write-the-rules","cut-through","split-the-order","defer","let-drift","rehearse","forget-for-now","locate","reframe","reveal","delegate","steer","join-through-a-third","suspend-the-rules","plant","elicit","triangulate","isolate","say-what-it-isnt","find-the-keystone","set-up-the-next-stage","defect","sacrifice","name","read-the-interference","hand-over","archive","saturate","classify","conceal","execute","replicate","scramble","dont-repeat-yet","work-what-stayed","let-fade","raise-the-cost","amend","leave-no-winner","run-on-leftovers","back-each-other-up","clear-and-refill","hedge","feed-in-oddities","test-in-groups","share-and-keep-apart","interlock","close-back-to-the-start","check-before-adding","ratchet","hold","reopen","pull","mirror","leave-open","anchor","rank","set-a-ratio","substitute","couple","mark-what-went","shade-across","reserve","cut-the-beaten"];
+  var imgs = document.querySelectorAll('.wm-cell img'); if (!imgs.length) return;
+  var pool = S.slice();
+  imgs.forEach(function(img){ var i = Math.floor(Math.random() * pool.length); img.src = img.src.split('#')[0] + '#' + pool.splice(i, 1)[0]; });
+})();
+</script>
 </body>
 </html>

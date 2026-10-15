@@ -10,6 +10,9 @@ import html, json, os, re, datetime
 from urllib.parse import quote
 
 import standalone
+import wordmark
+
+WM_SLUGS = []   # set in write()
 
 SITE = standalone.SITE_URL
 NAME, TAGLINE, DOC_TITLE = standalone.TITLE, standalone.TAGLINE, standalone.DOC_TITLE
@@ -30,11 +33,9 @@ CSS = """
     main { width:min(820px, calc(100% - 32px)); margin:0 auto; padding:30px 0 88px; }
     a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
     a:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
-    .top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
-    .top .brand { text-decoration:none; }
-    .top .brand span { display:block; margin-top:2px; color:var(--muted); }
+    .top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px 24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
     .hero { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; margin:56px 0 0; }
-    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(38px,7vw,58px); line-height:1.05; letter-spacing:-.025em; }
+    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(32px,5.5vw,46px); line-height:1.05; letter-spacing:-.025em; }
     h2 { margin:0 0 14px; font-weight:400; font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
     p { max-width:62ch; }
     .line { margin:0; font-size:21px; line-height:1.4; }
@@ -122,15 +123,15 @@ def head(title, desc, url, extra=''):
             f'  <meta property="og:url" content="{url}">\n  <meta property="og:image" content="{SITE}/share.png">\n'
             f'  <meta property="og:image:width" content="1500">\n  <meta property="og:image:height" content="787">\n'
             f'  <meta name="twitter:card" content="summary_large_image">\n'
-            f'  <link rel="icon" href="{standalone.ICON}">\n  <meta name="theme-color" content="#f7f7f3">\n'
-            f'  {FONT}\n  <style>{CSS}  </style>\n{extra}  {GOAT}\n</head>\n<body>\n<main>\n'
-            f'  <header class="top"><a class="brand" href="{SITE}/">{NAME}<span>{TAGLINE}</span></a>'
+            f'  {standalone.ICON_LINKS}\n  <meta name="theme-color" content="#f7f7f3">\n'
+            f'  {FONT}\n  <style>{CSS}{wordmark.CSS}  </style>\n{extra}  {GOAT}\n</head>\n<body>\n<main>\n'
+            f'  <header class="top">{wordmark.html(WM_SLUGS, link=SITE + "/")}'
             f'<a href="{SITE}/all/">All operations</a></header>\n')
 
 
 def foot():
     return (f'  <footer><p>{NAME}: {TAGLINE.lower()}. © {datetime.date.today().year} '
-            f'<a href="{standalone.HOME}">{HOME_LABEL}</a></p></footer>\n</main>\n</body>\n</html>\n')
+            f'<a href="{standalone.HOME}">{HOME_LABEL}</a></p></footer>\n</main>\n' + wordmark.js(WM_SLUGS) + '</body>\n</html>\n')
 
 
 def op_page(rec, by_name, order, pos, icons, meanings):
@@ -206,6 +207,8 @@ def all_page(order, meanings):
 
 def write(out_dir, register, icons, npage):
     records = register['records']
+    global WM_SLUGS
+    WM_SLUGS = wordmark.sheet(records)[1]
     order = sorted(records, key=lambda r: r['index'])
     meanings = dict(re.findall(r"(\w+): '([^']*)'", re.search(r'movementMeanings = \{(.*?)\};', npage, re.S).group(1)))
     by_name = {r['locked']['name'].upper(): r for r in records}

@@ -15,10 +15,8 @@ DESC = '144 operations you can try on any kind of work. Answer a few questions t
 FEEDBACK = 'https://tally.so/r/QKgDo1'
 HOME = 'https://www.ramos-saavedra.com/'
 
-ICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
-        "%3Crect width='32' height='32' rx='6' fill='%23161616'/%3E"
-        "%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='14' "
-        "text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E")
+ICON = '/favicon.svg'   # the A built from squares (wordmark.py, 2026-10-15)
+ICON_LINKS = '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">'
 
 HEAD = f"""
   <meta name="description" content="{DESC}">
@@ -31,7 +29,7 @@ HEAD = f"""
   <meta property="og:image:height" content="787">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="{SITE_URL}/">
-  <link rel="icon" href="{ICON}">
+  {ICON_LINKS}
   <meta name="theme-color" content="#f7f7f3">
 """
 
@@ -44,17 +42,20 @@ CSS = """
     .explorer-foot a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
     .explorer-foot .foot-ask { color:var(--ink); font-size:16px; margin-bottom:14px; }
     .explorer-foot p { max-width:none; }
-    .brand .brand-tag { display:block; margin-top:2px; color:var(--muted); font-weight:400; }
+    h1 { font-size:clamp(30px,5vw,40px); }
 """
 
 
-def patch_html(npage, rep):
+def patch_html(npage, rep, wm_slugs):
+    import wordmark
     npage = rep(npage, '<title>Design Operations</title>', f'<title>{DOC_TITLE}</title>' + HEAD, 'share tags')
-    npage = rep(npage, '<div class="brand">Design Operations</div>', f'<div class="brand">{TITLE}<span class="brand-tag">{TAGLINE}</span></div>', 'brand')
+    npage = rep(npage, '<div class="brand">Design Operations</div>', wordmark.html(wm_slugs), 'wordmark')
+    npage = npage.replace('</body>', wordmark.js(wm_slugs) + '</body>', 1)
     npage = npage.replace("Design Operations — ", f"{TITLE} · ")
     npage = rep(npage, '"title": "Design Operations"', f'"title": "{TITLE}"', 'register title')
     npage = rep(npage, OLD_FOOT_LINE, NEW_FOOT_LINE, 'footer links')
-    npage = npage.replace('</style>', CSS + '  </style>', 1)
+    import wordmark
+    npage = npage.replace('</style>', CSS + wordmark.CSS + '  </style>', 1)
     return npage
 
 

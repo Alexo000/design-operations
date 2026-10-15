@@ -15,7 +15,8 @@
   <meta property="og:image:width" content="1500">
   <meta property="og:image:height" content="787">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161616'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='14' text-anchor='middle' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <meta name="theme-color" content="#f7f7f3">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
   <style>
@@ -25,11 +26,9 @@
     main { width:min(820px, calc(100% - 32px)); margin:0 auto; padding:30px 0 88px; }
     a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
     a:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
-    .top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
-    .top .brand { text-decoration:none; }
-    .top .brand span { display:block; margin-top:2px; color:var(--muted); }
+    .top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px 24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
     .hero { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; margin:56px 0 0; }
-    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(38px,7vw,58px); line-height:1.05; letter-spacing:-.025em; }
+    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(32px,5.5vw,46px); line-height:1.05; letter-spacing:-.025em; }
     h2 { margin:0 0 14px; font-weight:400; font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
     p { max-width:62ch; }
     .line { margin:0; font-size:21px; line-height:1.4; }
@@ -63,13 +62,27 @@
     .group li span { display:block; color:var(--muted); font-size:15px; }
     .lede { margin:18px 0 0; color:var(--muted); font-size:18px; }
     @media (max-width:560px) { .hero { grid-template-columns:1fr; } .symbol { width:64px; order:-1; } .pager { flex-direction:column; } }
+
+    /* wordmark 2026-10-15 */
+    .wordmark { display:inline-flex; flex-direction:column; gap:10px; color:var(--ink); text-decoration:none; }
+    .wm-row { display:grid; grid-template-columns:repeat(9, 42px); margin-left:-8px; }
+    .wm-cell { display:grid; grid-template-rows:26px auto; row-gap:8px; justify-items:center; align-items:end; }
+    .wm-cell img { width:26px; height:26px; object-fit:contain; display:block; }
+    .wm-cell span { font-size:13px; font-weight:500; line-height:1; letter-spacing:0; }
+    .wm-tag { font-size:15px; font-weight:400; color:var(--muted); letter-spacing:0; }
+    .wm-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    @media (max-width:420px) {
+      .wm-row { grid-template-columns:repeat(9, 35px); margin-left:-6px; }
+      .wm-cell { grid-template-rows:22px auto; }
+      .wm-cell img { width:22px; height:22px; }
+    }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "DefinedTerm", "name": "Shade Across", "description": "Lay the categories along one range; place everything by position, between labels as often as on them.", "url": "https://operations.ramos-saavedra.com/shade-across/", "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "Actionary", "url": "https://operations.ramos-saavedra.com/"}}</script>
   <script data-goatcounter="https://alexo000.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <main>
-  <header class="top"><a class="brand" href="https://operations.ramos-saavedra.com/">Actionary<span>Things to do to your work</span></a><a href="https://operations.ramos-saavedra.com/all/">All operations</a></header>
+  <header class="top"><a class="wordmark" href="https://operations.ramos-saavedra.com/"><span class="wm-sr">Actionary</span><span class="wm-row" aria-hidden="true"><span class="wm-cell"><img src="/wordmark-symbols.svg#defect" alt="" width="26" height="26"><span>A</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#accumulate" alt="" width="26" height="26"><span>C</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#shade-across" alt="" width="26" height="26"><span>T</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#constrain" alt="" width="26" height="26"><span>I</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#elicit" alt="" width="26" height="26"><span>O</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#hand-over" alt="" width="26" height="26"><span>N</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#reserve" alt="" width="26" height="26"><span>A</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#score" alt="" width="26" height="26"><span>R</span></span><span class="wm-cell"><img src="/wordmark-symbols.svg#reopen" alt="" width="26" height="26"><span>Y</span></span></span><span class="wm-tag">Things to do to your work</span></a><a href="https://operations.ramos-saavedra.com/all/">All operations</a></header>
   <div class="hero"><div><h1>Shade Across</h1><p class="line">Lay the categories along one range; place everything by position, between labels as often as on them.</p></div><div class="symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 50.0 42.0"><rect x="2.00" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.08"/><rect x="4.75" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.13666666666666666"/><rect x="7.50" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.19333333333333333"/><rect x="10.25" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.25"/><rect x="13.00" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.30666666666666664"/><rect x="15.75" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.36333333333333334"/><rect x="18.50" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.42"/><rect x="21.25" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.4766666666666667"/><rect x="24.00" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.5333333333333333"/><rect x="26.75" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.59"/><rect x="29.50" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.6466666666666666"/><rect x="32.25" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.7033333333333333"/><rect x="35.00" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.7599999999999999"/><rect x="37.75" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.8166666666666665"/><rect x="40.50" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.8733333333333333"/><rect x="43.25" y="12.00" width="2.75" height="6.00" fill="currentColor" fill-opacity="0.9299999999999999"/><line x1="4.20" y1="10.00" x2="4.20" y2="20.00" stroke="currentColor" stroke-width="0.7" stroke-linecap="butt"/><line x1="25.20" y1="10.00" x2="25.20" y2="20.00" stroke="currentColor" stroke-width="0.7" stroke-linecap="butt"/><line x1="46.20" y1="10.00" x2="46.20" y2="20.00" stroke="currentColor" stroke-width="0.7" stroke-linecap="butt"/><polygon points="8.40,27.33 9.69,29.55 7.11,29.55" fill="currentColor"/><polygon points="12.60,27.33 13.89,29.55 11.31,29.55" fill="currentColor"/><polygon points="18.60,27.33 19.89,29.55 17.31,29.55" fill="currentColor"/><polygon points="21.00,27.33 22.29,29.55 19.71,29.55" fill="currentColor"/><polygon points="29.40,27.33 30.69,29.55 28.11,29.55" fill="currentColor"/><polygon points="34.20,27.33 35.49,29.55 32.91,29.55" fill="currentColor"/><polygon points="39.60,27.33 40.89,29.55 38.31,29.55" fill="currentColor"/><polygon points="43.20,27.33 44.49,29.55 41.91,29.55" fill="currentColor"/><text x="4.20" y="6.92" font-size="5.5" text-anchor="middle" font-family="Sym, monospace" fill="currentColor">S</text><text x="25.20" y="6.92" font-size="5.5" text-anchor="middle" font-family="Sym, monospace" fill="currentColor">M</text><text x="46.20" y="6.92" font-size="5.5" text-anchor="middle" font-family="Sym, monospace" fill="currentColor">L</text></svg></div></div>
   <p class="ex"><span aria-hidden="true">✓</span> Bold is a point on a slider, not a separate font.</p>
   <p class="seen">Seen in <a href="https://en.wikipedia.org/wiki/Myriad_(typeface)" rel="noopener">Robert Slimbach and Carol Twombly, Myriad, Adobe, 1992</a></p>
@@ -80,5 +93,13 @@
   <nav class="pager" aria-label="More operations"><a href="https://operations.ramos-saavedra.com/mark-what-went/">← Mark What Went</a><a href="https://operations.ramos-saavedra.com/reserve/">Reserve →</a></nav>
   <footer><p>Actionary: things to do to your work. © 2026 <a href="https://www.ramos-saavedra.com/">Alejandro Ramos Saavedra</a></p></footer>
 </main>
+<script>
+(function(){
+  var S = ["translate","accumulate","graft","score","constrain","write-the-rules","cut-through","split-the-order","defer","let-drift","rehearse","forget-for-now","locate","reframe","reveal","delegate","steer","join-through-a-third","suspend-the-rules","plant","elicit","triangulate","isolate","say-what-it-isnt","find-the-keystone","set-up-the-next-stage","defect","sacrifice","name","read-the-interference","hand-over","archive","saturate","classify","conceal","execute","replicate","scramble","dont-repeat-yet","work-what-stayed","let-fade","raise-the-cost","amend","leave-no-winner","run-on-leftovers","back-each-other-up","clear-and-refill","hedge","feed-in-oddities","test-in-groups","share-and-keep-apart","interlock","close-back-to-the-start","check-before-adding","ratchet","hold","reopen","pull","mirror","leave-open","anchor","rank","set-a-ratio","substitute","couple","mark-what-went","shade-across","reserve","cut-the-beaten"];
+  var imgs = document.querySelectorAll('.wm-cell img'); if (!imgs.length) return;
+  var pool = S.slice();
+  imgs.forEach(function(img){ var i = Math.floor(Math.random() * pool.length); img.src = img.src.split('#')[0] + '#' + pool.splice(i, 1)[0]; });
+})();
+</script>
 </body>
 </html>
