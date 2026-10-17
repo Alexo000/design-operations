@@ -291,7 +291,7 @@ npage = npage.replace('</body>', ONB_JS + SEEN_JS + discover.JS + pictograms.js(
 npage = nav.patch_html(npage, rep)
 import standalone
 import wordmark   # the name with a symbol over each letter, drawn again on every visit (2026-10-15)
-npage = standalone.patch_html(npage, rep, wordmark.write_assets(OUT, records))
+npage = standalone.patch_html(npage, rep, wordmark.write_assets(OUT, records, {d: c['symbol'] for d, c in content.items()}))   # small set E (2026-10-17)
 standalone.copy_share(ROOT, OUT)
 npage = polish.patch_html(npage)
 npage = dialogue.patch_html(npage, rep)

@@ -4,6 +4,11 @@ drawn at random on every visit, nine different ones, from the symbols that are c
 (width over height between 0.7 and 1.4), each kept at its own proportions and drawn with heavier lines
 so it reads at header size. No rule ties a symbol to its letter.
 
+Third cut, 2026-10-17: the symbols are the small set (set E, one glyph per operation drawn to read at
+12 px, the one the explorer's lists use) in place of the full set A, drawn at their own weight and
+slightly smaller than the cell (20 px in a 26 px box in the header), as chosen on the identity
+canvas, board H. Still the near-square ones only (width over height 0.7 to 1.4).
+
 How it is drawn (second cut, same day): every symbol is inline SVG. The page ships with nine symbols
 already in place, so the name shows before any script runs and without one. A short script then
 fetches wordmark-symbols.svg (one <symbol> per operation), adds it to the page out of sight and swaps
@@ -32,14 +37,14 @@ CSS = """
     .wordmark { display:inline-flex; flex-direction:column; gap:10px; color:var(--ink); text-decoration:none; }
     .wm-row { display:grid; grid-template-columns:repeat(9, 42px); margin-left:-8px; }
     .wm-cell { display:grid; grid-template-rows:26px auto; row-gap:8px; justify-items:center; align-items:end; }
-    .wm-cell svg { width:26px; height:26px; display:block; overflow:visible; }
+    .wm-cell svg { width:20px; height:20px; margin:3px; display:block; overflow:visible; }
     .wm-cell span { font-size:13px; font-weight:500; line-height:1; letter-spacing:0; }
     .wm-tag { font-size:15px; font-weight:400; color:var(--muted); letter-spacing:0; }
     .wm-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
     @media (max-width:420px) {
       .wm-row { grid-template-columns:repeat(9, 35px); margin-left:-6px; }
       .wm-cell { grid-template-rows:22px auto; }
-      .wm-cell svg { width:22px; height:22px; }
+      .wm-cell svg { width:17px; height:17px; margin:2.5px; }
     }
 """
 
@@ -54,17 +59,23 @@ def _bold(svg):
     return re.sub(r'(<circle[^>]*?) r="([\d.]+)"', lambda m: '%s r="%.2f"' % (m.group(1), max(float(m.group(2)), 1.6)), svg)
 
 
-def symbols(records):
-    """{slug: (viewBox, inner markup)} for the near-square symbols, in register order."""
+ITEMS = {}   # the wordmark's symbols, once write_assets has run
+
+
+def symbols(records, small=None):
+    """{slug: (viewBox, inner markup)} for the near-square symbols, in register order.
+    small: {DO id: small-set svg}; without it, the records' full symbols, drawn heavier (the first cut)."""
+    if small is None and ITEMS:
+        return ITEMS
     out = {}
     for r in sorted(records, key=lambda r: r['index']):
-        svg = r['locked'].get('symbol') or ''
-        m = re.search(r'viewBox="([^"]+)"', svg)
+        svg = (small or {}).get(r['id']) if small is not None else _bold(r['locked'].get('symbol') or '')
+        m = re.search(r'viewBox="([^"]+)"', svg or '')
         if not m:
             continue
         x0, y0, w, h = [float(v) for v in m.group(1).split()]
         if LO <= w / h <= HI:
-            inner = re.sub(r'^<svg[^>]*>|</svg>\s*$', '', _bold(svg).strip()).replace('currentColor', '#161616')
+            inner = re.sub(r'^<svg[^>]*>|</svg>\s*$', '', svg.strip()).replace('currentColor', '#161616')
             out[slug(r['locked']['name'])] = (m.group(1), inner)
     return out
 
@@ -110,8 +121,10 @@ def js(items):
             "})();\n</script>\n")
 
 
-def write_assets(out, records):
-    items = symbols(records)
+def write_assets(out, records, small=None):
+    global ITEMS
+    items = symbols(records, small)
+    ITEMS = items
     open(os.path.join(out, 'wordmark-symbols.svg'), 'w', encoding='utf-8').write(sheet(items))
     open(os.path.join(out, 'favicon.svg'), 'w', encoding='utf-8').write(FAVICON_SVG)
     try:   # a PNG beside the SVG for browsers that want one; drawn with Pillow when it is installed

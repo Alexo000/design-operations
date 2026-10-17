@@ -34,7 +34,7 @@ body {{ margin:0; width:1500px; height:787px; background:url(data:image/png;base
 .left {{ position:absolute; left:0; top:0; width:760px; height:787px; background:#f1f2f4; }}
 .row {{ position:absolute; left:72px; top:250px; display:grid; grid-template-columns:repeat(9, 68px); }}
 .c {{ display:grid; grid-template-rows:52px auto; row-gap:16px; justify-items:center; align-items:end; }}
-.c svg {{ width:52px; height:52px; display:block; overflow:visible; }}
+.c svg {{ width:40px; height:40px; margin:6px; display:block; overflow:visible; }}
 .c span {{ font-size:22px; font-weight:400; line-height:1; }}
 .rule {{ position:absolute; left:90px; top:400px; width:430px; height:3px; background:#161616; }}
 .tag {{ position:absolute; left:90px; top:440px; font-size:58px; font-weight:300; line-height:70px; }}
@@ -51,6 +51,15 @@ async def main():
         await pg.wait_for_timeout(400)
         await pg.screenshot(path=OUT)
         await b.close()
+    # the cards on the right come from the old image, on the warm paper; repaint that paper the current grey
+    from PIL import Image
+    im = Image.open(OUT).convert('RGB'); px = im.load()
+    for y in range(im.height):
+        for x in range(760, im.width):
+            r, g, b_ = px[x, y]
+            if abs(r - 247) <= 2 and abs(g - 247) <= 2 and abs(b_ - 243) <= 2:
+                px[x, y] = (241, 242, 244)
+    im.save(OUT)
     print('wrote', OUT)
 
 
