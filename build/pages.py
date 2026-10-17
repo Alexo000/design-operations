@@ -10,6 +10,7 @@ import html, json, os, re, datetime
 from urllib.parse import quote
 
 import standalone
+import palette
 import wordmark
 
 WM_SLUGS = {}   # the wordmark's symbols, set in write()
@@ -218,9 +219,9 @@ def write(out_dir, register, icons, npage):
     for pos, rec in enumerate(order):
         s, page = op_page(rec, by_name, order, pos, icons, meanings)
         os.makedirs(os.path.join(out_dir, s), exist_ok=True)
-        open(os.path.join(out_dir, s, 'index.html'), 'w', encoding='utf-8').write(page)
+        open(os.path.join(out_dir, s, 'index.html'), 'w', encoding='utf-8').write(palette.apply(page))
     os.makedirs(os.path.join(out_dir, 'all'), exist_ok=True)
-    open(os.path.join(out_dir, 'all', 'index.html'), 'w', encoding='utf-8').write(all_page(order, meanings))
+    open(os.path.join(out_dir, 'all', 'index.html'), 'w', encoding='utf-8').write(palette.apply(all_page(order, meanings)))
     today = datetime.date.today().isoformat()
     urls = [f'{SITE}/', f'{SITE}/all/'] + [f'{SITE}/{s}/' for s in slugs]
     sm = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

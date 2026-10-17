@@ -31,7 +31,7 @@ def page():
 @font-face {{ font-family:P; src:url(data:font/ttf;base64,{b64(os.path.join(FONTS, 'IBMPlexSans-Regular.ttf'))}); font-weight:400; }}
 @font-face {{ font-family:P; src:url(data:font/ttf;base64,{b64(os.path.join(FONTS, 'IBMPlexSans-Light.ttf'))}); font-weight:300; }}
 body {{ margin:0; width:1500px; height:787px; background:url(data:image/png;base64,{b64(BASE)}); font-family:P; color:#161616; }}
-.left {{ position:absolute; left:0; top:0; width:760px; height:787px; background:#f7f7f3; }}
+.left {{ position:absolute; left:0; top:0; width:760px; height:787px; background:#f1f2f4; }}
 .row {{ position:absolute; left:72px; top:250px; display:grid; grid-template-columns:repeat(9, 68px); }}
 .c {{ display:grid; grid-template-rows:52px auto; row-gap:16px; justify-items:center; align-items:end; }}
 .c svg {{ width:52px; height:52px; display:block; overflow:visible; }}

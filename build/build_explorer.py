@@ -301,6 +301,8 @@ npage = npage.replace('</style>', SEEN_CSS + discover.CSS + pictograms.CSS + kno
 npage = rep(npage, '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>', '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>\n        <button type="button" class="onb-next" id="onb-map">Browse all 144</button>', 'onb map')
 import stuck   # 'I'm stuck on a project' way in (2026-10-13)
 npage = stuck.patch_page(npage)
+import palette   # cool grey paper (2026-10-17)
+npage = palette.apply(npage)
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(npage)
 assert 'Design Operations' not in npage, 'the old name is still on the page'
 import pages   # one page per operation, /all/, sitemap.xml, robots.txt (2026-10-15)
