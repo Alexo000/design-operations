@@ -2102,7 +2102,7 @@
     var steps = [];
     steps.push({k:'Group', key:'group', v:'<i class="tr-ico" aria-hidden="true">' + (G[group] || '') + '</i><span>' + esc(group) + '</span>', label:'Group: ' + group + '. Show the ' + sibs.length + ' operations in it'});
     steps.push({k:'Operation', key:'op', v:'<i class="tr-sym" aria-hidden="true">' + (r.locked.symbol || '') + '</i><span>' + esc(name) + '</span>', label:'Operation: ' + name});
-    if (fmts.length) steps.push({k:'Try it', key:'try', v:'<span class="tr-fmt" aria-hidden="true">' + fmts.map(function(f){ return '<i>' + (TASK_ICONS[f] || '') + '</i>'; }).join('') + '</span><span>' + (fmts.length === 1 ? 'One way' : fmts.length + ' ways') + '</span>', label:'Try it: ' + fmts.join(', ').toLowerCase()});
+    if (fmts.length) steps.push({k:'Try it', key:'try', v:'<span>' + (fmts.length === 1 ? 'One way' : fmts.length + ' ways') + '</span>', label:'Try it: ' + fmts.join(', ').toLowerCase()});
     if (seen && seen.plain) steps.push({k:'Seen in', key:'seen', v:'<span>' + esc(shortSeen(seen.plain)) + '</span>', label:'Seen in: ' + seen.plain});
     if (leads) steps.push({k:'Leads to', key:'next', v:'<span>' + (leads === 1 ? 'One operation' : leads + ' operations') + '</span>', label:'Leads to ' + leads + ' operations'});
     var nav = document.createElement('nav'); nav.className = 'trail'; nav.setAttribute('aria-label', 'Where this operation sits');
