@@ -168,6 +168,7 @@ HTML = """
         <button class="map-close" id="net-close" type="button">Close</button>
       </div>
     </div>
+    <nav class="net-path" id="net-path" aria-label="Where you are on the map"></nav>
     <div class="net-stage" id="net-stage">
       <svg class="net-edges" id="net-edges" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
       <div class="net-labels" id="net-labels" aria-hidden="true"></div>
@@ -226,6 +227,19 @@ CSS = """
     .net-stage.focus .net-node.centre .nn-sym svg { max-width:52px; max-height:42px; }
     .net-stage.focus .net-node.centre .nn-name { font-size:16px; font-weight:500; }
     .net-sector { position:absolute; z-index:5; transform:translate(-50%,-50%); padding:1px 4px; background:var(--paper); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap; pointer-events:none; }
+    .net-path { display:flex; flex-wrap:wrap; align-items:center; gap:4px 6px; padding:10px 28px; border-bottom:1px solid var(--line); font-size:14px; min-height:20px; }
+    .net-path button { width:auto; padding:2px 0; border:0; border-bottom:1px solid var(--line-strong); background:transparent; color:var(--ink); font:inherit; cursor:pointer; }
+    .net-path button:hover { border-bottom-color:var(--ink); }
+    .net-path button[aria-current="true"] { border-bottom-color:transparent; font-weight:500; cursor:default; }
+    .net-path .np-sep { color:var(--muted); }
+    .net-path .np-kind { color:var(--muted); font-size:12px; letter-spacing:.06em; text-transform:uppercase; margin-right:2px; }
+    .net-up { display:flex; flex-wrap:wrap; gap:6px 18px; flex-basis:100%; font-size:14px; }
+    .net-up span { color:var(--muted); }
+    .net-up button { width:auto; padding:2px 0 !important; border:0 !important; border-bottom:1px solid var(--ink) !important; background:transparent !important; color:var(--ink) !important; font:inherit; cursor:pointer; }
+    .net-stage.layer-family:not(.focus) .net-label { pointer-events:auto; cursor:pointer; }
+    .net-stage.layer-family:not(.focus) .net-label:hover { color:var(--ink); text-decoration:underline; }
+    .net-stage.focus .net-label.hot { pointer-events:auto; cursor:pointer; }
+    .net-stage.focus .net-label.hot:hover { color:var(--ink); text-decoration:underline; }
     .net-region { position:absolute; transform:translate(-50%,-50%); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); pointer-events:none; }
     .net-stage.has-hot .net-region { opacity:.3; }
     .net-legend { display:flex; flex-wrap:wrap; gap:6px 22px; padding:10px 28px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); }
@@ -247,6 +261,7 @@ CSS = """
       .net-sub { display:none; }
       .net-find { width:150px; }
       .net-legend { padding:8px 16px; }
+      .net-path { padding:8px 16px; font-size:13px; }
       .net-focus { padding:12px 16px 14px; }
       .net-stage.focus .net-node.hot .nn-name { font-size:12px; white-space:normal; width:92px; text-align:center; }
       .net-stage.focus .net-node.centre .nn-name { width:auto; white-space:nowrap; }
@@ -295,6 +310,8 @@ JS_TMPL = r"""
     (NET.regions[layer] || []).forEach(function(l){ var e = document.createElement('span'); e.className = 'net-region'; e.textContent = l.t; e.style.left = l.x + '%'; e.style.top = l.y + '%'; stage.appendChild(e); });
   }
   function elbow(a, b, cls){ var m = (a[1] + b[1]) / 2; return '<path d="M' + a[0] + ' ' + a[1] + ' V' + m + ' H' + b[0] + ' V' + b[1] + '" class="' + cls + '"/>'; }
+  function curve(a, b, cls){ var mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1], k = .35; return '<path d="M' + a[0] + ' ' + a[1] + ' Q' + (mx - dy * k * 2.2) + ' ' + (my + dx * k * .45) + ' ' + b[0] + ' ' + b[1] + '" class="' + cls + '"/>'; }
+  function corner(a, b, cls){ return '<path d="M' + a[0] + ' ' + a[1] + ' V' + b[1] + ' H' + b[0] + '" class="' + cls + '"/>'; }
   function drawAll(){
     var list = layer === 'next' ? NET.next.map(function(e){ return [e[0], e[1], 'k-' + e[2]]; }) : NET.family.map(function(e){ return [e[0], e[1], 'k-family']; });
     svg.innerHTML = list.map(function(e){ var a = els[e[0]]._xy, b = els[e[1]]._xy; var c = e[2] + ' e-' + e[0].replace(':', '_') + ' e-' + e[1].replace(':', '_'); return a && b ? (layer === 'family' ? elbow(a, b, c) : line(a, b, c)) : ''; }).join('');
@@ -309,6 +326,94 @@ JS_TMPL = r"""
       legend.innerHTML = '<span><svg viewBox="0 0 34 8"><line x1="1" y1="4" x2="33" y2="4" stroke-width="1.3"/></svg>Builds on</span><span><i>remove</i>&nbsp; a shared root with no operation of its own</span>';
     }
   }
+  var path = [];
+  var pathBox = dlg.querySelector('#net-path');
+  var GROUP = function(id){ var r = contentById.get(id); return r ? r.locked.profile.primaryMovement : ''; };
+  var GNAME = function(m){ return movementMeanings[m] || displayOperationName(m); };
+  function parentOf(id){ var e = NET.family.find(function(f){ return f[1] === id; }); return e ? e[0] : null; }
+  function rootOf(id){ var r = id, p; while ((p = parentOf(r))) r = p; return r; }
+  function familyOf(root){ var out = [], q = [root]; while (q.length) { var n = q.shift(); NET.family.forEach(function(f){ if (f[0] === n) { out.push(f[1]); q.push(f[1]); } }); } return out; }
+  function familyLabel(root){ return root.startsWith('r:') ? HUB[root] : NAME[root]; }
+  function same(a, b){ return a.kind === b.kind && a.key === b.key; }
+  function visit(item){
+    var i = path.findIndex(function(p){ return same(p, item); });
+    if (i >= 0) path = path.slice(0, i + 1);
+    else { path.push(item); if (path.length > 7) path = [path[0]].concat(path.slice(-6)); }
+    drawPath();
+  }
+  function drawPath(){
+    pathBox.innerHTML = path.map(function(p, i){
+      var last = i === path.length - 1;
+      var kind = p.kind === 'set' ? '<span class="np-kind">' + (p.set === 'family' ? 'Family' : 'Group') + '</span>' : '';
+      return (i ? '<span class="np-sep" aria-hidden="true">›</span>' : '') + '<button type="button" data-i="' + i + '"' + (last ? ' aria-current="true"' : '') + '>' + kind + p.label + '</button>';
+    }).join('');
+  }
+  pathBox.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-i]'); if (!b || b.getAttribute('aria-current') === 'true') return;
+    var p = path[+b.dataset.i]; path = path.slice(0, +b.dataset.i);
+    go(p);
+  });
+  function go(p){
+    if (p.kind === 'map') overview();
+    else if (p.kind === 'set') showSet(p.set, p.key);
+    else focus(p.key);
+  }
+  function setLayer(l){
+    layer = l;
+    dlg.querySelectorAll('.net-switch button').forEach(function(x){ x.setAttribute('aria-checked', x.dataset.layer === l ? 'true' : 'false'); });
+    stage.classList.toggle('layer-next', layer === 'next'); stage.classList.toggle('layer-family', layer === 'family');
+  }
+  // the middle level: a whole family, or a whole group, with the links between its members
+  function showSet(kind, key){
+    if (kind === 'family') setLayer('family');
+    centre = null; stage.classList.add('focus', 'has-hot');
+    stage.style.height = narrow() ? Math.max(520, dlg.clientHeight - 320) + 'px' : '';
+    stage.querySelectorAll('.net-sector, .net-region').forEach(function(x){ x.remove(); });
+    Object.keys(els).forEach(function(k){ els[k].classList.remove('hot', 'centre', 'show-name'); });
+    var members = kind === 'family' ? familyOf(key) : contentRecords.filter(function(r){ return GROUP(r.id) === key; }).map(function(r){ return r.id; });
+    var all = kind === 'family' ? [key].concat(members) : members.slice();
+    var placed = {}, small = narrow();
+    if (small) {
+      // phones: an outline, one operation per row, indented by how far down the family it sits; a group is a grid of two
+      var ROW = 78, y = 40, order = [];
+      if (kind === 'family') {
+        (function walk(n, d){ order.push([n, d]); NET.family.filter(function(f){ return f[0] === n; }).forEach(function(f){ walk(f[1], d + 1); }); })(key, 0);
+        order.forEach(function(o){ placed[o[0]] = [16 + Math.min(o[1], 3) * 22, y]; y += ROW; });
+      } else {
+        all.forEach(function(id, i){ placed[id] = [i % 2 ? 72 : 28, y + Math.floor(i / 2) * 100]; });
+        y += Math.ceil(all.length / 2) * 100;
+      }
+      var tot = Math.max(y + 10, 420);
+      stage.style.height = tot + 'px';
+      Object.keys(placed).forEach(function(n){ placed[n] = [placed[n][0], placed[n][1] / tot * 100]; });
+    } else if (kind === 'family' && layer === 'family') {
+      var xs = all.map(function(n){ return NET.pos.family[n][0]; }), ys = all.map(function(n){ return NET.pos.family[n][1]; });
+      var x0 = Math.min.apply(0, xs), x1 = Math.max.apply(0, xs), y0 = Math.min.apply(0, ys), y1 = Math.max.apply(0, ys);
+      var sc = Math.min(80 / Math.max(x1 - x0, 1), 70 / Math.max(y1 - y0, 1), small ? 9 : 4.5);
+      var sx = small ? Math.min(sc, 80 / Math.max(x1 - x0, 1)) : sc;
+      all.forEach(function(n){ placed[n] = [50 + (NET.pos.family[n][0] - (x0 + x1) / 2) * sx, 50 + (NET.pos.family[n][1] - (y0 + y1) / 2) * sc]; });
+    } else {
+      var list = kind === 'family' ? members : all, n = list.length;
+      if (kind === 'family') placed[key] = [50, 50];
+      list.forEach(function(id, i){ var t = -Math.PI / 2 + i / n * Math.PI * 2; placed[id] = [50 + Math.cos(t) * (small ? 34 : 30), 50 + Math.sin(t) * (small ? 34 : 36)]; });
+    }
+    if (!small) Object.keys(placed).forEach(function(k){ placed[k] = [Math.min(Math.max(placed[k][0], 6), 94), Math.min(Math.max(placed[k][1], 8), 90)]; });
+    Object.keys(els).forEach(function(k){ place(k, placed[k] || NET.pos[layer][k] || [50, 50]); });
+    Object.keys(placed).forEach(function(k){ els[k].classList.add('hot'); if (!k.startsWith('r:')) els[k].classList.add('show-name'); });
+    var inSet = function(x){ return placed[x] !== undefined; };
+    var ln = [];
+    var join = function(a, b, c){ return small && kind === 'group' ? curve(a, b, c) : line(a, b, c); };
+    if (layer === 'next') NET.next.forEach(function(e){ if (inSet(e[0]) && inSet(e[1])) ln.push(join(placed[e[0]], placed[e[1]], 'hot k-' + e[2])); });
+    else NET.family.forEach(function(e){ if (inSet(e[0]) && inSet(e[1])) ln.push(kind === 'family' ? (small ? corner(placed[e[0]], placed[e[1]], 'hot k-family') : elbow(placed[e[0]], placed[e[1]], 'hot k-family')) : join(placed[e[0]], placed[e[1]], 'hot k-family')); });
+    svg.innerHTML = ln.join('');
+    legend.hidden = true; focusBox.hidden = false;
+    var title = kind === 'family' ? 'The ' + familyLabel(key) + ' family' : GNAME(key);
+    var desc = kind === 'family' ? members.length + ' operations that build on ' + familyLabel(key) + '.' : members.length + ' operations in this group' + (ln.length ? ', and the ' + ln.length + ' links between them.' : '. No links between them yet: switch to Families, or click one to see where it leads.');
+    focusBox.innerHTML = '<h3>' + title + '</h3><p>' + desc + ' Click one to see it up close.</p><div class="nf-actions"><button type="button" class="nf-back net-btn-overview">Whole map</button></div>';
+    focusBox.querySelector('.nf-back').addEventListener('click', function(){ path = []; overview(); });
+    sub.textContent = kind === 'family' ? 'A family: what builds on what.' : 'A group from the collection map, with the links between its members.';
+    visit({kind:'set', set:kind, key:key, label:kind === 'family' ? familyLabel(key) : GNAME(key)});
+  }
   function overview(){
     centre = null; stage.classList.remove('focus', 'has-hot'); focusBox.hidden = true; legend.hidden = false;
     stage.querySelectorAll('.net-sector').forEach(function(s){ s.remove(); });
@@ -317,6 +422,7 @@ JS_TMPL = r"""
     if (layer === 'family') NET.family.forEach(function(e){ if (!e[0].startsWith('r:') && !NET.family.some(function(f){ return f[1] === e[0]; })) els[e[0]].classList.add('show-name'); });
     sub.textContent = 'How the operations link. Click one to see its links up close.';
     drawAll(); drawLegend();
+    path = []; if (!narrow()) visit({kind:'map', key:'map', label:'Whole map'}); else drawPath();
   }
   function hover(id){
     if (centre) return;
@@ -440,33 +546,45 @@ JS_TMPL = r"""
     var r = contentById.get(id), count = Object.keys(placed).length - 1;
     focusBox.hidden = false;
     focusBox.innerHTML = '<h3>' + NAME[id] + '</h3><p>' + (r.locked.canonicalDefinition || '') + (count ? '' : ' <span class="nf-empty">' + (layer === 'next' ? 'No links yet in Where it leads. Try Families.' : 'Stands alone: nothing it builds on, and nothing built on it.') + '</span>') + '</p>'
-      + '<div class="nf-actions"><button type="button" class="nf-open">Open the card</button><button type="button" class="nf-back net-btn-overview">Whole map</button></div>';
+      + '<div class="nf-actions"><button type="button" class="nf-open">Open the card</button><button type="button" class="nf-back net-btn-overview">Whole map</button></div>'
+      + '<div class="net-up"><span>Step back to</span>' + (parentOf(id) || NET.family.some(function(f){ return f[0] === id; }) ? '<button type="button" data-up="family">its family: ' + familyLabel(rootOf(id)) + '</button>' : '')
+      + '<button type="button" data-up="group">its group: ' + GNAME(GROUP(id)) + '</button>'
+      + '<button type="button" data-up="layer">' + (layer === 'next' ? 'its family links' : 'where it leads') + '</button></div>';
+    focusBox.querySelectorAll('[data-up]').forEach(function(b){ b.addEventListener('click', function(){
+      var u = b.dataset.up;
+      if (u === 'family') showSet('family', rootOf(id));
+      else if (u === 'group') showSet('group', GROUP(id));
+      else { setLayer(layer === 'next' ? 'family' : 'next'); focus(id); }
+    }); });
     focusBox.querySelector('.nf-open').addEventListener('click', function(){ openOperationDetail(id, 'net'); });
-    focusBox.querySelector('.nf-back').addEventListener('click', overview);
+    focusBox.querySelector('.nf-back').addEventListener('click', function(){ path = []; overview(); });
+    visit({kind:'op', key:id, label:NAME[id]});
     sub.textContent = layer === 'next' ? 'Where ' + NAME[id] + ' leads, and what leads to it. Click any operation to move to it.' : 'What ' + NAME[id] + ' builds on, and what is built on it.';
     els[id].focus({preventScroll:true});
   }
   nodesBox.addEventListener('mouseover', function(e){ var b = e.target.closest('.net-node'); if (b && !narrow()) hover(b.dataset.id); });
   nodesBox.addEventListener('mouseleave', function(){ hover(null); });
+  labelsBox.addEventListener('click', function(e){ var l = e.target.closest('.net-label'); if (l && layer === 'family') showSet('family', l.dataset.id); });
   nodesBox.addEventListener('click', function(e){
     var b = e.target.closest('.net-node'); if (!b) return;
     if (centre === b.dataset.id) { openOperationDetail(b.dataset.id, 'net'); return; }
     focus(b.dataset.id);
   });
   dlg.querySelectorAll('.net-switch button').forEach(function(b){ b.addEventListener('click', function(){
-    layer = b.dataset.layer;
-    dlg.querySelectorAll('.net-switch button').forEach(function(x){ x.setAttribute('aria-checked', x === b ? 'true' : 'false'); });
-    stage.classList.toggle('layer-next', layer === 'next');
-    if (centre) focus(centre); else overview();
+    setLayer(b.dataset.layer);
+    var cur = path[path.length - 1];
+    if (centre) focus(centre);
+    else if (cur && cur.kind === 'set') { path.pop(); showSet(cur.set, cur.key); }
+    else overview();
   }); });
   find.addEventListener('change', function(){
     var v = find.value.trim().toLowerCase(), hit = contentRecords.find(function(r){ return NAME[r.id].toLowerCase() === v; });
     if (hit) { focus(hit.id); find.value = ''; }
   });
   dlg.querySelector('#net-close').addEventListener('click', function(){ dlg.close(); });
-  dlg.addEventListener('keydown', function(e){ if (e.key === 'Escape' && centre && !narrow()) { e.preventDefault(); overview(); } });
+  dlg.addEventListener('keydown', function(e){ if (e.key === 'Escape' && path.length > 1) { e.preventDefault(); var p = path[path.length - 2]; path = path.slice(0, path.length - 2); go(p); } });
   window.__openNet = function(id){
-    stage.classList.toggle('layer-next', layer === 'next');
+    setLayer(layer);
     if (!dlg.open) dlg.showModal();
     overview();
     var start = id || (narrow() ? contentRecords[Math.floor(Math.random() * contentRecords.length)].id : null);
