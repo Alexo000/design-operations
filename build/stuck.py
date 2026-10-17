@@ -11,29 +11,30 @@ import sys
 
 MARK = '<!-- stuck-doorway -->'
 
-# (what is wrong, DO number of the operation it hands back)
+# (what is wrong, DO number of the operation it hands back, DO number of a second move)
+# Second moves added 2026-10-17 (work lane, accepted "accept all"), drawn partly from the links written that day.
 FLAGS = [
-    ("I can't say what I'm after", 52),             # NAME
-    ("I can't explain it in one sentence", 53),     # COMPRESS
-    ("My tools feel too familiar", 9),              # CONSTRAIN
-    ("My own work has stopped surprising me", 4),   # TRANSLATE
-    ("I don't really know who it's for", 61),       # OCCUPY
-    ("Nobody has tried it yet", 38),                # ELICIT
-    ("The people it's for are out of reach", 26),   # LOCATE
-    ("I'm ignoring feedback I got", 47),            # DEFECT
-    ("I'm thinking instead of doing", 35),          # MARK TIME
-    ("I'm avoiding the parts I find hard", 22),     # REHEARSE
-    ("My research isn't leading anywhere", 51),     # GENERALISE
-    ("It's too complicated", 45),                   # FIND THE KEYSTONE
-    ("I'm trying to do too many things", 60),       # ARCHIVE
-    ("I haven't made anything yet", 87),            # SCOUT
-    ("My restriction is just decoration", 112),     # EXAGGERATE
-    ("I'm waiting for the perfect idea", 15),       # DEFER
-    ("Making is taking longer than I planned", 50), # PREPARE EVERYTHING
+    ("I can't say what I'm after", 52, 42),             # NAME  # then SAY WHAT IT ISN'T
+    ("I can't explain it in one sentence", 53, 1),     # COMPRESS  # then STRIP
+    ("My tools feel too familiar", 9, 142),              # CONSTRAIN  # then SUBSTITUTE
+    ("My own work has stopped surprising me", 4, 135),   # TRANSLATE  # then FOLD
+    ("I don't really know who it's for", 61, 154),       # OCCUPY  # then PRETEND
+    ("Nobody has tried it yet", 38, 29),                # ELICIT  # then EXCHANGE
+    ("The people it's for are out of reach", 26, 65),   # LOCATE  # then RELOCATE
+    ("I'm ignoring feedback I got", 47, 137),            # DEFECT  # then FOLLOW THROUGH
+    ("I'm thinking instead of doing", 35, 86),          # MARK TIME  # then HEDGE
+    ("I'm avoiding the parts I find hard", 22, 128),     # REHEARSE  # then SCAFFOLD
+    ("My research isn't leading anywhere", 51, 40),     # GENERALISE  # then TRIANGULATE
+    ("It's too complicated", 45, 131),                   # FIND THE KEYSTONE  # then HALVE
+    ("I'm trying to do too many things", 60, 152),       # ARCHIVE  # then CUT THE BEATEN
+    ("I haven't made anything yet", 87, 69),            # SCOUT  # then REPLICATE
+    ("My restriction is just decoration", 112, 129),     # EXAGGERATE  # then RELAX
+    ("I'm waiting for the perfect idea", 15, 115),       # DEFER  # then WEATHER
+    ("Making is taking longer than I planned", 50, 138), # PREPARE EVERYTHING  # then ALLOW A MARGIN
 ]
 
 BUTTON = ('<button class="route route-stuck" type="button" id="opening-stuck">\n'
-          '          <span><strong>I’m stuck on a project</strong><small>Tick what’s wrong. Each one hands you a move.</small></span><span class="arrow" aria-hidden="true">→</span>\n'
+          '          <span><strong>I’m stuck on a project</strong><small>Tick what’s wrong. Each one hands you a move, and a second to try.</small></span><span class="arrow" aria-hidden="true">→</span>\n'
           '        </button>\n        ')
 
 SECTION = MARK + """
@@ -61,6 +62,8 @@ CSS = """
     #stuck .stuck-name { font-weight:700; font-size:20px; }
     #stuck .stuck-act { margin:0; max-width:60ch; }
     #stuck .stuck-open { justify-self:start; }
+    #stuck .stuck-alt { display:grid; gap:4px; margin-top:8px; padding-top:10px; border-top:1px dashed var(--line-strong); }
+    #stuck .stuck-alt .stuck-act { font-size:15px; }
 """
 
 JS_TMPL = r"""
@@ -85,7 +88,12 @@ JS_TMPL = r"""
     document.querySelector('#stuck-moves').innerHTML = on.slice().sort(function(a, b){ return a - b; }).map(function(i){
       var r = rec(FLAGS[i][1]); if (!r) return '';
       var act = (r.editorial && r.editorial.compact && r.editorial.compact.act) || r.locked.canonicalDefinition || '';
-      return '<div class="stuck-move"><span class="stuck-why">' + esc(FLAGS[i][0]) + ' → try</span><span class="stuck-name">' + esc(displayOperationName(r.locked.name)) + '</span><p class="stuck-act">' + esc(act) + '</p><button type="button" class="back stuck-open" data-open="' + r.id + '">Read the whole operation →</button></div>';
+      var r2 = FLAGS[i][2] ? rec(FLAGS[i][2]) : null, alt = '';
+      if (r2) {
+        var act2 = (r2.editorial && r2.editorial.compact && r2.editorial.compact.act) || r2.locked.canonicalDefinition || '';
+        alt = '<div class="stuck-alt"><span class="stuck-why">Or try</span><p class="stuck-act"><strong>' + esc(displayOperationName(r2.locked.name)) + '</strong>: ' + esc(act2) + '</p><button type="button" class="back stuck-open" data-open="' + r2.id + '">Read it →</button></div>';
+      }
+      return '<div class="stuck-move"><span class="stuck-why">' + esc(FLAGS[i][0]) + ' → try</span><span class="stuck-name">' + esc(displayOperationName(r.locked.name)) + '</span><p class="stuck-act">' + esc(act) + '</p><button type="button" class="back stuck-open" data-open="' + r.id + '">Read the whole operation →</button>' + alt + '</div>';
     }).join('');
   }
   function showStuck(){
