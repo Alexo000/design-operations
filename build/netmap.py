@@ -87,12 +87,12 @@ def build(E, main, records):
     lone = [n for n in rid if n not in G]
     pos = nx.spring_layout(G, seed=11, k=2.6 / math.sqrt(len(linked)), iterations=600)
     xs = [pos[n][0] for n in linked]; ys = [pos[n][1] for n in linked]
-    XL = W * .76
+    XL = W * .76 if lone else W
     P = {n: [(pos[n][0] - min(xs)) / (max(xs) - min(xs)) * (XL - 60) + 30, (pos[n][1] - min(ys)) / (max(ys) - min(ys)) * (H - 60) + 30] for n in linked}
     P = spread(P, 60, (24, 24, XL - 24, H - 24))
     P.update(grid(lone, W * .8, W, 70, 4))
     pos_next = P
-    lab_next = [{'t': 'No links yet', 'x': W * .9, 'y': 34}]
+    lab_next = [{'t': 'No links yet', 'x': W * .9, 'y': 34}] if lone else []
 
     # 3b. Families: one small tree per family, packed in rows; those standing alone in a block on the right
     parent = {c: p for p, c in fam}
@@ -321,7 +321,7 @@ JS_TMPL = r"""
     var dash = {'k-next':'', 'k-instead':' stroke-dasharray="4 4"', 'k-pair':' stroke-dasharray="1 3" stroke-linecap="round" stroke-width="1.6"', 'k-further':' stroke-width="2"'};
     if (layer === 'next') {
       legend.innerHTML = ['next','instead','pair','further'].map(function(k){ return '<span><svg viewBox="0 0 34 8"><line x1="1" y1="4" x2="33" y2="4"' + dash['k-' + k] + '/></svg>' + KINDS[k] + '</span>'; }).join('')
-        + '<span>' + NET.next.length + ' links · ' + contentRecords.filter(function(r){ return !NET.next.some(function(e){ return e[0] === r.id || e[1] === r.id; }); }).length + ' operations have none yet</span>';
+        + (function(){ var none = contentRecords.filter(function(r){ return !NET.next.some(function(e){ return e[0] === r.id || e[1] === r.id; }); }).length; return '<span>' + NET.next.length + ' links' + (none ? ' · ' + none + ' operations have none yet' : '') + '</span>'; })();
     } else {
       legend.innerHTML = '<span><svg viewBox="0 0 34 8"><line x1="1" y1="4" x2="33" y2="4" stroke-width="1.3"/></svg>Builds on</span><span><i>remove</i>&nbsp; a shared root with no operation of its own</span>';
     }

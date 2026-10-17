@@ -18,7 +18,7 @@ sys.path.insert(0, HERE)
 from parse_full import parse
 import knowledge
 
-SRC = os.environ.get('SRC', os.path.join(ROOT, 'sources', 'compendium_2026-10-17b.md'))
+SRC = os.environ.get('SRC', os.path.join(ROOT, 'sources', 'compendium_2026-10-17c.md'))
 BETA = os.environ.get('BETA', os.path.join(ROOT, 'sources', 'design_operations_public_beta.html'))
 REG = os.environ.get('REG', os.path.join(ROOT, 'sources', 'design_operations_content_register.json'))
 OUT = os.environ.get('OUT', os.path.join(ROOT, 'site'))
