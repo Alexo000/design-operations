@@ -283,7 +283,8 @@ import discover
 npage = rep(npage, OPENING_MAP + '      </div>\n    </section>\n', OPENING_MAP + '      </div>\n' + discover.FIELD_HTML + '    </section>\n', 'field')
 import pictograms
 import dialogue
-npage = npage.replace('</body>', ONB_JS + SEEN_JS + discover.JS + pictograms.js() + knowledge.JS + dialogue.JS + polish.JS + nav.JS + '</body>')
+import trail   # trail at the top of each card (2026-10-17, preview)
+npage = npage.replace('</body>', ONB_JS + SEEN_JS + discover.JS + pictograms.js() + knowledge.JS + dialogue.JS + trail.JS + polish.JS + nav.JS + '</body>')
 npage = nav.patch_html(npage, rep)
 import standalone
 import wordmark   # the name with a symbol over each letter, drawn again on every visit (2026-10-15)
@@ -291,7 +292,7 @@ npage = standalone.patch_html(npage, rep, wordmark.write_assets(OUT, records))
 standalone.copy_share(ROOT, OUT)
 npage = polish.patch_html(npage)
 npage = dialogue.patch_html(npage, rep)
-npage = npage.replace('</style>', SEEN_CSS + discover.CSS + pictograms.CSS + knowledge.CSS + '  </style>', 1)
+npage = npage.replace('</style>', SEEN_CSS + discover.CSS + pictograms.CSS + knowledge.CSS + trail.CSS + '  </style>', 1)
 npage = rep(npage, '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>', '<button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>\n        <button type="button" class="onb-next" id="onb-map">Browse all 144</button>', 'onb map')
 import stuck   # 'I'm stuck on a project' way in (2026-10-13)
 npage = stuck.patch_page(npage)

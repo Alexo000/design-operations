@@ -402,6 +402,51 @@
     .seen-in a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line-strong); }
     .seen-in a:hover { border-bottom-color:var(--ink); }
     .seen-in a .si-arrow { font-size:.9em; margin-left:4px; }
+
+    /* trail 2026-10-17 */
+    .trail { --tr-pad:14px; margin:0 0 26px; border:1px solid var(--line-strong); background:var(--paper); }
+    .trail ol { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(var(--tr-n,5), minmax(0,1fr)); }
+    .trail li { min-width:0; border-left:1px solid var(--line); }
+    .trail li:first-child { border-left:0; }
+    .tr-step { display:flex; flex-direction:column; gap:6px; width:100%; height:100%; padding:10px var(--tr-pad) 12px; border:0; background:transparent; color:var(--ink); font:inherit; text-align:left; cursor:pointer; position:relative; }
+    .tr-step:hover { background:var(--hover); }
+    .tr-step:focus-visible { outline:2px solid var(--ink); outline-offset:-2px; }
+    .tr-k { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .tr-k b { font-weight:500; color:var(--ink); margin-right:6px; }
+    .tr-v { display:flex; align-items:center; gap:8px; min-width:0; font-size:15px; line-height:1.25; }
+    .tr-v > span { min-width:0; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+    .tr-ico { flex:none; display:inline-flex; width:30px; height:20px; }
+    .tr-ico svg { width:100%; height:100%; }
+    .tr-sym { flex:none; display:inline-flex; align-items:center; height:22px; font-size:20px; line-height:1; }
+    .tr-sym svg { height:22px; width:auto; }
+    .tr-fmt { flex:none; display:inline-flex; align-items:center; gap:10px; margin-right:2px; }
+    .tr-fmt i { display:inline-flex; height:15px; }
+    .tr-fmt svg { height:100%; width:auto; }
+    .trail li.is-here .tr-step { background:var(--ink); color:var(--paper); }
+    .trail li.is-here .tr-k, .trail li.is-here .tr-k b { color:inherit; opacity:.75; }
+    .trail li.is-here .tr-step:hover { background:var(--ink); }
+    .tr-step[aria-expanded="true"] { background:var(--hover); }
+    .tr-step[aria-expanded="true"] .tr-k::after { content:" ▴"; }
+    .tr-step[aria-expanded="false"] .tr-k::after { content:" ▾"; }
+    .tr-sibs { border-top:1px solid var(--line); padding:12px var(--tr-pad) 14px; }
+    .tr-sibs p { margin:0 0 10px; font-size:13px; color:var(--muted); }
+    .tr-sibs ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+    .tr-sibs button { display:inline-flex; align-items:center; gap:8px; width:auto; padding:6px 10px; border:1px solid var(--line-strong); background:transparent; color:var(--ink); font:inherit; font-size:14px; cursor:pointer; }
+    .tr-sibs button:hover { border-color:var(--ink); }
+    .tr-sibs button[aria-current="true"] { background:var(--ink); color:var(--paper); border-color:var(--ink); cursor:default; }
+    .tr-sibs .tr-sym, .tr-sibs .tr-sym svg { height:16px; font-size:15px; }
+    @media (max-width:720px) {
+      /* phones: a stack of one-line rows, like a card index */
+      .trail ol { display:block; }
+      .trail li { border-left:0; border-top:1px solid var(--line); }
+      .trail li:first-child { border-top:0; }
+      .tr-step { --tr-pad:12px; flex-direction:row; align-items:center; gap:10px; padding:9px var(--tr-pad); }
+      .tr-k { flex:none; width:92px; }
+      .tr-v { font-size:14px; }
+      .tr-v > span { -webkit-line-clamp:1; }
+      .tr-ico { width:24px; height:16px; }
+      .tr-sym, .tr-sym svg { height:18px; font-size:16px; }
+    }
   
     .route-stuck { border-style:solid; border-width:2px; }
     #stuck .stuck-flags { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:0 24px; margin-top:18px; }
@@ -2013,6 +2058,87 @@
     closeBtn.addEventListener('click', function(){ dlg.close(); });
     dlg.addEventListener('click', function(e){ if (e.target === dlg) dlg.close(); });
   }
+})();
+</script>
+
+<script>
+(function(){
+  var G = {"Take something away": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"9\" cy=\"16\" r=\"2.4\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"16\" r=\"2.4\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"29\" cy=\"16\" r=\"2.4\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"39\" cy=\"16\" r=\"2.6\" stroke-dasharray=\"1.4 1.6\"/></svg>", "Give me more to work with": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"7\" cy=\"16\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M12 16 L18.8 16.0\"/><path d=\"M23.0 16.0 L18.8 18.3 L18.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"30\" cy=\"11\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"37\" cy=\"11\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"30\" cy=\"21\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"37\" cy=\"21\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"43\" cy=\"16\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Change what it is": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"6\" y=\"11\" width=\"10\" height=\"10\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M20 16 L26.8 16.0\"/><path d=\"M31.0 16.0 L26.8 18.3 L26.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"38\" cy=\"16\" r=\"5\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Help me see it from another angle": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"7\" y=\"10\" width=\"12\" height=\"12\"/><path d=\"M34 7 L43 16 L34 25 L25 16 Z\"/></svg>", "Put different things into contact": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"10\" y=\"10\" width=\"12\" height=\"12\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"28\" cy=\"16\" r=\"6\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Put the parts into contact": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"10\" y=\"10\" width=\"12\" height=\"12\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"28\" cy=\"16\" r=\"6\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Pull the parts apart": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 16 L8.2 16.0\"/><path d=\"M4.0 16.0 L8.2 13.7 L8.2 18.3 Z\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"16\" y=\"11\" width=\"6\" height=\"10\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"26\" y=\"11\" width=\"6\" height=\"10\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M34 16 L39.8 16.0\"/><path d=\"M44.0 16.0 L39.8 18.3 L39.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Help me decide what comes first": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"10\" y=\"20\" width=\"6\" height=\"6\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"19\" y=\"15\" width=\"6\" height=\"11\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"28\" y=\"9\" width=\"6\" height=\"17\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M6 29 L40 29\"/></svg>", "Shake up the order it is in": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"8\" y=\"12\" width=\"7\" height=\"7\" transform=\"rotate(-18 11.5 15.5)\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"20\" y=\"8\" width=\"7\" height=\"7\" transform=\"rotate(22 23.5 11.5)\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"31\" y=\"16\" width=\"7\" height=\"7\" transform=\"rotate(-8 34.5 19.5)\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Help the parts agree": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 6 L16.4 11.9\"/><path d=\"M20.0 14.0 L15.2 13.9 L17.5 9.9 Z\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M5 16 L15.8 16.0\"/><path d=\"M20.0 16.0 L15.8 18.3 L15.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M6 26 L16.4 20.1\"/><path d=\"M20.0 18.0 L17.5 22.1 L15.2 18.1 Z\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"26\" cy=\"16\" r=\"3.6\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Push me beyond what I’d normally do": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"7\" width=\"22\" height=\"18\"/><circle cx=\"14\" cy=\"16\" r=\"2.2\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M18 16 L38.8 16.0\"/><path d=\"M43.0 16.0 L38.8 18.3 L38.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Give me a useful restriction": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 8 H11 V24 H15\"/><path d=\"M33 8 H37 V24 H33\"/><circle cx=\"24\" cy=\"16\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Give me another way in": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 7 H40 V25 H20 V20\"/><path d=\"M20 12 V7\"/><path d=\"M5 16 L23.8 16.0\"/><path d=\"M28.0 16.0 L23.8 18.3 L23.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Help me name what matters": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"8\" cy=\"14\" r=\"2.4\"/><circle cx=\"17\" cy=\"14\" r=\"2.4\"/><circle cx=\"27\" cy=\"14\" r=\"2.8\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"37\" cy=\"14\" r=\"2.4\"/><path d=\"M22 22 H32\" stroke-width=\"2.4\"/></svg>", "Show me what I’m missing": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"8\" width=\"12\" height=\"16\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"33\" cy=\"16\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M33 6 L33 9\"/><path d=\"M33 23 L33 26\"/><path d=\"M23 16 L26 16\"/><path d=\"M40 16 L43 16\"/><path d=\"M26 9 L28 11\"/><path d=\"M40 9 L38 11\"/><path d=\"M26 23 L28 21\"/><path d=\"M40 23 L38 21\"/></svg>", "Take something out of view for now": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"27\" cy=\"16\" r=\"5\" stroke-dasharray=\"1.6 1.8\"/><rect x=\"10\" y=\"8\" width=\"16\" height=\"16\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Let me find out what holds up": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 20 L42 20\"/><path d=\"M24 20 L19 28 L29 28 Z\"/><rect x=\"32\" y=\"12\" width=\"8\" height=\"8\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Move the decision or responsibility": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"9\" width=\"14\" height=\"14\"/><path d=\"M20 16 L23.8 16.0\"/><path d=\"M28.0 16.0 L23.8 18.3 L23.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"30\" y=\"9\" width=\"14\" height=\"14\"/><circle cx=\"37\" cy=\"16\" r=\"2.6\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Spread it across more people or parts": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"11\" width=\"10\" height=\"10\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16 16 L18.8 16.0\"/><path d=\"M23.0 16.0 L18.8 18.3 L18.8 13.7 Z\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"27\" y=\"5\" width=\"5\" height=\"5\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"36\" y=\"5\" width=\"5\" height=\"5\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"27\" y=\"22\" width=\"5\" height=\"5\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"36\" y=\"22\" width=\"5\" height=\"5\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Help the parts work together": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"18\" cy=\"16\" r=\"7\"/><circle cx=\"30\" cy=\"16\" r=\"7\"/></svg>", "Protect what still needs to work": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12.0 22.0 A12 12 0 0 1 36.0 22.0\"/><circle cx=\"24\" cy=\"21\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Let it respond to what happens": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 16 C10 6, 16 6, 22 16 S34 26, 44 16\"/><circle cx=\"22\" cy=\"16\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Make it something I can try again": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"7\" y=\"7\" width=\"7\" height=\"7\"/><rect x=\"20\" y=\"7\" width=\"7\" height=\"7\"/><rect x=\"33\" y=\"7\" width=\"7\" height=\"7\"/><path d=\"M38 20 C38 28, 10 28, 10 21\"/><path d=\"M10 17.5 L7.4 22.5 L12.6 22.5 Z\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Break the pattern it is following": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"6\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"13\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"20\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M26 6 L26 26\" stroke-width=\"2.6\"/><circle cx=\"33\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\" opacity=\"0.3\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\" opacity=\"0.3\"/></svg>", "Break the pattern I’m in": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"6\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"13\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"20\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M26 6 L26 26\" stroke-width=\"2.6\"/><circle cx=\"33\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\" opacity=\"0.3\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\" opacity=\"0.3\"/></svg>", "Help me bring it to a close": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 16 L26 16\"/><circle cx=\"34\" cy=\"16\" r=\"7\"/><circle cx=\"34\" cy=\"16\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/></svg>", "Get it back to a workable state": "<svg viewBox=\"0 0 48 32\" aria-hidden=\"true\" focusable=\"false\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 24 L43 24\"/><path d=\"M12 24 C12 8, 30 8, 30 21\"/><path d=\"M30 24.5 L27.2 19.5 L32.8 19.5 Z\" fill=\"currentColor\" stroke=\"none\"/></svg>"};
+  var FMT = ['With your hands', 'In words', 'In the process', 'Try this'];
+  var KEYS = {'With your hands':'hands', 'In words':'words', 'In the process':'process', 'Try this':'general'};
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function sectionFor(box, re){
+    var h = Array.prototype.find.call(box.querySelectorAll('h3'), function(x){ return re.test(x.textContent); });
+    return h ? (h.closest('section') || h) : null;
+  }
+  function shortSeen(plain){
+    // maker and year only: "Lina Bo Bardi, 1951"
+    var t = String(plain || '').replace(/\s+/g, ' ').trim();
+    var year = (t.match(/\b(1[0-9]{3}|20[0-9]{2})\b(?!.*\b(1[0-9]{3}|20[0-9]{2})\b)/) || [])[1] || '';
+    var maker = t.split(', ')[0];
+    if (maker.length > 34) maker = maker.slice(0, 32).replace(/\s+\S*$/, '') + '…';
+    return year && maker.indexOf(year) < 0 ? maker + ', ' + year : maker;
+  }
+  function go(fromId, toId){
+    if (!toId || toId === fromId) return;
+    operationHistory.push(fromId);
+    renderOperationDetail(toId);
+    var back = document.querySelector('#operation-back'); if (back) back.hidden = false;
+    operationDialog.scrollTo({top:0, behavior:motionBehavior});
+  }
+  var orig = renderOperationDetail;
+  renderOperationDetail = function(id){
+    var out = orig.apply(this, arguments);
+    var box = document.querySelector('#operation-detail-content'); if (!box) return out;
+    var r = contentById.get(id); if (!r) return out;
+    var old = box.querySelector('.trail'); if (old) old.remove();
+    var move = r.locked.profile.primaryMovement, group = movementMeanings[move] || displayOperationName(move);
+    var name = displayOperationName(r.locked.name);
+    var apps = (r.editorial && r.editorial.applications) || {};
+    var fmts = FMT.filter(function(f){ return apps[KEYS[f]] && apps[KEYS[f]].task; });
+    var seen = r.editorial && r.editorial.seenIn;
+    var leads = relationGroups(r).reduce(function(n, g){ return n + g[1].filter(function(x){ return contentIdByName.get(String(x).toUpperCase()); }).length; }, 0);
+    var sibs = operations.filter(function(o){ return o.primary === move; });
+    var steps = [];
+    steps.push({k:'Group', key:'group', v:'<i class="tr-ico" aria-hidden="true">' + (G[group] || '') + '</i><span>' + esc(group) + '</span>', label:'Group: ' + group + '. Show the ' + sibs.length + ' operations in it'});
+    steps.push({k:'Operation', key:'op', v:'<i class="tr-sym" aria-hidden="true">' + (r.locked.symbol || '') + '</i><span>' + esc(name) + '</span>', label:'Operation: ' + name});
+    if (fmts.length) steps.push({k:'Try it', key:'try', v:'<span class="tr-fmt" aria-hidden="true">' + fmts.map(function(f){ return '<i>' + (TASK_ICONS[f] || '') + '</i>'; }).join('') + '</span><span>' + (fmts.length === 1 ? 'One way' : fmts.length + ' ways') + '</span>', label:'Try it: ' + fmts.join(', ').toLowerCase()});
+    if (seen && seen.plain) steps.push({k:'Seen in', key:'seen', v:'<span>' + esc(shortSeen(seen.plain)) + '</span>', label:'Seen in: ' + seen.plain});
+    if (leads) steps.push({k:'Leads to', key:'next', v:'<span>' + (leads === 1 ? 'One operation' : leads + ' operations') + '</span>', label:'Leads to ' + leads + ' operations'});
+    var nav = document.createElement('nav'); nav.className = 'trail'; nav.setAttribute('aria-label', 'Where this operation sits');
+    nav.innerHTML = '<ol style="--tr-n:' + steps.length + '">' + steps.map(function(s, i){
+      return '<li data-step="' + s.key + '"' + (s.key === 'op' ? ' class="is-here"' : '') + '><button type="button" class="tr-step" aria-label="' + esc(s.label) + '"' + (s.key === 'group' ? ' aria-expanded="false"' : '') + '>'
+        + '<span class="tr-k"><b>0' + (i + 1) + '</b>' + s.k + '</span><span class="tr-v">' + s.v + '</span></button></li>';
+    }).join('') + '</ol>'
+      + '<div class="tr-sibs" hidden><p>' + esc(group) + ': ' + sibs.length + ' operations</p><ul>' + sibs.map(function(o){
+        var here = o.id === id;
+        return '<li><button type="button" data-sib="' + o.id + '"' + (here ? ' aria-current="true"' : '') + '><i class="tr-sym" aria-hidden="true">' + ((operationContent[o.id] || {}).symbol || '') + '</i>' + esc(displayOperationName(o.name)) + '</button></li>';
+      }).join('') + '</ul></div>';
+    box.insertBefore(nav, box.firstChild);
+    var targets = {
+      op: box.querySelector('.operation-hero'),
+      try: sectionFor(box, /Try it on your work/i),
+      seen: box.querySelector('.seen-in') || sectionFor(box, /How it has been used/i),
+      next: sectionFor(box, /Where it leads/i)
+    };
+    var panel = nav.querySelector('.tr-sibs');
+    nav.addEventListener('click', function(e){
+      var sib = e.target.closest('[data-sib]');
+      if (sib) { go(id, sib.dataset.sib); return; }
+      var li = e.target.closest('li[data-step]'); if (!li) return;
+      var key = li.dataset.step;
+      if (key === 'group') {
+        var btn = li.querySelector('.tr-step'), open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true'); panel.hidden = open; return;
+      }
+      var t = targets[key]; if (!t) return;
+      if (key === 'op') { operationDialog.scrollTo({top:0, behavior:motionBehavior}); return; }
+      var bar = document.querySelector('.operation-dialog-bar');
+      var y = t.getBoundingClientRect().top - operationDialog.getBoundingClientRect().top + operationDialog.scrollTop - (bar ? bar.offsetHeight : 0) - 12;
+      operationDialog.scrollTo({top:y, behavior:motionBehavior});
+    });
+    return out;
+  };
 })();
 </script>
 
