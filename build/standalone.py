@@ -33,10 +33,10 @@ HEAD = f"""
   <meta name="theme-color" content="#f7f7f3">
 """
 
-OLD_FOOT_LINE = '<p>Built from the Compendium of 11 October 2026 · © 2026 Alejandro Ramos Saavedra</p>'
+OLD_FOOT_LINE = '<p>Built from the Compendium of 17 October 2026 · © 2026 Alejandro Ramos Saavedra</p>'
 NEW_FOOT_LINE = (f'<p class="foot-ask">Tried one? <a href="{FEEDBACK}" target="_blank" rel="noopener">Tell me how it went</a>.</p>'
                  f'<p class="foot-ask"><a href="{SITE_URL}/all/">Every operation on one page</a></p>'
-                 f'<p>Built from the Compendium of 11 October 2026 · © 2026 <a href="{HOME}">Alejandro Ramos Saavedra</a></p>')
+                 f'<p>Built from the Compendium of 17 October 2026 · © 2026 <a href="{HOME}">Alejandro Ramos Saavedra</a></p>')
 
 CSS = """
     .explorer-foot a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
