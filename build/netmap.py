@@ -100,7 +100,7 @@ def build(E, main, records):
     for p, c in fam:
         kids.setdefault(p, []).append(c)
     nodes = set(parent) | set(kids)
-    roots = sorted([n for n in nodes if n not in parent], key=lambda n: -len(kids.get(n, [])))
+    roots = sorted([n for n in nodes if n not in parent], key=lambda n: (-len(kids.get(n, [])), n))   # name breaks ties, so every build lays out the same
 
     def leaves(n):
         return sum(leaves(c) for c in kids.get(n, [])) if kids.get(n) else 1
@@ -123,7 +123,7 @@ def build(E, main, records):
             return x
         w = lay(r, 0, 0)
         trees.append((w, depth(r) * DY, loc))
-    trees.sort(key=lambda t: -t[1])
+    trees.sort(key=lambda t: -t[1])   # stable: keeps the root order above
     XF = W * .72
     Pf, x, y, rowh = {}, 0, 0, 0
     for w, h, loc in trees:

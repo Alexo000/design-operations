@@ -1,13 +1,10 @@
 """Onboarding step for the explorer (ruling 1a of 2026-10-11, work lane): a short opening screen with one worked
-example from outside design, a 'Show me another' button cycling five, then into the existing questions.
+example from outside design, a 'Show me another' button cycling four (the teaching example dropped 2026-11-03 as too teaching-specific), then into the existing questions.
 The five examples are new visitor copy, desk-written 2026-10-11 and not yet through Front of House.
 Each 'what you'd do' is adapted from the operation's In the process (Try now S) task."""
 import json
 
 EXAMPLES = [
-    {'field': 'Teaching', 'id': 'DO-071',
-     'situation': 'Your lessons have started to feel the same every week.',
-     'do': 'For one week, keep a list of the last three ways you ran an activity, such as a quiz, pair work or a short talk. Anything on the list is off-limits for the next lesson. Stop at the end of the week and look at what you used instead.'},
     {'field': 'Running a team', 'id': 'DO-118',
      'situation': 'Team meetings drift, and nobody is quite sure who decides.',
      'do': 'Give one person the chair until a date you all agree now, say the end of the month. On that date the role ends unless the team chooses to renew it. Stop on that date.'},
@@ -25,7 +22,7 @@ EXAMPLES = [
 HTML = """
     <section id="onboard" aria-labelledby="onboard-title" hidden>
       <h1 id="onboard-title">How it works</h1>
-      <p class="intro">Each operation is one small instruction you can try on whatever you are working on: a lesson, a meeting, a report, a plan. Here is one in use.</p>
+      <p class="intro">Each operation is one small instruction you can try on whatever you are working on: a project, a meeting, a report, a plan. Here is one in use.</p>
       <article class="onb-card" aria-live="polite">
         <div class="onb-kicker" id="onb-kicker"></div>
         <p class="onb-situation" id="onb-situation"></p>
