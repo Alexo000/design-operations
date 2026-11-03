@@ -539,6 +539,16 @@
       .net-stage.focus .net-node.hot .nn-name { width:110px; }
     }
     @media (prefers-reduced-motion:reduce) { .net-node, .net-label { transition:none; } }
+
+    /* chatbot prompt 2026-11-03 */
+    .chat-prompt { margin:26px 0 0; padding-top:18px; border-top:1px dashed var(--line-strong); }
+    .chat-prompt .cp-head { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 18px; }
+    .chat-prompt .cp-label { font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+    .chat-prompt .cp-note { margin:6px 0 10px; font-size:15px; color:var(--muted); max-width:62ch; }
+    .chat-prompt .cp-text { margin:0; padding:16px 18px; border:1px solid var(--line); background:#fff; font:inherit; font-size:15px; line-height:1.5; white-space:pre-wrap; max-width:72ch; }
+    .chat-prompt .cp-copy { width:auto; margin-top:12px; padding:8px 16px; border:1.5px solid var(--ink); background:transparent; color:var(--ink); font:inherit; font-size:15px; cursor:pointer; }
+    .chat-prompt .cp-copy:hover { background:var(--ink); color:var(--paper); }
+    .chat-prompt .cp-copy[data-done] { background:var(--ink); color:var(--paper); }
   
     .route-stuck { border-style:solid; border-width:2px; }
     #stuck .stuck-flags { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:0 24px; margin-top:18px; }
@@ -2591,6 +2601,36 @@
     p.querySelector('button').addEventListener('click', function(){ window.__openNet(id); });
     var note = box.querySelector('.operation-profile-note');
     if (note) box.insertBefore(p, note); else box.appendChild(p);
+    return out;
+  };
+})();
+</script>
+
+<script>
+(function(){
+  var PROMPTS = {"DO-001": "I'm working on [describe your work in a sentence or two]. Help me apply one move to it, called Strip: Remove one thing at a time; stop when the next removal would break it. The move forbids stopping early: you don't remove what's ugly, you remove until the next removal would break it.\n\nAsk me about my work first. Then help me choose where the move applies, and let me do it myself, one step at a time. Hold me to the rule: don't let me soften it, and don't do the work for me. When I reach the point where the move says to stop, tell me, and stop there.", "DO-118": "I'm working on [describe your work in a sentence or two]. Help me apply one move to it, called Lease: Grant it with an end date; it lapses unless renewed. The move forbids quiet continuation: if nobody renews, it ends, and an authority that carries on because nobody noticed the date was never leased.\n\nAsk me about my work first. Then help me choose where the move applies, and let me do it myself, one step at a time. Hold me to the rule: don't let me soften it, and don't do the work for me. When I reach the point where the move says to stop, tell me, and stop there.", "DO-136": "I'm working on [describe your work in a sentence or two]. Help me apply one move to it, called Leave Open: Keep both accounts at full weight; choose neither before the stated point. The move forbids choosing early, and forbids blending the two into one.\n\nAsk me about my work first. Then help me choose where the move applies, and let me do it myself, one step at a time. Hold me to the rule: don't let me soften it, and don't do the work for me. When I reach the point where the move says to stop, tell me, and stop there."};
+  function slug(n){ return String(n).toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  var orig = renderOperationDetail;
+  renderOperationDetail = function(id){
+    var out = orig.apply(this, arguments);
+    var box = document.querySelector('#operation-detail-content'); if (!box) return out;
+    var old = box.querySelector('.chat-prompt'); if (old) old.remove();
+    var text = PROMPTS[id]; if (!text) return out;
+    var r = contentById.get(id), name = r ? displayOperationName(r.locked.name) : '';
+    var d = document.createElement('div'); d.className = 'chat-prompt';
+    d.innerHTML = '<div class="cp-head"><span class="cp-label">With a chatbot</span></div>'
+      + '<p class="cp-note">Paste this into any chatbot. It asks about your work, then holds you to the rule while you do the move yourself.</p>'
+      + '<p class="cp-text"></p><button type="button" class="cp-copy">Copy the prompt</button>';
+    d.querySelector('.cp-text').textContent = text;
+    var btn = d.querySelector('.cp-copy');
+    btn.addEventListener('click', function(){
+      var done = function(){ btn.textContent = 'Copied'; btn.setAttribute('data-done', ''); setTimeout(function(){ btn.textContent = 'Copy the prompt'; btn.removeAttribute('data-done'); }, 2200); };
+      var fallback = function(){ var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done(); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+      try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: 'prompt/' + slug(name), title: 'Prompt copied: ' + name, event: true}); } catch (e) {}
+    });
+    var after = box.querySelector('.tried-after') || box.querySelector('.operation-applications');
+    if (after && after.parentNode) after.parentNode.insertBefore(d, after.nextSibling); else box.appendChild(d);
     return out;
   };
 })();
