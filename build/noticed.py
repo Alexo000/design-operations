@@ -34,7 +34,7 @@ LEAVE_OUT = {'compress'}
 CHOSEN = {
     'contain': 'prisms', 'cut-through': 'sliced', 'find-the-threshold': 'dark_substance', 'graft': 'marquetry',
     'isolate': 'niches', 'iterate': 'mirrors', 'juxtapose': 'wood_bronze', 'lay-over': 'paint_glass',
-    'let-drift': 'drift', 'locate': 'vee', 'mirror': 'double_sym', 'partition': 'rot_wall', 'reframe': 'doorway',
+    'let-drift': 'drift', 'locate': 'gallery_angle', 'mirror': 'double_sym', 'partition': 'rot_wall', 'reframe': 'doorway',
     'reveal': 'candle', 'run-it-long': 'timelapse', 'translate': 'stacked_prisms', 'weather': 'drips',
     'work-the-gap': 'heavy',
 }

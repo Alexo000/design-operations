@@ -39,6 +39,18 @@
    }
   ]
  },
+ "scramble": {
+  "name": "Scramble",
+  "plates": [
+   {
+    "plate": "neon_words",
+    "file": "neon_words.gif",
+    "moves": true,
+    "text": "Neon gas.",
+    "alt": "The word GAS in red-orange neon switches off, then SAG in blue neon lights up and droops."
+   }
+  ]
+ },
  "cut-through": {
   "name": "Cut Through",
   "plates": [
@@ -248,13 +260,6 @@
     "alt": "A figure walks while its reflection moves in a tall mirror."
    },
    {
-    "plate": "vee",
-    "file": "vee.gif",
-    "moves": true,
-    "text": "The \"V\" from an architectural perspective.",
-    "alt": "Lines converge on one point, which moves as the viewer moves."
-   },
-   {
     "plate": "gallery_angle",
     "file": "gallery_angle.gif",
     "moves": true,
@@ -433,6 +438,18 @@
     "moves": true,
     "text": "Central vestibular spaces of great height.",
     "alt": "A very tall shaft of light between walls, with a tiny figure at the bottom."
+   }
+  ]
+ },
+ "anchor": {
+  "name": "Anchor",
+  "plates": [
+   {
+    "plate": "vee",
+    "file": "vee.gif",
+    "moves": true,
+    "text": "The \"V\" from an architectural perspective.",
+    "alt": "Lines converge on one point, which moves as the viewer moves."
    }
   ]
  },
@@ -733,6 +750,378 @@
     "moves": true,
     "text": "Strobe lights on a chaotic pendulum.",
     "alt": "A double pendulum caught as a trail of frozen positions."
+   }
+  ]
+ },
+ "substitute": {
+  "name": "Substitute",
+  "plates": [
+   {
+    "plate": "odd_clock",
+    "file": "odd_clock.gif",
+    "moves": true,
+    "text": "A clock that measures something other than time.",
+    "alt": "A clock hand moving in an irregular rhythm."
+   }
+  ]
+ },
+ "occupy": {
+  "name": "Occupy",
+  "plates": [
+   {
+    "plate": "watcher",
+    "file": "watcher.gif",
+    "moves": true,
+    "text": "An elegant person sitting in the room, watching you, not interacting.",
+    "alt": "A still figure in a suit. Only the eyes move."
+   }
+  ]
+ },
+ "shade-across": {
+  "name": "Shade Across",
+  "plates": [
+   {
+    "plate": "golds",
+    "file": "golds.gif",
+    "moves": true,
+    "text": "The range of golds, from the vulgar to the mysterious.",
+    "alt": "Bars of gold from bright to nearly black, with a glint passing over."
+   }
+  ]
+ },
+ "build-on-the-marks": {
+  "name": "Build On The Marks",
+  "plates": [
+   {
+    "plate": "mended",
+    "file": "mended.gif",
+    "moves": true,
+    "text": "Mended ceramics.",
+    "alt": "A bowl cracks from the rim, and a bright line fills the crack."
+   }
+  ]
+ },
+ "work-what-stayed": {
+  "name": "Work What Stayed",
+  "plates": [
+   {
+    "plate": "forces",
+    "file": "forces.gif",
+    "moves": true,
+    "text": "Objects that have been subjected to enormous forces.",
+    "alt": "A press comes down on a bar, lifts, and the bar stays partly bent."
+   }
+  ]
+ },
+ "hold": {
+  "name": "Hold",
+  "plates": [
+   {
+    "plate": "same_thing",
+    "file": "same_thing.gif",
+    "moves": true,
+    "text": "A group of objects showing the same thing in different forms, materials and sizes, from different civilisations.",
+    "alt": "Five versions of one figure in a row, each a different size and texture."
+   }
+  ]
+ },
+ "exhaust": {
+  "name": "Exhaust",
+  "plates": [
+   {
+    "plate": "beaks",
+    "file": "beaks.gif",
+    "moves": true,
+    "text": "Every variation of a beak, laid out on a table of skulls.",
+    "alt": "Rows of small skulls fill up, each with a different beak."
+   }
+  ]
+ },
+ "trace": {
+  "name": "Trace",
+  "plates": [
+   {
+    "plate": "timeline",
+    "file": "timeline.gif",
+    "moves": true,
+    "text": "An object with a timeline of every place it has been.",
+    "alt": "A small square moves from place to place, leaving a dotted route, above a timeline."
+   }
+  ]
+ },
+ "hide-until-done": {
+  "name": "Hide Until Done",
+  "plates": [
+   {
+    "plate": "cloche",
+    "file": "cloche.gif",
+    "moves": true,
+    "text": "Never seeing the product until it is brought to you.",
+    "alt": "A domed cover lifts from a plate, shows a small object, and lowers again."
+   }
+  ]
+ },
+ "freeze-the-joint": {
+  "name": "Freeze The Joint",
+  "plates": [
+   {
+    "plate": "motorbike",
+    "file": "motorbike.gif",
+    "moves": true,
+    "text": "The motorbike with interchangeable carriages (Cambodia).",
+    "alt": "A motorbike stays still while passenger, cargo, food and fuel carriages swap at its hitch."
+   }
+  ]
+ },
+ "entangle": {
+  "name": "Entangle",
+  "plates": [
+   {
+    "plate": "dougong",
+    "file": "dougong.gif",
+    "moves": true,
+    "text": "Wooden interlocking (dougong).",
+    "alt": "Wooden brackets drop into place one by one until they hold up a beam."
+   }
+  ]
+ },
+ "deprive": {
+  "name": "Deprive",
+  "plates": [
+   {
+    "plate": "dark_sense",
+    "file": "dark_sense.gif",
+    "moves": true,
+    "text": "Sensing something in total darkness.",
+    "alt": "Almost nothing: a faint scatter of points moves through the black."
+   }
+  ]
+ },
+ "sample": {
+  "name": "Sample",
+  "plates": [
+   {
+    "plate": "spolia",
+    "file": "spolia.gif",
+    "moves": true,
+    "text": "Objects made of other objects from different periods.",
+    "alt": "A column is built from six parts that do not match."
+   }
+  ]
+ },
+ "seed-and-leave": {
+  "name": "Seed And Leave",
+  "plates": [
+   {
+    "plate": "reef",
+    "file": "reef.gif",
+    "moves": true,
+    "text": "Objects sunk in a reef so that life grows on them.",
+    "alt": "A vessel on the seabed slowly disappears under growth."
+   }
+  ]
+ },
+ "ritualise": {
+  "name": "Ritualise",
+  "plates": [
+   {
+    "plate": "wet_statue",
+    "file": "wet_statue.gif",
+    "moves": true,
+    "text": "Wetting a statue dozens of times.",
+    "alt": "A long ladle swings up and pours water over a statue, again and again."
+   }
+  ]
+ },
+ "constrain": {
+  "name": "Constrain",
+  "plates": [
+   {
+    "plate": "booth",
+    "file": "booth.gif",
+    "moves": true,
+    "text": "A space where the only choice is which booth to put your input into.",
+    "alt": "A dot crosses an empty room to one of four booths, which lights up."
+   }
+  ]
+ },
+ "funnel": {
+  "name": "Funnel",
+  "plates": [
+   {
+    "plate": "long_tunnel",
+    "file": "long_tunnel.gif",
+    "moves": true,
+    "text": "Long tunnels leading into places.",
+    "alt": "A section through solid ground: a long narrow tunnel opening into one room, with dots passing along it."
+   }
+  ]
+ },
+ "elicit": {
+  "name": "Elicit",
+  "plates": [
+   {
+    "plate": "unclear",
+    "file": "unclear.gif",
+    "moves": true,
+    "text": "The unclear image each person can complete as they prefer.",
+    "alt": "A shifting, symmetrical blur that nearly becomes a face."
+   }
+  ]
+ },
+ "rank": {
+  "name": "Rank",
+  "plates": [
+   {
+    "plate": "ranking",
+    "file": "ranking.gif",
+    "moves": true,
+    "text": "A ranking of objects by how many people have seen them.",
+    "alt": "Five bars of equal height grow apart into a descending order."
+   }
+  ]
+ },
+ "defer": {
+  "name": "Defer",
+  "plates": [
+   {
+    "plate": "omikuji",
+    "file": "omikuji.gif",
+    "moves": true,
+    "text": "A small ball you shake, which produces a tiny sign.",
+    "alt": "A ball shakes from side to side, then a small slip slides out of it."
+   }
+  ]
+ },
+ "mimic": {
+  "name": "Mimic",
+  "plates": [
+   {
+    "plate": "pearl",
+    "file": "pearl.gif",
+    "moves": true,
+    "text": "A traditional object beside the same object in an unexpected material.",
+    "alt": "Two spheres side by side, one smooth like a pearl, one veined like marble."
+   }
+  ]
+ },
+ "merge": {
+  "name": "Merge",
+  "plates": [
+   {
+    "plate": "electrum",
+    "file": "electrum.gif",
+    "moves": true,
+    "text": "Electrum, an alloy of gold and silver.",
+    "alt": "Two tones either side of a block mix until no line is left between them."
+   }
+  ]
+ },
+ "strip": {
+  "name": "Strip",
+  "plates": [
+   {
+    "plate": "bones",
+    "file": "bones.gif",
+    "moves": true,
+    "text": "A building with everything removed except what holds it up.",
+    "alt": "The panels of a facade vanish one by one until only the frame stands."
+   }
+  ]
+ },
+ "morph": {
+  "name": "Morph",
+  "plates": [
+   {
+    "plate": "morph",
+    "file": "morph.gif",
+    "moves": true,
+    "text": "One form turning into another, one small step at a time.",
+    "alt": "A square slowly becomes a circle, a star, a triangle, and a square again."
+   }
+  ]
+ },
+ "scaffold": {
+  "name": "Scaffold",
+  "plates": [
+   {
+    "plate": "arch",
+    "file": "arch.gif",
+    "moves": true,
+    "text": "A stone arch standing after its timber support has been taken away.",
+    "alt": "Stones are laid on a timber frame, the frame drops away, and the arch stands."
+   }
+  ]
+ },
+ "keep-back": {
+  "name": "Keep Back",
+  "plates": [
+   {
+    "plate": "dark_patch",
+    "file": "dark_patch.gif",
+    "moves": true,
+    "text": "One dark patch left uncleaned on a restored ceiling.",
+    "alt": "A dark ceiling is wiped clean, except for one small rectangle."
+   }
+  ]
+ },
+ "let-fade": {
+  "name": "Let Fade",
+  "plates": [
+   {
+    "plate": "water_calligraphy",
+    "file": "water_calligraphy.gif",
+    "moves": true,
+    "text": "Water calligraphy drying on the pavement.",
+    "alt": "Dark brush strokes are written on paving and shrink away as they dry."
+   }
+  ]
+ },
+ "sacrifice": {
+  "name": "Sacrifice",
+  "plates": [
+   {
+    "plate": "mandala",
+    "file": "mandala.gif",
+    "moves": true,
+    "text": "A sand mandala swept away once it is finished.",
+    "alt": "A circular pattern builds ring by ring, is swept away, and leaves a small heap."
+   }
+  ]
+ },
+ "feed-back": {
+  "name": "Feed Back",
+  "plates": [
+   {
+    "plate": "feedback",
+    "file": "feedback.gif",
+    "moves": true,
+    "text": "A camera pointed at its own screen.",
+    "alt": "Frames inside frames twist into a spiral, with a dot circling through them."
+   }
+  ]
+ },
+ "fold": {
+  "name": "Fold",
+  "plates": [
+   {
+    "plate": "inkblot",
+    "file": "inkblot.gif",
+    "moves": true,
+    "text": "Ink pressed between two halves of a folded sheet.",
+    "alt": "A sheet folds over a patch of ink and opens on a symmetrical blot."
+   }
+  ]
+ },
+ "pin": {
+  "name": "Pin",
+  "plates": [
+   {
+    "plate": "slit",
+    "file": "slit.gif",
+    "moves": true,
+    "text": "A moving wheel caught by a slit camera, stretched into an oval.",
+    "alt": "A vertical line sweeps across and leaves a wheel stretched into an oval."
    }
   ]
  }
