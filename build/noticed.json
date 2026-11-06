@@ -1,0 +1,739 @@
+{
+ "find-the-threshold": {
+  "name": "Find The Threshold",
+  "plates": [
+   {
+    "plate": "blue",
+    "file": "blue.png",
+    "moves": false,
+    "text": "Blue so dark it's almost black.",
+    "alt": "A flat square of very dark blue."
+   },
+   {
+    "plate": "dark_substance",
+    "file": "dark_substance.gif",
+    "moves": true,
+    "text": "Darkness so dark it seems like an object or a volume (dark substance).",
+    "alt": "White dust falls and stops at the edge of a block that cannot be seen."
+   },
+   {
+    "plate": "light_substance",
+    "file": "light_substance.gif",
+    "moves": true,
+    "text": "Light so bright it seems like an object or a volume (light substance).",
+    "alt": "Black dust falls on white and stops at the edge of a block that cannot be seen."
+   },
+   {
+    "plate": "white_pencil",
+    "file": "white_pencil.png",
+    "moves": false,
+    "text": "White pencil on a slightly different white-toned sheet.",
+    "alt": "A faint hatched disc in white on an off-white sheet."
+   },
+   {
+    "plate": "red_faint",
+    "file": "red_faint.png",
+    "moves": false,
+    "text": "Reds at 3 to 4%, on white.",
+    "alt": "A very faint pink disc on white."
+   }
+  ]
+ },
+ "cut-through": {
+  "name": "Cut Through",
+  "plates": [
+   {
+    "plate": "light_pierce",
+    "file": "light_pierce.gif",
+    "moves": true,
+    "text": "Light piercing dark substance.",
+    "alt": "A thin line of sparkling white pixels crosses the dark and fades."
+   },
+   {
+    "plate": "red_lasers",
+    "file": "red_lasers.gif",
+    "moves": true,
+    "text": "Red lasers piercing dark substances.",
+    "alt": "Two red lines cross, visible only where dust passes through them."
+   },
+   {
+    "plate": "fossil",
+    "file": "fossil.png",
+    "moves": false,
+    "text": "Polished tree fossils with sand.",
+    "alt": "A cross-section of tree rings, with sand around the edge."
+   },
+   {
+    "plate": "sliced",
+    "file": "sliced.gif",
+    "moves": true,
+    "text": "A sliced stone",
+    "alt": "Rings of a stone change as the cut moves through it."
+   },
+   {
+    "plate": "hole_light",
+    "file": "hole_light.gif",
+    "moves": true,
+    "text": "A hole of light in dark substance.",
+    "alt": "A bright disc in the dark, slowly opening and closing."
+   },
+   {
+    "plate": "drilled",
+    "file": "drilled.png",
+    "moves": false,
+    "text": "The whitish texture inside a hole drilled through transparent material.",
+    "alt": "A clear block with a speckled white shaft drilled through it."
+   }
+  ]
+ },
+ "partition": {
+  "name": "Partition",
+  "plates": [
+   {
+    "plate": "beam",
+    "file": "beam.gif",
+    "moves": true,
+    "text": "Beam of light that creates and destroys space in the blink of an eye.",
+    "alt": "A beam sweeps once across a dark room, showing parts of it, then all goes dark."
+   },
+   {
+    "plate": "smell_space",
+    "file": "smell_space.gif",
+    "moves": true,
+    "text": "Space defined by smell.",
+    "alt": "A cloud of drifting specks spreads from one corner."
+   },
+   {
+    "plate": "light_space",
+    "file": "light_space.gif",
+    "moves": true,
+    "text": "Space defined by light.",
+    "alt": "A pool of light on the floor. A figure shows only while crossing it."
+   },
+   {
+    "plate": "sound",
+    "file": "sound.gif",
+    "moves": true,
+    "text": "Space defined by sound.",
+    "alt": "The plan of a room, with dust gathering along lines that shift between two patterns."
+   },
+   {
+    "plate": "temp_space",
+    "file": "temp_space.gif",
+    "moves": true,
+    "text": "Space defined by temperature and humidity.",
+    "alt": "Contour lines drift across the plate."
+   },
+   {
+    "plate": "rot_wall",
+    "file": "rot_wall.gif",
+    "moves": true,
+    "text": "A rotating dividing wall.",
+    "alt": "A plan of a room with a wall turning on a central pivot."
+   }
+  ]
+ },
+ "read-the-interference": {
+  "name": "Read The Interference",
+  "plates": [
+   {
+    "plate": "iridescence",
+    "file": "iridescence.gif",
+    "moves": true,
+    "text": "Iridescence.",
+    "alt": "Two sets of rings overlap and make shifting bands."
+   }
+  ]
+ },
+ "isolate": {
+  "name": "Isolate",
+  "plates": [
+   {
+    "plate": "lamps_temp",
+    "file": "lamps_temp.gif",
+    "moves": true,
+    "text": "Lamps with different colour temperature illuminating an object.",
+    "alt": "A sphere lit from each side, with dots from one lamp and lines from the other."
+   },
+   {
+    "plate": "stone",
+    "file": "stone.gif",
+    "moves": true,
+    "text": "Different resolution of textures carved into the same stone.",
+    "alt": "Bands of carved pyramids, each half the size of the band above, under a turning light."
+   },
+   {
+    "plate": "variations",
+    "file": "variations.png",
+    "moves": false,
+    "text": "Objects made of variations of the same material.",
+    "alt": "Four identical vessels, from sparse to solid."
+   },
+   {
+    "plate": "niches",
+    "file": "niches.png",
+    "moves": false,
+    "text": "A space made of the same material, illuminated with different colour temperatures.",
+    "alt": "Four identical niches, each filled with a different texture of light."
+   },
+   {
+    "plate": "time_material",
+    "file": "time_material.png",
+    "moves": false,
+    "text": "Different effects of time on the same material.",
+    "alt": "Four identical blocks, each more worn away."
+   }
+  ]
+ },
+ "reveal": {
+  "name": "Reveal",
+  "plates": [
+   {
+    "plate": "candle",
+    "file": "candle.gif",
+    "moves": true,
+    "text": "Lighting dark objects with candles.",
+    "alt": "A flickering flame lights the lower part of a dark vase."
+   },
+   {
+    "plate": "mirror_under",
+    "file": "mirror_under.png",
+    "moves": false,
+    "text": "A mirror underneath or behind an object, revealing something that would be invisible.",
+    "alt": "A box on a shelf, with a mirror below showing the marks on its underside."
+   },
+   {
+    "plate": "reveal_light",
+    "file": "reveal_light.gif",
+    "moves": true,
+    "text": "Objects that only reveal their beauty if illuminated with a certain type of light.",
+    "alt": "A band of light crosses the dark and shows a pattern only where it falls."
+   }
+  ]
+ },
+ "iterate": {
+  "name": "Iterate",
+  "plates": [
+   {
+    "plate": "mirrors",
+    "file": "mirrors.gif",
+    "moves": true,
+    "text": "Opposing mirrors.",
+    "alt": "Squares nested inside squares, with a moving light repeated in each."
+   },
+   {
+    "plate": "angled",
+    "file": "angled.gif",
+    "moves": true,
+    "text": "Angled opposing mirrors.",
+    "alt": "A moving line reflected six times around a centre."
+   },
+   {
+    "plate": "refl_refl",
+    "file": "refl_refl.gif",
+    "moves": true,
+    "text": "The reflection of a reflection.",
+    "alt": "A letter F, then its reflection, then the reflection of that."
+   }
+  ]
+ },
+ "locate": {
+  "name": "Locate",
+  "plates": [
+   {
+    "plate": "mirror_self",
+    "file": "mirror_self.gif",
+    "moves": true,
+    "text": "A mirror that lets you see how you look within the space you are in.",
+    "alt": "A figure walks while its reflection moves in a tall mirror."
+   },
+   {
+    "plate": "vee",
+    "file": "vee.gif",
+    "moves": true,
+    "text": "The \"V\" from an architectural perspective.",
+    "alt": "Lines converge on one point, which moves as the viewer moves."
+   },
+   {
+    "plate": "gallery_angle",
+    "file": "gallery_angle.gif",
+    "moves": true,
+    "text": "The angles from which paintings are looked at in a gallery.",
+    "alt": "A painting narrows and widens as you walk past it."
+   }
+  ]
+ },
+ "translate": {
+  "name": "Translate",
+  "plates": [
+   {
+    "plate": "glass",
+    "file": "glass.gif",
+    "moves": true,
+    "text": "Transparent and irregular surfaces that distort what is seen through them.",
+    "alt": "Straight vertical lines bend as lumps of glass pass in front of them."
+   },
+   {
+    "plate": "bevelled",
+    "file": "bevelled.gif",
+    "moves": true,
+    "text": "Angled (bevelled) transparent surfaces that distort what is seen through them.",
+    "alt": "A moving grid jumps sideways as it passes under the bevelled edges of a pane."
+   },
+   {
+    "plate": "stacked_prisms",
+    "file": "stacked_prisms.gif",
+    "moves": true,
+    "text": "A set of superimposed prisms that geometrically distort what is seen through them.",
+    "alt": "Vertical lines broken into sliding steps."
+   }
+  ]
+ },
+ "foreground": {
+  "name": "Foreground",
+  "plates": [
+   {
+    "plate": "dark_cut",
+    "file": "dark_cut.png",
+    "moves": false,
+    "text": "Dark wood painted white where it was cut.",
+    "alt": "Dark grain with a solid white cut edge."
+   }
+  ]
+ },
+ "graft": {
+  "name": "Graft",
+  "plates": [
+   {
+    "plate": "marble",
+    "file": "marble.png",
+    "moves": false,
+    "text": "Marble with inlays.",
+    "alt": "White marble with thin veins and a diamond inlay."
+   },
+   {
+    "plate": "marquetry",
+    "file": "marquetry.png",
+    "moves": false,
+    "text": "Marquetry of semi-precious stones.",
+    "alt": "Irregular fitted pieces, each with its own tone."
+   },
+   {
+    "plate": "stones_wood",
+    "file": "stones_wood.png",
+    "moves": false,
+    "text": "Semi-precious stones embedded in wood.",
+    "alt": "Oval stones set into wood grain."
+   }
+  ]
+ },
+ "juxtapose": {
+  "name": "Juxtapose",
+  "plates": [
+   {
+    "plate": "rough_on_rough",
+    "file": "rough_on_rough.png",
+    "moves": false,
+    "text": "Rough marble or granite on rough wood.",
+    "alt": "A speckled rough block resting on heavy grain."
+   },
+   {
+    "plate": "music_silence",
+    "file": "music_silence.gif",
+    "moves": true,
+    "text": "The sound of music contrasted with silence.",
+    "alt": "A busy sound wave drops to a flat line."
+   },
+   {
+    "plate": "wood_bronze",
+    "file": "wood_bronze.png",
+    "moves": false,
+    "text": "The contrast of wood with bronze.",
+    "alt": "Wood grain on the left, smooth shaded metal on the right."
+   }
+  ]
+ },
+ "weather": {
+  "name": "Weather",
+  "plates": [
+   {
+    "plate": "roman_glass",
+    "file": "roman_glass.gif",
+    "moves": true,
+    "text": "The iridescence of Roman glass.",
+    "alt": "A shard with patches of tone that shift."
+   },
+   {
+    "plate": "melted",
+    "file": "melted.gif",
+    "moves": true,
+    "text": "A rough piece of melted glass",
+    "alt": "A blob outline with bubbles that slowly sags."
+   },
+   {
+    "plate": "drops",
+    "file": "drops.gif",
+    "moves": true,
+    "text": "A mound of earth shaped by drops of water.",
+    "alt": "Drops fall on a mound and slowly wear it down."
+   },
+   {
+    "plate": "drips",
+    "file": "drips.gif",
+    "moves": true,
+    "text": "Dripped glazes.",
+    "alt": "A white glaze runs slowly down the plate."
+   }
+  ]
+ },
+ "lay-over": {
+  "name": "Lay Over",
+  "plates": [
+   {
+    "plate": "paint_glass",
+    "file": "paint_glass.gif",
+    "moves": true,
+    "text": "Paint on glass, overlaid.",
+    "alt": "Three hatched panes slide over one another."
+   },
+   {
+    "plate": "painted_stone",
+    "file": "painted_stone.png",
+    "moves": false,
+    "text": "Painted stone",
+    "alt": "A speckled stone with a painted band."
+   }
+  ]
+ },
+ "mirror": {
+  "name": "Mirror",
+  "plates": [
+   {
+    "plate": "mirror_struct",
+    "file": "mirror_struct.gif",
+    "moves": true,
+    "text": "A structure that duplicates when supported by a mirror.",
+    "alt": "An arcade standing on a line, repeated upside down below it."
+   },
+   {
+    "plate": "double_sym",
+    "file": "double_sym.gif",
+    "moves": true,
+    "text": "Double symmetry.",
+    "alt": "A shifting shape mirrored both left to right and top to bottom."
+   }
+  ]
+ },
+ "exaggerate": {
+  "name": "Exaggerate",
+  "plates": [
+   {
+    "plate": "vestibule",
+    "file": "vestibule.gif",
+    "moves": true,
+    "text": "Central vestibular spaces of great height.",
+    "alt": "A very tall shaft of light between walls, with a tiny figure at the bottom."
+   }
+  ]
+ },
+ "work-the-gap": {
+  "name": "Work The Gap",
+  "plates": [
+   {
+    "plate": "continuation",
+    "file": "continuation.gif",
+    "moves": true,
+    "text": "Natural continuation of a body, interrupted.",
+    "alt": "A curve breaks off and carries on across a gap."
+   },
+   {
+    "plate": "silence",
+    "file": "silence.gif",
+    "moves": true,
+    "text": "Mono-instrument music with unusually long silences.",
+    "alt": "A single mark sounds and fades, followed by a long empty pause."
+   },
+   {
+    "plate": "heavy",
+    "file": "heavy.gif",
+    "moves": true,
+    "text": "A very large and heavy object that does not rest on the object beneath it.",
+    "alt": "A huge white block above a smaller one. The thin gap between them widens slightly."
+   }
+  ]
+ },
+ "run-it-long": {
+  "name": "Run It Long",
+  "plates": [
+   {
+    "plate": "monotonous",
+    "file": "monotonous.gif",
+    "moves": true,
+    "text": "Monotonous music.",
+    "alt": "Eight equal bars, marked one by one."
+   },
+   {
+    "plate": "timelapse",
+    "file": "timelapse.gif",
+    "moves": true,
+    "text": "A 100-year time-lapse (Myanmar).",
+    "alt": "A building rises and crumbles as the sun races overhead."
+   }
+  ]
+ },
+ "reframe": {
+  "name": "Reframe",
+  "plates": [
+   {
+    "plate": "poetry",
+    "file": "poetry.gif",
+    "moves": true,
+    "text": "Reading dense poetry as ambient sound.",
+    "alt": "Lines of blocks that stand for words scroll slowly upwards."
+   },
+   {
+    "plate": "jungle",
+    "file": "jungle.gif",
+    "moves": true,
+    "text": "Jungle vegetation framed by a window.",
+    "alt": "Leaves sway behind a window frame."
+   },
+   {
+    "plate": "peephole",
+    "file": "peephole.gif",
+    "moves": true,
+    "text": "Holes you can look through.",
+    "alt": "Three holes in a white wall. The dots behind them shift as you move."
+   },
+   {
+    "plate": "axon",
+    "file": "axon.gif",
+    "moves": true,
+    "text": "Axonometric and isometric perspectives.",
+    "alt": "A cluster of blocks changing from an isometric view to an axonometric one and back."
+   },
+   {
+    "plate": "doorway",
+    "file": "doorway.gif",
+    "moves": true,
+    "text": "A doorway framing an object in the next room.",
+    "alt": "Walking towards a doorway, with an object in the room beyond growing larger."
+   }
+  ]
+ },
+ "align": {
+  "name": "Align",
+  "plates": [
+   {
+    "plate": "striped_boxes",
+    "file": "striped_boxes.png",
+    "moves": false,
+    "text": "Rectangular boxes with stripes of different colours arranged in a regular grid.",
+    "alt": "Nine boxes in a grid, each with different stripes."
+   }
+  ]
+ },
+ "conceal": {
+  "name": "Conceal",
+  "plates": [
+   {
+    "plate": "watching",
+    "file": "watching.gif",
+    "moves": true,
+    "text": "Watching others without them knowing you're watching them",
+    "alt": "Figures walk past behind a small round peephole."
+   }
+  ]
+ },
+ "contain": {
+  "name": "Contain",
+  "plates": [
+   {
+    "plate": "model",
+    "file": "model.gif",
+    "moves": true,
+    "text": "A small model of the space you are in",
+    "alt": "A room containing a model of itself, and a figure walking in both."
+   },
+   {
+    "plate": "prisms",
+    "file": "prisms.gif",
+    "moves": true,
+    "text": "Successively self-contained prisms rotating on the same axis.",
+    "alt": "Three wire cubes, one inside another, turning on one axis."
+   },
+   {
+    "plate": "slow_cloud",
+    "file": "slow_cloud.gif",
+    "moves": true,
+    "text": "A cloud moving very slowly, almost still, in a confined space.",
+    "alt": "A small dotted cloud drifting inside a square outline."
+   },
+   {
+    "plate": "compartments",
+    "file": "compartments.gif",
+    "moves": true,
+    "text": "Secret compartments inside secret compartments.",
+    "alt": "Sliding lids reveal a box inside a box inside a box."
+   },
+   {
+    "plate": "statue_droste",
+    "file": "statue_droste.gif",
+    "moves": true,
+    "text": "Statues placed inside statues.",
+    "alt": "A zoom into a figure that holds a smaller figure, and another inside that."
+   }
+  ]
+ },
+ "set-a-ratio": {
+  "name": "Set A Ratio",
+  "plates": [
+   {
+    "plate": "equidistant",
+    "file": "equidistant.png",
+    "moves": false,
+    "text": "Objects arranged equidistantly.",
+    "alt": "Seven rows of seven small squares, evenly spaced."
+   }
+  ]
+ },
+ "couple": {
+  "name": "Couple",
+  "plates": [
+   {
+    "plate": "taste_space",
+    "file": "taste_space.gif",
+    "moves": true,
+    "text": "The relationship between the space you’re in and the taste of something eaten there.",
+    "alt": "Each bite taken from a round plate removes a piece of the room around it."
+   }
+  ]
+ },
+ "invert": {
+  "name": "Invert",
+  "plates": [
+   {
+    "plate": "open_interior",
+    "file": "open_interior.gif",
+    "moves": true,
+    "text": "An interior open space exposed to the weather",
+    "alt": "Rain falls through a gap in a roof into a room."
+   }
+  ]
+ },
+ "attend": {
+  "name": "Attend",
+  "plates": [
+   {
+    "plate": "seat",
+    "file": "seat.gif",
+    "moves": true,
+    "text": "A good seat to sit and contemplate.",
+    "alt": "A figure on a bench watches the sun go down."
+   }
+  ]
+ },
+ "resize": {
+  "name": "Resize",
+  "plates": [
+   {
+    "plate": "scales",
+    "file": "scales.png",
+    "moves": false,
+    "text": "Juxtaposition of the same object but in different scales.",
+    "alt": "The same arch at three sizes."
+   }
+  ]
+ },
+ "steer": {
+  "name": "Steer",
+  "plates": [
+   {
+    "plate": "social",
+    "file": "social.gif",
+    "moves": true,
+    "text": "Furniture that encourages social interaction.",
+    "alt": "Dots gather around a ring-shaped seat in plan."
+   }
+  ]
+ },
+ "let-drift": {
+  "name": "Let Drift",
+  "plates": [
+   {
+    "plate": "drift",
+    "file": "drift.gif",
+    "moves": true,
+    "text": "Subtle changes in repetition.",
+    "alt": "Vertical lines appear one at a time, each a copy of the last with one small change."
+   },
+   {
+    "plate": "almost",
+    "file": "almost.gif",
+    "moves": true,
+    "text": "Repetition of an almost identical object.",
+    "alt": "A grid of identical marks, with one reversed in a different place each time."
+   }
+  ]
+ },
+ "relocate": {
+  "name": "Relocate",
+  "plates": [
+   {
+    "plate": "plinth",
+    "file": "plinth.png",
+    "moves": false,
+    "text": "An object placed on a very high plinth",
+    "alt": "A tiny ball on a tall column, with a small figure beside it."
+   }
+  ]
+ },
+ "accumulate": {
+  "name": "Accumulate",
+  "plates": [
+   {
+    "plate": "mound",
+    "file": "mound.gif",
+    "moves": true,
+    "text": "Mounds of a single material.",
+    "alt": "Grains fall in a thin stream and build a cone."
+   }
+  ]
+ },
+ "degrade": {
+  "name": "Degrade",
+  "plates": [
+   {
+    "plate": "pixelate",
+    "file": "pixelate.gif",
+    "moves": true,
+    "text": "8-bit and pixelation.",
+    "alt": "A shaded sphere going from large blocks to fine dots and back."
+   }
+  ]
+ },
+ "mark-what-went": {
+  "name": "Mark What Went",
+  "plates": [
+   {
+    "plate": "censored",
+    "file": "censored.gif",
+    "moves": true,
+    "text": "The space a censored piece would have occupied.",
+    "alt": "A pan along a gallery wall, where one picture is only a dotted outline."
+   }
+  ]
+ },
+ "mark-time": {
+  "name": "Mark Time",
+  "plates": [
+   {
+    "plate": "pendulum",
+    "file": "pendulum.gif",
+    "moves": true,
+    "text": "Strobe lights on a chaotic pendulum.",
+    "alt": "A double pendulum caught as a trail of frozen positions."
+   }
+  ]
+ }
+}

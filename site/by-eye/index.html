@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find one by eye · Actionary</title>
+  <meta name="description" content="Pick the picture that pulls at you. 34 operations, each shown by a small animated plate from the Aesthetic Catalogue.">
+  <link rel="canonical" href="https://operations.ramos-saavedra.com/by-eye/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Actionary">
+  <meta property="og:title" content="Find one by eye · Actionary">
+  <meta property="og:description" content="Pick the picture that pulls at you. 34 operations, each shown by a small animated plate from the Aesthetic Catalogue.">
+  <meta property="og:url" content="https://operations.ramos-saavedra.com/by-eye/">
+  <meta property="og:image" content="https://operations.ramos-saavedra.com/share.png">
+  <meta property="og:image:width" content="1500">
+  <meta property="og:image:height" content="787">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <meta name="theme-color" content="#f1f2f4">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+  <style>
+    :root { color-scheme:light; --ink:#161616; --muted:#5e626a; --line:#c6c9cf; --line-strong:#6c7079; --paper:#f1f2f4; --focus:#2457d6; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:400 17px/1.5 'IBM Plex Sans', Arial, sans-serif; }
+    main { width:min(820px, calc(100% - 32px)); margin:0 auto; padding:30px 0 88px; }
+    a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
+    a:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+    .top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px 24px; padding-bottom:20px; border-bottom:1px solid var(--ink); font-size:14px; }
+    .hero { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; margin:56px 0 0; }
+    h1 { margin:0 0 14px; font-weight:400; font-size:clamp(32px,5.5vw,46px); line-height:1.05; letter-spacing:-.025em; }
+    h2 { margin:0 0 14px; font-weight:400; font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+    p { max-width:62ch; }
+    .line { margin:0; font-size:21px; line-height:1.4; }
+    .formerly { margin:10px 0 0; color:var(--muted); font-size:14px; }
+    .symbol { width:88px; color:var(--ink); }
+    .symbol svg { width:100%; height:auto; max-height:150px; display:block; }
+    .ex { margin:22px 0 0; color:var(--muted); }
+    .seen { margin:8px 0 0; color:var(--muted); font-size:15px; }
+    section { margin:48px 0 0; }
+    .tasks { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; }
+    .task { border:1px solid var(--line-strong); padding:18px; background:rgba(255,255,255,.4); }
+    .task .label { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--muted); }
+    .task .label svg { width:18px; height:18px; flex:none; }
+    .task .label svg path { fill:currentColor; }
+    .task h3 { margin:10px 0 0; font-size:17px; font-weight:500; }
+    .task p { margin:10px 0 0; }
+    .related { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+    .related li { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; padding:12px 0; border-bottom:1px solid var(--line); }
+    .related .rl { width:100%; font-size:14px; color:var(--muted); }
+    .note { margin:40px 0 0; color:var(--muted); font-size:14px; }
+    .go { display:flex; flex-wrap:wrap; gap:12px 28px; margin:44px 0 0; padding-top:22px; border-top:1px solid var(--ink); }
+    .go .primary { display:inline-block; padding:12px 18px; border:1px solid var(--ink); text-decoration:none; }
+    .go .primary:hover { background:#fff; }
+    .pager { display:flex; justify-content:space-between; gap:16px; margin:36px 0 0; font-size:15px; }
+    footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+    footer p { max-width:none; margin:6px 0; }
+    .group { margin:44px 0 0; }
+    .group ul { list-style:none; margin:0; padding:0; }
+    .group li { padding:12px 0; border-bottom:1px solid var(--line); }
+    .group li a { font-size:19px; }
+    .group li span { display:block; color:var(--muted); font-size:15px; }
+    .lede { margin:18px 0 0; color:var(--muted); font-size:18px; }
+    @media (max-width:560px) { .hero { grid-template-columns:1fr; } .symbol { width:64px; order:-1; } .pager { flex-direction:column; } }
+
+    /* wordmark 2026-10-15 */
+    .wordmark { display:inline-flex; flex-direction:column; gap:10px; color:var(--ink); text-decoration:none; }
+    .wm-row { display:grid; grid-template-columns:repeat(9, 42px); margin-left:-8px; }
+    .wm-cell { display:grid; grid-template-rows:26px auto; row-gap:8px; justify-items:center; align-items:end; }
+    .wm-cell svg { width:20px; height:20px; margin:3px; display:block; overflow:visible; }
+    .wm-cell span { font-size:13px; font-weight:500; line-height:1; letter-spacing:0; }
+    .wm-tag { font-size:15px; font-weight:400; color:var(--muted); letter-spacing:0; }
+    .wm-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    @media (max-width:420px) {
+      .wm-row { grid-template-columns:repeat(9, 35px); margin-left:-6px; }
+      .wm-cell { grid-template-rows:22px auto; }
+      .wm-cell svg { width:17px; height:17px; margin:2.5px; }
+    }
+  /*noticed*/
+    .noticed { margin:44px 0 0; }
+    .noticed .head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 24px; margin-bottom:14px; }
+    .noticed h2 { margin:0; }
+    .noticed .head a { font-size:14px; }
+    .noticed .plates { display:grid; grid-template-columns:repeat(auto-fill, minmax(128px, 1fr)); gap:16px 12px; }
+    .noticed figure { margin:0; }
+    .noticed figcaption { margin-top:8px; font-size:14px; line-height:1.35; }
+    .noticed.one figure { display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px 16px; }
+    .noticed.one figcaption { flex:1 1 200px; margin:0; max-width:34ch; }
+    .noticed.one .plates { display:block; }
+    .plate { display:block; width:128px; height:128px; image-rendering:pixelated; }
+/*/noticed*/
+/*noticed*/
+    main { width:min(1120px, calc(100% - 32px)); }
+    .eye { list-style:none; margin:40px 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fill, 128px); justify-content:space-between; gap:24px 16px; }
+    .eye a { display:block; font-size:14px; line-height:1.3; text-decoration:none; }
+    .eye a:hover { text-decoration:underline; }
+    .eye .plate { margin-bottom:8px; }
+    @media (max-width:320px) { .eye { justify-content:center; } }
+/*/noticed*/
+</style>
+  <script data-goatcounter="https://alexo000.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+  <header class="top"><a class="wordmark" href="https://operations.ramos-saavedra.com/"><span class="wm-sr">Actionary</span><span class="wm-row" aria-hidden="true"><span class="wm-cell"><svg viewBox="-1 -1 14.0 12.0" aria-hidden="true" focusable="false"><circle cx="3.0" cy="5.0" r="2.3" fill="#161616"/><line x1="7.00" y1="3.00" x2="11.00" y2="7.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><line x1="7.00" y1="7.00" x2="11.00" y2="3.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/></svg><span>A</span></span><span class="wm-cell"><svg viewBox="-1 -1 32.0 32.0" aria-hidden="true" focusable="false"><rect x="1.70" y="3.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="7.70" y="3.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="13.70" y="3.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="19.70" y="3.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="25.70" y="3.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="1.70" y="13.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="7.70" y="13.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="13.70" y="13.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><rect x="1.70" y="23.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/></svg><span>C</span></span><span class="wm-cell"><svg viewBox="-1 -1 20.0 22.0" aria-hidden="true" focusable="false"><rect x="1.00" y="1.00" width="16.00" height="4.00" fill="#161616" fill-opacity="0.15"/><rect x="1.00" y="6.00" width="16.00" height="4.00" fill="#161616" fill-opacity="0.6"/><rect x="1.00" y="11.00" width="16.00" height="4.00" fill="#161616"/></svg><span>T</span></span><span class="wm-cell"><svg viewBox="-1 -1 20.0 22.0" aria-hidden="true" focusable="false"><rect x="1.70" y="3.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><line x1="7.00" y1="3.00" x2="11.00" y2="7.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><line x1="7.00" y1="7.00" x2="11.00" y2="3.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><rect x="13.70" y="3.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><line x1="1.00" y1="13.00" x2="5.00" y2="17.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><line x1="1.00" y1="17.00" x2="5.00" y2="13.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><rect x="7.70" y="13.70" width="2.6" height="2.6" fill="#161616" stroke="#161616" stroke-width="0"/><line x1="13.00" y1="13.00" x2="17.00" y2="17.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><line x1="13.00" y1="17.00" x2="17.00" y2="13.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/></svg><span>I</span></span><span class="wm-cell"><svg viewBox="-1 -1 26.0 22.0" aria-hidden="true" focusable="false"><line x1="3.00" y1="5.00" x2="6.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><line x1="3.00" y1="5.00" x2="0.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><rect x="2.70" y="4.70" width="0.6" height="0.6" fill="#161616"/><line x1="9.00" y1="5.00" x2="12.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><line x1="9.00" y1="5.00" x2="6.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><rect x="8.70" y="4.70" width="0.6" height="0.6" fill="#161616"/><line x1="15.00" y1="5.00" x2="18.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><line x1="15.00" y1="5.00" x2="12.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><rect x="14.70" y="4.70" width="0.6" height="0.6" fill="#161616"/><line x1="21.00" y1="5.00" x2="24.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><line x1="21.00" y1="5.00" x2="18.00" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><rect x="20.70" y="4.70" width="0.6" height="0.6" fill="#161616"/><line x1="0.00" y1="15.00" x2="6.00" y2="15.00" stroke="#161616" stroke-width="1.5" stroke-linecap="butt"/><line x1="6.00" y1="15.00" x2="12.00" y2="15.00" stroke="#161616" stroke-width="1.5" stroke-linecap="butt"/><line x1="12.00" y1="15.00" x2="18.00" y2="15.00" stroke="#161616" stroke-width="1.5" stroke-linecap="butt"/><line x1="18.00" y1="15.00" x2="24.00" y2="15.00" stroke="#161616" stroke-width="1.5" stroke-linecap="butt"/></svg><span>O</span></span><span class="wm-cell"><svg viewBox="-1 -1 20.0 22.0" aria-hidden="true" focusable="false"><rect x="1.00" y="3.00" width="4.0" height="4.0" fill="none" stroke="#161616" stroke-width="0.6"/><circle cx="9.0" cy="5.0" r="2.0" fill="none" stroke="#161616" stroke-width="0.6"/><polygon points="15.00,3.00 12.70,7.00 17.30,7.00" fill="none" stroke="#161616" stroke-width="0.6"/><line x1="1.00" y1="13.00" x2="5.00" y2="17.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><line x1="1.00" y1="17.00" x2="5.00" y2="13.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><line x1="7.00" y1="13.00" x2="11.00" y2="17.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><line x1="7.00" y1="17.00" x2="11.00" y2="13.00" stroke="#161616" stroke-width="0.8" stroke-linecap="butt"/><circle cx="15.0" cy="15.0" r="2.3" fill="#161616"/></svg><span>N</span></span><span class="wm-cell"><svg viewBox="-1 -1 20.0 22.0" aria-hidden="true" focusable="false"><line x1="0.40" y1="3.60" x2="5.60" y2="3.60" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><line x1="0.40" y1="5.00" x2="5.60" y2="5.00" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><line x1="0.40" y1="6.40" x2="5.60" y2="6.40" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><line x1="3.00" y1="12.00" x2="3.00" y2="17.40" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><polygon points="3.00,18.60 1.80,16.52 4.20,16.52" fill="#161616"/><line x1="9.00" y1="12.00" x2="9.00" y2="17.40" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><polygon points="9.00,18.60 7.80,16.52 10.20,16.52" fill="#161616"/><line x1="15.00" y1="12.00" x2="15.00" y2="17.40" stroke="#161616" stroke-width="0.6" stroke-linecap="butt"/><polygon points="15.00,18.60 13.80,16.52 16.20,16.52" fill="#161616"/></svg><span>A</span></span><span class="wm-cell"><svg viewBox="-1 -1 20.0 22.0" aria-hidden="true" focusable="false"><rect x="-0.03" y="-0.03" width="6.06" height="10.06" fill="#161616" fill-opacity="0.2"/><rect x="5.97" y="-0.03" width="6.06" height="10.06" fill="#161616" fill-opacity="1"/><rect x="11.97" y="-0.03" width="6.06" height="10.06" fill="#161616" fill-opacity="0.2"/><rect x="-0.03" y="9.97" width="6.06" height="10.06" fill="#161616" fill-opacity="1"/><rect x="5.97" y="9.97" width="6.06" height="10.06" fill="#161616" fill-opacity="0.2"/><rect x="11.97" y="9.97" width="6.06" height="10.06" fill="#161616" fill-opacity="1"/></svg><span>R</span></span><span class="wm-cell"><svg viewBox="-1 -1 20.0 22.0" aria-hidden="true" focusable="false"><text x="3.00" y="7.70" font-size="7.6" text-anchor="middle" font-family="Sym, monospace" fill="#161616">?</text><circle cx="3.0" cy="15.0" r="2.0" fill="none" stroke="#161616" stroke-width="0.6"/><circle cx="9.0" cy="15.0" r="2.0" fill="none" stroke="#161616" stroke-width="0.6"/><circle cx="15.0" cy="15.0" r="2.0" fill="none" stroke="#161616" stroke-width="0.6"/></svg><span>Y</span></span></span><span class="wm-tag">Things to do to your work</span></a><a href="https://operations.ramos-saavedra.com/all/">All operations</a></header>
+  <h1 style="margin-top:56px">Find one by eye</h1>
+  <p class="lede">Pick the picture that pulls at you. It leads to something to do to your work. Or <a href="https://operations.ramos-saavedra.com/">find one for your situation</a>.</p>
+  <ul class="eye">
+<li><a href="https://operations.ramos-saavedra.com/find-the-threshold/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/dark_substance-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/dark_substance.gif" alt="White dust falls and stops at the edge of a block that cannot be seen." width="128" height="128" loading="lazy" decoding="async"></picture>Find The Threshold</a></li>
+<li><a href="https://operations.ramos-saavedra.com/cut-through/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/sliced-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/sliced.gif" alt="Rings of a stone change as the cut moves through it." width="128" height="128" loading="lazy" decoding="async"></picture>Cut Through</a></li>
+<li><a href="https://operations.ramos-saavedra.com/partition/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/rot_wall-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/rot_wall.gif" alt="A plan of a room with a wall turning on a central pivot." width="128" height="128" loading="lazy" decoding="async"></picture>Partition</a></li>
+<li><a href="https://operations.ramos-saavedra.com/read-the-interference/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/iridescence-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/iridescence.gif" alt="Two sets of rings overlap and make shifting bands." width="128" height="128" loading="lazy" decoding="async"></picture>Read The Interference</a></li>
+<li><a href="https://operations.ramos-saavedra.com/isolate/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/niches.png" alt="Four identical niches, each filled with a different texture of light." width="128" height="128" loading="lazy" decoding="async">Isolate</a></li>
+<li><a href="https://operations.ramos-saavedra.com/reveal/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/candle-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/candle.gif" alt="A flickering flame lights the lower part of a dark vase." width="128" height="128" loading="lazy" decoding="async"></picture>Reveal</a></li>
+<li><a href="https://operations.ramos-saavedra.com/iterate/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/mirrors-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/mirrors.gif" alt="Squares nested inside squares, with a moving light repeated in each." width="128" height="128" loading="lazy" decoding="async"></picture>Iterate</a></li>
+<li><a href="https://operations.ramos-saavedra.com/locate/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/vee-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/vee.gif" alt="Lines converge on one point, which moves as the viewer moves." width="128" height="128" loading="lazy" decoding="async"></picture>Locate</a></li>
+<li><a href="https://operations.ramos-saavedra.com/translate/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/stacked_prisms-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/stacked_prisms.gif" alt="Vertical lines broken into sliding steps." width="128" height="128" loading="lazy" decoding="async"></picture>Translate</a></li>
+<li><a href="https://operations.ramos-saavedra.com/foreground/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/dark_cut.png" alt="Dark grain with a solid white cut edge." width="128" height="128" loading="lazy" decoding="async">Foreground</a></li>
+<li><a href="https://operations.ramos-saavedra.com/graft/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/marquetry.png" alt="Irregular fitted pieces, each with its own tone." width="128" height="128" loading="lazy" decoding="async">Graft</a></li>
+<li><a href="https://operations.ramos-saavedra.com/juxtapose/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/wood_bronze.png" alt="Wood grain on the left, smooth shaded metal on the right." width="128" height="128" loading="lazy" decoding="async">Juxtapose</a></li>
+<li><a href="https://operations.ramos-saavedra.com/weather/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/drips-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/drips.gif" alt="A white glaze runs slowly down the plate." width="128" height="128" loading="lazy" decoding="async"></picture>Weather</a></li>
+<li><a href="https://operations.ramos-saavedra.com/lay-over/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/paint_glass-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/paint_glass.gif" alt="Three hatched panes slide over one another." width="128" height="128" loading="lazy" decoding="async"></picture>Lay Over</a></li>
+<li><a href="https://operations.ramos-saavedra.com/mirror/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/double_sym-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/double_sym.gif" alt="A shifting shape mirrored both left to right and top to bottom." width="128" height="128" loading="lazy" decoding="async"></picture>Mirror</a></li>
+<li><a href="https://operations.ramos-saavedra.com/exaggerate/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/vestibule-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/vestibule.gif" alt="A very tall shaft of light between walls, with a tiny figure at the bottom." width="128" height="128" loading="lazy" decoding="async"></picture>Exaggerate</a></li>
+<li><a href="https://operations.ramos-saavedra.com/work-the-gap/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/heavy-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/heavy.gif" alt="A huge white block above a smaller one. The thin gap between them widens slightly." width="128" height="128" loading="lazy" decoding="async"></picture>Work The Gap</a></li>
+<li><a href="https://operations.ramos-saavedra.com/run-it-long/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/timelapse-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/timelapse.gif" alt="A building rises and crumbles as the sun races overhead." width="128" height="128" loading="lazy" decoding="async"></picture>Run It Long</a></li>
+<li><a href="https://operations.ramos-saavedra.com/reframe/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/doorway-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/doorway.gif" alt="Walking towards a doorway, with an object in the room beyond growing larger." width="128" height="128" loading="lazy" decoding="async"></picture>Reframe</a></li>
+<li><a href="https://operations.ramos-saavedra.com/align/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/striped_boxes.png" alt="Nine boxes in a grid, each with different stripes." width="128" height="128" loading="lazy" decoding="async">Align</a></li>
+<li><a href="https://operations.ramos-saavedra.com/conceal/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/watching-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/watching.gif" alt="Figures walk past behind a small round peephole." width="128" height="128" loading="lazy" decoding="async"></picture>Conceal</a></li>
+<li><a href="https://operations.ramos-saavedra.com/contain/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/prisms-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/prisms.gif" alt="Three wire cubes, one inside another, turning on one axis." width="128" height="128" loading="lazy" decoding="async"></picture>Contain</a></li>
+<li><a href="https://operations.ramos-saavedra.com/set-a-ratio/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/equidistant.png" alt="Seven rows of seven small squares, evenly spaced." width="128" height="128" loading="lazy" decoding="async">Set A Ratio</a></li>
+<li><a href="https://operations.ramos-saavedra.com/couple/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/taste_space-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/taste_space.gif" alt="Each bite taken from a round plate removes a piece of the room around it." width="128" height="128" loading="lazy" decoding="async"></picture>Couple</a></li>
+<li><a href="https://operations.ramos-saavedra.com/invert/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/open_interior-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/open_interior.gif" alt="Rain falls through a gap in a roof into a room." width="128" height="128" loading="lazy" decoding="async"></picture>Invert</a></li>
+<li><a href="https://operations.ramos-saavedra.com/attend/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/seat-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/seat.gif" alt="A figure on a bench watches the sun go down." width="128" height="128" loading="lazy" decoding="async"></picture>Attend</a></li>
+<li><a href="https://operations.ramos-saavedra.com/resize/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/scales.png" alt="The same arch at three sizes." width="128" height="128" loading="lazy" decoding="async">Resize</a></li>
+<li><a href="https://operations.ramos-saavedra.com/steer/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/social-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/social.gif" alt="Dots gather around a ring-shaped seat in plan." width="128" height="128" loading="lazy" decoding="async"></picture>Steer</a></li>
+<li><a href="https://operations.ramos-saavedra.com/let-drift/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/drift-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/drift.gif" alt="Vertical lines appear one at a time, each a copy of the last with one small change." width="128" height="128" loading="lazy" decoding="async"></picture>Let Drift</a></li>
+<li><a href="https://operations.ramos-saavedra.com/relocate/"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/plinth.png" alt="A tiny ball on a tall column, with a small figure beside it." width="128" height="128" loading="lazy" decoding="async">Relocate</a></li>
+<li><a href="https://operations.ramos-saavedra.com/accumulate/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/mound-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/mound.gif" alt="Grains fall in a thin stream and build a cone." width="128" height="128" loading="lazy" decoding="async"></picture>Accumulate</a></li>
+<li><a href="https://operations.ramos-saavedra.com/degrade/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/pixelate-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/pixelate.gif" alt="A shaded sphere going from large blocks to fine dots and back." width="128" height="128" loading="lazy" decoding="async"></picture>Degrade</a></li>
+<li><a href="https://operations.ramos-saavedra.com/mark-what-went/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/censored-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/censored.gif" alt="A pan along a gallery wall, where one picture is only a dotted outline." width="128" height="128" loading="lazy" decoding="async"></picture>Mark What Went</a></li>
+<li><a href="https://operations.ramos-saavedra.com/mark-time/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="https://catalogue.ramos-saavedra.com/plates/pendulum-still.png"><img class="plate" src="https://catalogue.ramos-saavedra.com/plates/pendulum.gif" alt="A double pendulum caught as a trail of frozen positions." width="128" height="128" loading="lazy" decoding="async"></picture>Mark Time</a></li>
+</ul>
+<script>
+(function(){var u=document.querySelector('.eye');for(var i=u.children.length;i>1;i--)u.appendChild(u.children[Math.floor(Math.random()*i)])})();
+</script>
+  <footer><p>Actionary: things to do to your work. © 2026 <a href="https://www.ramos-saavedra.com/">Alejandro Ramos Saavedra</a></p></footer>
+</main>
+<script>
+(function(){
+  var cells = document.querySelectorAll('.wm-cell'); if (!cells.length || !window.fetch) return;
+  fetch('/wordmark-symbols.svg').then(function(r){ return r.ok ? r.text() : ''; }).then(function(t){
+    if (!t) return;
+    var box = document.createElement('div'); box.setAttribute('aria-hidden', 'true');
+    box.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+    box.innerHTML = t; document.body.insertBefore(box, document.body.firstChild);
+    var pool = Array.prototype.slice.call(box.querySelectorAll('symbol'));
+    var NS = 'http://www.w3.org/2000/svg';
+    Array.prototype.forEach.call(cells, function(cell){
+      if (!pool.length) return;
+      var sym = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+      var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', sym.getAttribute('viewBox'));
+      svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
+      var use = document.createElementNS(NS, 'use'); use.setAttribute('href', '#' + sym.id); svg.appendChild(use);
+      var old = cell.querySelector('svg'); if (old) cell.replaceChild(svg, old);
+    });
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

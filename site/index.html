@@ -554,7 +554,12 @@
     #stuck .stuck-open { justify-self:start; }
     #stuck .stuck-alt { display:grid; gap:4px; margin-top:8px; padding-top:10px; border-top:1px dashed var(--line-strong); }
     #stuck .stuck-alt .stuck-act { font-size:15px; }
-  </style>
+  /*noticed*/
+    .onb-actions a.onb-next { display:inline-flex; align-items:center; padding:14px 20px; font-size:16px; border:1px solid var(--line-strong); color:var(--ink); text-decoration:none; }
+    .onb-actions a.onb-next:hover { background:var(--selected); }
+    @media (max-width:640px) { .onb-actions a.onb-next { flex:1 1 100%; } }
+/*/noticed*/
+</style>
 <script data-goatcounter="https://alexo000.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -585,7 +590,8 @@
       <div class="onb-actions">
         <button type="button" class="onb-next" id="onb-next">Show me another</button>
         <button type="button" class="onb-go" id="onb-go">Find one for my situation →</button>
-        <button type="button" class="onb-next" id="onb-map">Browse all 144</button>
+        <button type="button" class="onb-next" id="onb-map">Browse all 144</button><!--eye-->
+        <a class="onb-next" href="https://operations.ramos-saavedra.com/by-eye/">Find one by eye</a><!--/eye-->
       </div>
     </section>
     <section id="opening" aria-labelledby="opening-title">

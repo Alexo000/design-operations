@@ -39,6 +39,7 @@ SRC=sources/<new compendium file>.md python3 build/build_explorer.py
 - `symbols_draw_153_155.py`, `symbols_dsl.py`: symbols for the three newest operations.
 - `glyphs.py`: the four small icons on the task cards.
 - `stuck.py`: the "I'm stuck on a project" way in.
+- `noticed.py`: runs last. Adds the Noticed strip from the Aesthetic Catalogue to each operation that has a plate, makes `/by-eye/`, and links to it. Works on the finished pages, so it can run alone with `python3 build/noticed.py`. `build/noticed.json` is a snapshot of the catalogue; refresh it with `python3 build/noticed.py --from ../aesthetic-catalogue`.
 - `pages.py`: the page for each operation, the all-operations page, the sitemap and robots.txt, so search engines can find every operation.
 - `wordmark.py`: the name, ACTIONARY under nine operation symbols drawn again on every visit; writes the symbol sheet and the favicon into `site/`.
 - `share_image.py`: draws the share image with the wordmark (run by hand; needs playwright and the IBM Plex Sans fonts).

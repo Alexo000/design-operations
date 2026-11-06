@@ -307,6 +307,8 @@ open(f'{OUT}/index.html', 'w', encoding='utf-8').write(npage)
 assert 'Design Operations' not in npage, 'the old name is still on the page'
 import pages   # one page per operation, /all/, sitemap.xml, robots.txt (2026-10-15)
 print('operation pages', pages.write(OUT, register, ICONS, npage))
+import noticed   # catalogue plates on the operation pages, and /by-eye/ (2026-11-06)
+print('operations with plates', noticed.apply(OUT))
 with open(os.path.join(HERE, 'build_report.tsv'), 'w', encoding='utf-8') as fh:
     fh.write('number\tname\tprofile\ttasks from\timage\n')
     for r in report:
