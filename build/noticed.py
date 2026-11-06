@@ -4,7 +4,8 @@ Runs last in the build, and on its own: python3 build/noticed.py
 It works on the finished pages in site/, so it needs none of the private sources.
 
   - a Noticed strip on each operation that has a catalogue plate, under Seen in;
-  - /by-eye/, a way in by picture, with one plate for each of those operations;
+  - /by-eye/, a way in by picture, with one plate for each of those operations, plus move plates
+    for operations with no entry (build/moves.json), which show the move and appear only there;
   - links to /by-eye/ from the explorer, /all/ and each operation page;
   - /by-eye/ in the sitemap.
 
@@ -23,6 +24,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, 'noticed.json')
+MOVES = os.path.join(HERE, 'moves.json')   # operations with no catalogue entry, drawn as the move: /by-eye/ only
 SITE = 'https://operations.ramos-saavedra.com'
 CAT = 'https://catalogue.ramos-saavedra.com'
 BY_EYE = f'{SITE}/by-eye/'
@@ -84,14 +86,17 @@ def refresh(repo):
             {'plate': x['plate'], 'file': x['plate'] + ('.gif' if gif else '.png'), 'moves': gif,
              'text': x['text'], 'alt': x['alt']})
     json.dump(out, open(DATA, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    moves = json.load(open(os.path.join(repo, 'src', 'moves.json'), encoding='utf-8'))
+    json.dump(moves, open(MOVES, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     return len(out)
 
 
 def picture(p):
-    src = f'{CAT}/plates/{p["file"]}'
+    folder = p.get('dir', 'plates')
+    src = f'{CAT}/{folder}/{p["file"]}'
     img = f'<img class="plate" src="{src}" alt="{e(p["alt"])}" width="128" height="128" loading="lazy" decoding="async">'
     if p['moves']:
-        return (f'<picture><source media="(prefers-reduced-motion: reduce)" srcset="{CAT}/plates/{p["plate"]}-still.png">'
+        return (f'<picture><source media="(prefers-reduced-motion: reduce)" srcset="{CAT}/{folder}/{p["plate"]}-still.png">'
                 f'{img}</picture>')
     return img
 
@@ -132,9 +137,10 @@ def op_page(page, plates):
 
 def eye_page(allpage, data):
     allpage = clean(allpage)
-    n = len(data)
+    moves = json.load(open(MOVES, encoding='utf-8'))
+    n = len(data) + len(moves)
     title = 'Find one by eye · Actionary'
-    desc = f'Pick the picture that pulls at you. {n} operations, each shown by a small animated plate from the Aesthetic Catalogue.'
+    desc = f'Pick the picture that pulls at you. {n} operations, each shown by a small animated plate.'
     a = allpage.index('</header>') + len('</header>\n')
     b = allpage.index('  <footer>')
     head, tail = allpage[:a], allpage[b:]
@@ -150,6 +156,9 @@ def eye_page(allpage, data):
         want = CHOSEN.get(slug)
         p = next((x for x in op['plates'] if x['plate'] == want), op['plates'][0])
         items += f'<li><a href="{SITE}/{slug}/">{picture(p)}{e(op["name"])}</a></li>\n'
+    for m in moves:
+        p = {'plate': m['file'], 'file': m['file'] + '.gif', 'moves': True, 'alt': m['alt'], 'dir': 'moves'}
+        items += f'<li><a href="{SITE}/{m["slug"]}/">{picture(p)}{e(m["name"])}</a></li>\n'
     body = ('  <h1 style="margin-top:56px">Find one by eye</h1>\n'
             '  <p class="lede">Pick the picture that pulls at you. It leads to something to do to your work. '
             f'Or <a href="{SITE}/">find one for your situation</a>.</p>\n'

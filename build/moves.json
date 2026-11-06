@@ -1,0 +1,248 @@
+[
+ {
+  "slug": "halve",
+  "name": "Halve",
+  "file": "halve",
+  "alt": "A bar is cut in two again and again, keeping one half each time."
+ },
+ {
+  "slug": "ratchet",
+  "name": "Ratchet",
+  "file": "ratchet",
+  "alt": "A row of tall bars counts down until only stubs are left."
+ },
+ {
+  "slug": "alternate",
+  "name": "Alternate",
+  "file": "alternate",
+  "alt": "Solid and hatched stripes swap places on a fixed beat."
+ },
+ {
+  "slug": "saturate",
+  "name": "Saturate",
+  "file": "saturate",
+  "alt": "Scattered dots multiply until the square is entirely white."
+ },
+ {
+  "slug": "sequence",
+  "name": "Sequence",
+  "file": "sequence",
+  "alt": "Bars of different heights swap places until they rise in order."
+ },
+ {
+  "slug": "classify",
+  "name": "Classify",
+  "file": "classify",
+  "alt": "Mixed circles, squares and triangles sort themselves into three columns."
+ },
+ {
+  "slug": "replicate",
+  "name": "Replicate",
+  "file": "replicate",
+  "alt": "A zigzag on the left is copied line by line on the right."
+ },
+ {
+  "slug": "interrupt",
+  "name": "Interrupt",
+  "file": "interrupt",
+  "alt": "A wave is drawn from left to right, stopped by a line, then carried on."
+ },
+ {
+  "slug": "recall",
+  "name": "Recall",
+  "file": "recall",
+  "alt": "An outline disappears, then is redrawn slightly differently."
+ },
+ {
+  "slug": "roam",
+  "name": "Roam",
+  "file": "roam",
+  "alt": "One thick line stays still while thin lines wander around it."
+ },
+ {
+  "slug": "reserve",
+  "name": "Reserve",
+  "file": "reserve",
+  "alt": "A grid fills up while its last two rows stay empty."
+ },
+ {
+  "slug": "dissolve-and-rebuild",
+  "name": "Dissolve And Rebuild",
+  "file": "dissolve_and_rebuild",
+  "alt": "A square crumbles to dust and the dust forms a circle."
+ },
+ {
+  "slug": "find-the-keystone",
+  "name": "Find The Keystone",
+  "file": "find_the_keystone",
+  "alt": "Blocks are lifted out one at a time until one brings the wall down."
+ },
+ {
+  "slug": "join-through-a-third",
+  "name": "Join Through A Third",
+  "file": "join_through_a_third",
+  "alt": "Two blocks stay still while a third piece drops between them and joins them."
+ },
+ {
+  "slug": "exchange",
+  "name": "Exchange",
+  "file": "exchange",
+  "alt": "A circle and a square trade places."
+ },
+ {
+  "slug": "hand-over",
+  "name": "Hand Over",
+  "file": "hand_over",
+  "alt": "One figure passes a small block to another and walks away."
+ },
+ {
+  "slug": "leave-one-out",
+  "name": "Leave One Out",
+  "file": "leave_one_out",
+  "alt": "A row of bars with a different one missing each time."
+ },
+ {
+  "slug": "hedge",
+  "name": "Hedge",
+  "file": "hedge",
+  "alt": "Three lines start out, two stop, and one carries on."
+ },
+ {
+  "slug": "scout",
+  "name": "Scout",
+  "file": "scout",
+  "alt": "A bar extends in doubling steps until it breaks."
+ },
+ {
+  "slug": "leave-open",
+  "name": "Leave Open",
+  "file": "leave_open",
+  "alt": "A wire cube flips between two ways of being seen."
+ },
+ {
+  "slug": "build-in-layers",
+  "name": "Build In Layers",
+  "file": "build_in_layers",
+  "alt": "A coarse image sharpens in stages into a figure."
+ },
+ {
+  "slug": "load-and-rest",
+  "name": "Load And Rest",
+  "file": "load_and_rest",
+  "alt": "A press rises and falls on a fixed rhythm, with rests between."
+ },
+ {
+  "slug": "plant",
+  "name": "Plant",
+  "file": "plant",
+  "alt": "A small dot sits unnoticed until a figure reaches it, and then it bursts."
+ },
+ {
+  "slug": "pull",
+  "name": "Pull",
+  "file": "pull",
+  "alt": "Items on a shelf go missing, and only the gap is refilled."
+ },
+ {
+  "slug": "keep-a-way-home",
+  "name": "Keep A Way Home",
+  "file": "keep_a_way_home",
+  "alt": "A dotted line loops far out and swings back to where it started."
+ },
+ {
+  "slug": "triangulate",
+  "name": "Triangulate",
+  "file": "triangulate",
+  "alt": "Three lines from three corners meet at one point."
+ },
+ {
+  "slug": "raise-the-cost",
+  "name": "Raise The Cost",
+  "file": "raise_the_cost",
+  "alt": "A small block climbs steps that get taller each time."
+ },
+ {
+  "slug": "clear-and-refill",
+  "name": "Clear And Refill",
+  "file": "clear_and_refill",
+  "alt": "One field in a grid is blanked, then filled with something new."
+ },
+ {
+  "slug": "delay",
+  "name": "Delay",
+  "file": "delay",
+  "alt": "A sealed box sinks into the ground while a bar counts time above."
+ },
+ {
+  "slug": "interlock",
+  "name": "Interlock",
+  "file": "interlock",
+  "alt": "Three overlapping circles, each sharing a dot with the others."
+ },
+ {
+  "slug": "share-and-keep-apart",
+  "name": "Share And Keep Apart",
+  "file": "share_and_keep_apart",
+  "alt": "Three hatchings overlap on one surface, then each shows alone."
+ },
+ {
+  "slug": "breed",
+  "name": "Breed",
+  "file": "breed",
+  "alt": "One blob is copied, changing slightly at every step."
+ },
+ {
+  "slug": "calibrate",
+  "name": "Calibrate",
+  "file": "calibrate",
+  "alt": "A line drifts away from its mark and is pulled back at fixed points."
+ },
+ {
+  "slug": "allow-a-margin",
+  "name": "Allow A Margin",
+  "file": "allow_a_margin",
+  "alt": "Dots inside a band stay put; the ones outside are moved in."
+ },
+ {
+  "slug": "favour-the-rare",
+  "name": "Favour The Rare",
+  "file": "favour_the_rare",
+  "alt": "Tall bars shrink and short bars grow until they nearly match."
+ },
+ {
+  "slug": "archive",
+  "name": "Archive",
+  "file": "archive",
+  "alt": "A grid of small squares disappears until only three are left."
+ },
+ {
+  "slug": "cut-the-beaten",
+  "name": "Cut The Beaten",
+  "file": "cut_the_beaten",
+  "alt": "Points on a graph drop away until only the best on both counts stay."
+ },
+ {
+  "slug": "leave-no-winner",
+  "name": "Leave No Winner",
+  "file": "leave_no_winner",
+  "alt": "Three circles in a ring, each beating the next."
+ },
+ {
+  "slug": "suspend-the-rules",
+  "name": "Suspend The Rules",
+  "file": "suspend_the_rules",
+  "alt": "Dots march in order, except inside a ring, where they wander."
+ },
+ {
+  "slug": "feed-in-oddities",
+  "name": "Feed In Oddities",
+  "file": "feed_in_oddities",
+  "alt": "Squares pass on a belt, with one triangle among them."
+ },
+ {
+  "slug": "watch-for-clashes",
+  "name": "Watch For Clashes",
+  "file": "watch_for_clashes",
+  "alt": "Lines cross and part freely between two fixed banks."
+ }
+]
